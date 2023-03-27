@@ -1,12 +1,19 @@
-import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
+import { ThemeProvider } from 'styled-components';
+import GlobalStyle from '../styles/global-style';
+import { theme } from '../styles/theme';
 import { JetBrains_Mono } from '@next/font/google';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={jetBrains_Mono.className}>
-      <Component {...pageProps} />
-    </main>
+    <>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <main className={jetBrains_Mono.className}>
+          <Component {...pageProps} />
+        </main>
+      </ThemeProvider>
+    </>
   );
 }
 
