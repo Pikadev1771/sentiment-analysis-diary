@@ -15,3 +15,23 @@ a {
   color: inherit;
   text-decoration: none;
 }
+.email {
+  background: #fdfbe9;
+  border: 6px solid #625151;
+  box-shadow: 10px 10px 4px 10px #625151;
+  border-radius: 30px;
+  width: 600px;
+  height: 100px;
+  border-radius: 30px;
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 48px;
+  /* identical to box height */
+
+  color: #625151;
+}
+.labelInputContainer {
+  height: 220px;
+}
