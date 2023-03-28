@@ -3,15 +3,18 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../styles/global-style';
 import { theme } from '../styles/theme';
 import { JetBrains_Mono } from '@next/font/google';
+import Layout from '../components/layout/Layout';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <main className={jetBrains_Mono.className}>
-          <Component {...pageProps} />
-        </main>
+        <Layout>
+          <main className={jetBrains_Mono.className}>
+            <Component {...pageProps} />
+          </main>
+        </Layout>
       </ThemeProvider>
     </>
   );

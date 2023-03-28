@@ -18,9 +18,16 @@ export default function Home() {
       <div>
         <h1>Sentiment Analysis Diary</h1>
         <div className={notoSansKr.variable}>
-          <h2 className={styles.text}>야호</h2>
+          <p className={styles.text}>야호</p>
         </div>
+        <CalendarContainer />
       </div>
     </>
   );
 }
+
+const CalendarContainer = styled.div`
+  width: 40vw;
+  height: 50vh;
+  border: 1px solid red;
+`;
