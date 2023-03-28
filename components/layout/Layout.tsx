@@ -1,20 +1,17 @@
 import React from 'react';
 import Footer from '../footer/Footer';
 
-export default function Layout(props: {
-  children:
-    | string
-    | number
-    | boolean
-    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-    | React.ReactFragment
-    | React.ReactPortal
-    | null
-    | undefined;
-}) {
+import { NextPage } from 'next';
+import { ReactElement, ReactNode } from 'react';
+
+export interface layoutPropsType {
+  children: ReactElement;
+}
+
+export default function Layout({ children }: layoutPropsType) {
   return (
     <div>
-      {props.children}
+      {children}
       <Footer />
     </div>
   );
