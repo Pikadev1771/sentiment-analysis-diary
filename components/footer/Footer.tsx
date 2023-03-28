@@ -20,7 +20,7 @@ const FooterContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: '100%';
-  height: 5rem;
+  height: 100px;
   bottom: '0';
   background-color: #79685f;
   z-index: '10';
@@ -29,5 +29,5 @@ const FooterContainer = styled.div`
 const FooterText = styled.p`
   text-align: center;
   color: #fdfbe9;
-  line-height: 1.4;
+  line-height: 1.6;
 `;
