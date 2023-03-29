@@ -20,6 +20,7 @@ export default function Home() {
 }
 const MainContainer = styled.div`
   display: flex;
+  justify-content: space-around;
   width: 100%;
   border: 1px solid green;
 `;

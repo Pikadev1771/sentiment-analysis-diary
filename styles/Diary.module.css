@@ -1,11 +1,11 @@
 .text {
-  font-family: var(--notosanskr);
+  font-family: var(--roboto);
   font-weight: 200;
   font-style: italic;
 }
 
 .boldtext {
-  font-family: var(--notosanskr);
+  font-family: var(--roboto);
   font-weight: 900;
   font-style: italic;
 }

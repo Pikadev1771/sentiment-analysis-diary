@@ -18,7 +18,7 @@ export default function ReactCalendar() {
 }
 
 const CalendarContainer = styled.div`
-  width: 50vw;
+  width: 40vw;
   height: 90vh;
   border: 1px solid red;
   display: flex;
