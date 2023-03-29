@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { Noto_Sans_KR } from '@next/font/google';
 import styles from '../styles/Home.module.css';
-import styled from 'styled-components';
+import Link from 'next/link';
 import ReactCalendar from '../components/diary/ReactCalendar';
 import Diary from '../components/diary/Diary';
 
@@ -23,6 +23,7 @@ export default function Home() {
           <p className={styles.text}>야호</p>
         </div> */}
         <MainContainer>
+          <Link href="/signup">회원가입</Link>
           <ReactCalendar />
 
           <Diary />
