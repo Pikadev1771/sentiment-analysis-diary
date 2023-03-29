@@ -13,6 +13,7 @@ export default function Home() {
       <div>
         <MainContainer>
           <Link href="/signup">회원가입</Link>
+          <Link href="/login">로그인</Link>
           <ReactCalendar />
           <Diary />
         </MainContainer>
