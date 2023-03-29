@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { Noto_Sans_KR } from '@next/font/google';
 import styles from '../styles/Home.module.css';
-import styled from 'styled-components';
+import Link from 'next/link';
 
 const notoSansKr = Noto_Sans_KR({
   weight: ['100', '300', '400', '500', '700', '900'],
@@ -18,7 +18,8 @@ export default function Home() {
       <div>
         <h1>Sentiment Analysis Diary</h1>
         <div className={notoSansKr.variable}>
-          <p className={styles.text}>야호</p>
+          <h2 className={styles.text}>야호</h2>
+          <Link href="/signup">회원가입</Link>
         </div>
         <CalendarContainer />
       </div>
