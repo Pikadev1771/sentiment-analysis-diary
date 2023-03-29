@@ -13,7 +13,7 @@ html,
     letter-spacing: -1px;
     font-size: 15px;
     background-color: #BBB2B2;
-    /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    /* font-family:  Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
   }
 

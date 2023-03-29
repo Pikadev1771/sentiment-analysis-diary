@@ -1,15 +1,8 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import { Noto_Sans_KR } from '@next/font/google';
-import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 import ReactCalendar from '../components/diary/ReactCalendar';
 import Diary from '../components/diary/Diary';
-
-const notoSansKr = Noto_Sans_KR({
-  weight: ['100', '300', '400', '500', '700', '900'],
-  variable: '--notosanskr',
-});
+import styled from 'styled-components';
 
 export default function Home() {
   return (
@@ -18,14 +11,9 @@ export default function Home() {
         <title>Sentiment Analysis Diary</title>
       </Head>
       <div>
-        {/* <h1>Sentiment Analysis Diary</h1>
-        <div className={notoSansKr.variable}>
-          <p className={styles.text}>야호</p>
-        </div> */}
         <MainContainer>
           <Link href="/signup">회원가입</Link>
           <ReactCalendar />
-
           <Diary />
         </MainContainer>
       </div>
@@ -34,7 +22,7 @@ export default function Home() {
 }
 const MainContainer = styled.div`
   display: flex;
-  /* justify-content: space-around; */
+  justify-content: space-around;
   width: 100%;
   border: 1px solid green;
 `;

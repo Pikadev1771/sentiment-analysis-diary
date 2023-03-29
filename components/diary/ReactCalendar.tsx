@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import Calendar from 'react-calendar';
 import styled from 'styled-components';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 export default function ReactCalendar() {
   const [value, onChange] = useState(new Date());
@@ -17,7 +18,7 @@ export default function ReactCalendar() {
 }
 
 const CalendarContainer = styled.div`
-  width: 50vw;
+  width: 40vw;
   height: 90vh;
   border: 1px solid red;
   display: flex;
@@ -28,4 +29,14 @@ const CalendarContainer = styled.div`
 const Container = styled.div`
   width: 80%;
   border: 1px solid green;
+
+  .react-calendar__tile--now {
+    background: #17a1fa;
+    color: #ffd9df;
+  }
+  .react-calendar__tile--now:enabled:hover,
+  .react-calendar__tile--now:enabled:focus {
+    background: #deec85;
+    color: #17a1fa;
+  }
 `;

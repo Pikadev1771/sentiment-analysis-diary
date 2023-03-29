@@ -1,0 +1,11 @@
+.text {
+  font-family: var(--roboto);
+  font-weight: 200;
+  font-style: italic;
+}
+
+.bold-text {
+  font-family: var(--roboto);
+  font-weight: 900;
+  font-style: italic;
+}
