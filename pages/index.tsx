@@ -21,7 +21,14 @@ export default function Home() {
           <h2 className={styles.text}>야호</h2>
           <Link href="/signup">회원가입</Link>
         </div>
+        <CalendarContainer />
       </div>
     </>
   );
 }
+
+const CalendarContainer = styled.div`
+  width: 40vw;
+  height: 50vh;
+  border: 1px solid red;
+`;
