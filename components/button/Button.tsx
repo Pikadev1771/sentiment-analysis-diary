@@ -15,7 +15,8 @@ const BigButton = styled.button`
   border: 4px solid ${({ theme }) => theme.color.brown};
   border-radius: 10px;
   color: ${({ theme }) => theme.color.brown};
-  background-color: ${({ theme }) => theme.color.pink};
+  background-color: ${(props) =>
+    props.color ? props.color : ({ theme }) => theme.color.pink};
   font-size: 20px;
   font-weight: 600;
 `;

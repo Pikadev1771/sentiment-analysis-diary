@@ -34,7 +34,9 @@ const LoginPage = () => {
         ))}
         <ButtonContainer>
           <Button onClick={handleLogin}>Log In</Button>
-          <Button onClick={() => router.push('/signup')}>Sign Up</Button>
+          <Button color={'#FDFBE8'} onClick={() => router.push('/signup')}>
+            Sign Up
+          </Button>
         </ButtonContainer>
       </FormContainer>
     </LoginContainer>
@@ -54,10 +56,10 @@ const FormContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 40vw;
+  width: 34vw;
   height: 500px;
   margin: 100px auto;
-  border: 3px solid black;
+  border: 3px solid ${({ theme }) => theme.color.brown};
   border-radius: 20px;
   background-color: ${({ theme }) => theme.color.lime};
 `;
