@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import Link from 'next/link';
-import ReactCalendar from '../components/diary/ReactCalendar';
+
+import ReactCalendar from '../components/calendar/ReactCalendar';
 import Diary from '../components/diary/Diary';
 import styled from 'styled-components';
 
@@ -12,8 +12,6 @@ export default function Home() {
       </Head>
       <div>
         <MainContainer>
-          <Link href="/signup">회원가입</Link>
-          <Link href="/login">로그인</Link>
           <ReactCalendar />
           <Diary />
         </MainContainer>
