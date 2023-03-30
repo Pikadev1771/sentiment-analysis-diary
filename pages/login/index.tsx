@@ -1,5 +1,8 @@
-import LoginlInput from '../../components/user/login/LoginInput';
 import styled from 'styled-components';
+import LoginlInput from '../../components/user/login/LoginInput';
+import Button from '../../components/button/Button';
+
+import { useRouter } from 'next/router';
 
 export interface InputType {
   loginInput: { label: string; placeholder: string; errorMessage: string };
@@ -17,13 +20,22 @@ const LoginInputList: InputType['loginInput'][] = [
   },
 ];
 
+const handleLogin = () => {
+  console.log('로그인');
+};
+
 const LoginPage = () => {
+  const router = useRouter();
   return (
     <LoginContainer>
       <FormContainer>
-        {LoginInputList.map((input, idx) => (
-          <LoginlInput key={idx} loginInput={input} />
+        {LoginInputList.map((loginInput, idx) => (
+          <LoginlInput key={idx} loginInput={loginInput} />
         ))}
+        <ButtonContainer>
+          <Button onClick={handleLogin}>Log In</Button>
+          <Button onClick={() => router.push('/signup')}>Sign Up</Button>
+        </ButtonContainer>
       </FormContainer>
     </LoginContainer>
   );
@@ -40,11 +52,18 @@ const LoginContainer = styled.div`
 const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-items: center;
   width: 40vw;
   height: 500px;
   margin: 100px auto;
+  border: 3px solid black;
   border-radius: 20px;
   background-color: ${({ theme }) => theme.color.lime};
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
 `;

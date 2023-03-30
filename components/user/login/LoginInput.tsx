@@ -3,52 +3,47 @@ import { InputType } from '../../../pages/login';
 
 const LoginInput = ({ loginInput }: InputType) => {
   return (
-    <Container>
+    <InputContainer>
       <Label id={loginInput.label}>{loginInput.label}</Label>
       <Input
         name={loginInput.label}
         placeholder={loginInput.placeholder}
       ></Input>
       <ValidationMessage>{loginInput.errorMessage}</ValidationMessage>
-    </Container>
+    </InputContainer>
   );
 };
 
 export default LoginInput;
 
-const Container = styled.div`
+const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  color: #625151;
-  max-width: 300px;
-  margin: auto;
-  margin-bottom: 15px;
+  color: ${({ theme }) => theme.color.brown};
 `;
 
 const Label = styled.label`
   font-weight: 400;
-  font-size: 24px;
-  margin-bottom: 5px;
+  font-size: 18px;
+  padding: 10px;
 `;
 
 const Input = styled.input`
-  border: 6px solid #625151;
-  box-shadow: 10px 10px 4px 10px #625151;
-  border-radius: 30px;
   width: 300px;
   height: 50px;
-  border-radius: 30px;
-  background: #fdfbe9;
+  padding: 12px;
+  background: ${({ theme }) => theme.color.cream};
+  border: 4px solid ${({ theme }) => theme.color.brown};
+  box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.brown};
+  border-radius: 14px;
   font-weight: 500;
-  font-size: 24px;
-  line-height: 28px;
-  /* identical to box height */
-  color: #625151;
+  font-size: 18px;
+  color: ${({ theme }) => theme.color.brown};
 `;
 
 const ValidationMessage = styled.strong`
   font-weight: 400;
-  color: #ff0000;
+  color: ${({ theme }) => theme.color.red};
   font-size: 16px;
-  margin-top: 22px;
+  padding: 14px 0 4px 10px;
 `;

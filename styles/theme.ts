@@ -8,5 +8,7 @@ export const theme: DefaultTheme = {
     lime: '#DEEC85',
     cream: '#FDFBE8',
     blue: '#17A1FA',
+    red: '#E73B3B',
+    lightBrown: '#79685f',
   },
 };
