@@ -61,14 +61,15 @@ export default function Diary() {
 const DiaryContainer = styled.div`
   width: 40vw;
   height: 90vh;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 const Container = styled.div`
-  width: 80%;
+  width: 90%;
+  height: 500px;
   padding: 32px;
   background: ${({ theme }) => theme.color.cream};
   border: 4px solid ${({ theme }) => theme.color.brown};

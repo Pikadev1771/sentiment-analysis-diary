@@ -21,7 +21,7 @@ export default function Home() {
 }
 const MainContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   width: 100%;
-  border: 1px solid green;
+  /* border: 1px solid green; */
 `;
