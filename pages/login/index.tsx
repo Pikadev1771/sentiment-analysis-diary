@@ -56,9 +56,9 @@ const FormContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 34vw;
+  width: 400px;
   height: 500px;
-  margin: 100px auto;
+  margin: 150px auto;
   border: 3px solid ${({ theme }) => theme.color.brown};
   border-radius: 20px;
   background-color: ${({ theme }) => theme.color.lime};

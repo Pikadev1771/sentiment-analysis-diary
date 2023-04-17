@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
 
-import styles from '../../styles/Diary.module.css';
+import styles from '../../styles/DiaryForm.module.css';
 import { Roboto } from 'next/font/google';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -13,20 +13,20 @@ const roboto = Roboto({
   variable: '--roboto',
 });
 
-type DiaryProps = {
+type DiaryFormProps = {
   diaryTitle: string;
   diaryContent: string;
 };
 
-export default function Diary() {
+export default function DiaryForm() {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<DiaryProps>();
+  } = useForm<DiaryFormProps>();
 
-  const onSubmit: SubmitHandler<DiaryProps> = (diaryData) =>
+  const onSubmit: SubmitHandler<DiaryFormProps> = (diaryData) =>
     console.log(diaryData);
 
   console.log('diaryTitle >>>', watch('diaryTitle'));
@@ -34,14 +34,14 @@ export default function Diary() {
 
   return (
     <div>
-      <DiaryContainer>
+      <DiaryFormContainer>
         <Container>
           {/* <h1>Today&apos;s Diary</h1>
           <div className={roboto.variable}>
             <p className={styles.text}>야호</p>
           </div> */}
 
-          <DiaryForm onSubmit={handleSubmit(onSubmit)}>
+          <Form onSubmit={handleSubmit(onSubmit)}>
             <TitleContainer>
               <h3>Title</h3>
               <DiaryInput
@@ -57,14 +57,14 @@ export default function Diary() {
 
             {errors.diaryContent && <p>일기를 작성해 주세요.</p>}
             <DiaryInput type="submit" value={'SUBMIT'} />
-          </DiaryForm>
+          </Form>
         </Container>
-      </DiaryContainer>
+      </DiaryFormContainer>
     </div>
   );
 }
 
-const DiaryContainer = styled.div`
+const DiaryFormContainer = styled.div`
   width: 40vw;
   height: 90vh;
   /* border: 1px solid blue; */
@@ -92,7 +92,7 @@ const Container = styled.div`
   }
 `;
 
-const DiaryForm = styled.form`
+const Form = styled.form`
   max-width: 500px;
   margin: 0 auto;
 `;

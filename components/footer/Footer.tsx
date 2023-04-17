@@ -15,17 +15,14 @@ export default function Footer() {
 }
 
 const FooterContainer = styled.div`
-  position: 'fixed';
   display: flex;
   justify-content: center;
   align-items: center;
-  width: '100%';
+  width: 100%;
   height: 100px;
-  bottom: '0';
   background-color: ${({ theme }) => theme.color.lightBrown};
   z-index: '10';
 `;
-
 const FooterText = styled.p`
   text-align: center;
   color: ${({ theme }) => theme.color.cream};

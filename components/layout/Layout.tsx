@@ -3,6 +3,7 @@ import Footer from '../footer/Footer';
 
 import { NextPage } from 'next';
 import { ReactElement, ReactNode } from 'react';
+import styled from 'styled-components';
 
 export interface layoutPropsType {
   children: ReactElement;
@@ -10,9 +11,17 @@ export interface layoutPropsType {
 
 export default function Layout({ children }: layoutPropsType) {
   return (
-    <div>
+    <Wrapper>
       {children}
       <Footer />
-    </div>
+    </Wrapper>
   );
 }
+
+// footer 고정
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+`;
