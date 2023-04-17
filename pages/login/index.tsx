@@ -3,7 +3,9 @@ import Button from '../../components/button/Button';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import Cookies from 'js-cookie';
-import { requestLogin } from '../../api/members';
+import { requestLogin } from '../../api/users';
+import { useState } from 'react';
+import Image from 'next/image';
 
 type LoginFormProps = {
   email: string;
@@ -12,6 +14,12 @@ type LoginFormProps = {
 
 const LoginPage = () => {
   const router = useRouter();
+
+  const [showPw, setShowPw] = useState(false);
+
+  const handleShowPw = () => {
+    setShowPw((prev) => !prev);
+  };
 
   const {
     register,
@@ -28,7 +36,6 @@ const LoginPage = () => {
           expires: 0.079,
         });
       Cookies.set('refresh_token', res.headers.refresh, { expires: 20 });
-
       router.push('/');
     });
   };
@@ -41,7 +48,7 @@ const LoginPage = () => {
           <Input
             placeholder={'Email을 입력해주세요'}
             {...register('email', { required: true })}
-          ></Input>
+          />
           {/* <HelpMessage>{''}</HelpMessage> */}
           <ErrorMessage>{'올바른 이메일 주소를 입력해주세요'}</ErrorMessage>
         </InputContainer>
@@ -49,9 +56,17 @@ const LoginPage = () => {
         <InputContainer>
           <Label id={'pw'}>{'Password'}</Label>
           <Input
+            type={showPw ? 'text' : 'password'}
             placeholder={'Password를 입력해주세요'}
             {...register('pw', { required: true })}
           ></Input>
+          <Image
+            src="password/eye.svg"
+            className="diaryImg"
+            width="26"
+            height="26"
+            alt="today is..."
+          />
           {/* <HelpMessage>{''}</HelpMessage> */}
           <ErrorMessage>{'올바른 이메일 주소를 입력해주세요'}</ErrorMessage>
         </InputContainer>
