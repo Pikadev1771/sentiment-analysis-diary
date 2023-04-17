@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
 
-import styles from '../../styles/Diary.module.css';
+import styles from '../../styles/DiaryForm.module.css';
 import { Roboto } from 'next/font/google';
 
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -13,29 +13,35 @@ const roboto = Roboto({
   variable: '--roboto',
 });
 
-export default function Diary() {
+type DiaryFormProps = {
+  diaryTitle: string;
+  diaryContent: string;
+};
+
+export default function DiaryForm() {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm<DiaryFormProps>();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit: SubmitHandler<DiaryFormProps> = (diaryData) =>
+    console.log(diaryData);
 
   console.log('diaryTitle >>>', watch('diaryTitle'));
-  console.log('myDiary >>>', watch('myDiary'));
+  console.log('diaryContent >>>', watch('diaryContent'));
 
   return (
     <div>
-      <DiaryContainer>
+      <DiaryFormContainer>
         <Container>
           {/* <h1>Today&apos;s Diary</h1>
           <div className={roboto.variable}>
             <p className={styles.text}>야호</p>
           </div> */}
 
-          <DiaryForm onSubmit={handleSubmit(onSubmit)}>
+          <Form onSubmit={handleSubmit(onSubmit)}>
             <TitleContainer>
               <h3>Title</h3>
               <DiaryInput
@@ -44,21 +50,21 @@ export default function Diary() {
               />
             </TitleContainer>
             {errors.diaryTitle && <p>제목을 작성해 주세요.</p>}
-            <DiaryInput
-              {...register('myDiary', { required: true })}
-              id={'diary'}
+            <DiaryTextarea
+              {...register('diaryContent', { required: true })}
+              id={'content'}
             />
 
-            {errors.myDiary && <p>일기를 작성해 주세요.</p>}
+            {errors.diaryContent && <p>일기를 작성해 주세요.</p>}
             <DiaryInput type="submit" value={'SUBMIT'} />
-          </DiaryForm>
+          </Form>
         </Container>
-      </DiaryContainer>
+      </DiaryFormContainer>
     </div>
   );
 }
 
-const DiaryContainer = styled.div`
+const DiaryFormContainer = styled.div`
   width: 40vw;
   height: 90vh;
   /* border: 1px solid blue; */
@@ -86,7 +92,7 @@ const Container = styled.div`
   }
 `;
 
-const DiaryForm = styled.form`
+const Form = styled.form`
   max-width: 500px;
   margin: 0 auto;
 `;
@@ -125,6 +131,19 @@ const DiaryInput = styled.input`
       font-weight: 100;
       letter-spacing: 10px;
     `}
+`;
+
+const DiaryTextarea = styled.textarea`
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  border: 4px solid ${({ theme }) => theme.color.brown};
+  padding: 10px 15px;
+  font-size: 16px;
+  color: ${({ theme }) => theme.color.brown};
+  margin: 10px 0 8px 0;
 `;
 
 const TitleContainer = styled.div`

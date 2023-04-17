@@ -35,12 +35,12 @@ export default function ReactCalendar() {
             className="diaryImg"
             width="26"
             height="26"
-            alt="로고"
+            alt="today is..."
           />
         </>
       );
     }
-    return <>{contents}</>;
+    return <div>{contents}</div>;
   };
 
   return (

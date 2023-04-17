@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
 import ReactCalendar from '../components/calendar/ReactCalendar';
-import Diary from '../components/diary/Diary';
+import DiaryForm from '../components/diary/DiaryForm';
 import styled from 'styled-components';
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
       <div>
         <MainContainer>
           <ReactCalendar />
-          <Diary />
+          <DiaryForm />
         </MainContainer>
       </div>
     </>
