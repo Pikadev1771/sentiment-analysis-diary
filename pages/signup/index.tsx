@@ -1,29 +1,9 @@
 import styled from 'styled-components';
-import LoginlInput from '../../components/user/login/LoginInput';
+
 import Button from '../../components/button/Button';
 
+import InputSet from '../../components/user/InputSet';
 import { useRouter } from 'next/router';
-
-export interface InputType {
-  loginInput: { label: string; placeholder: string; errorMessage: string };
-}
-const LoginInputList: InputType['loginInput'][] = [
-  {
-    label: 'Email',
-    placeholder: 'Email을 입력해주세요',
-    errorMessage: '올바른 이메일 주소를 입력해주세요',
-  },
-  {
-    label: 'Password',
-    placeholder: 'Password를 입력해주세요',
-    errorMessage: '6~12자, 영문, 숫자, 특수문자',
-  },
-  {
-    label: 'Password 확인',
-    placeholder: 'Password를 한 번 더 입력해주세요',
-    errorMessage: '6~12자, 영문, 숫자, 특수문자',
-  },
-];
 
 const SignUpPage = () => {
   const handleLogin = () => {
@@ -34,9 +14,25 @@ const SignUpPage = () => {
   return (
     <SignUpContainer>
       <FormContainer>
-        {LoginInputList.map((loginInput, idx) => (
-          <LoginlInput key={idx} loginInput={loginInput} />
-        ))}
+        <InputSet
+          label={'Email'}
+          placeholder={'Email을 입력해주세요'}
+          helpMessage={''}
+          errorMessage={'올바른 이메일 주소를 입력해주세요'}
+        />
+        <InputSet
+          label={'Password'}
+          placeholder={'Password를 입력해주세요'}
+          helpMessage={''}
+          errorMessage={'6~12자, 영문, 숫자, 특수문자'}
+        />
+        <InputSet
+          label={'Password 확인'}
+          placeholder={'Password를 한 번 더 입력해주세요'}
+          helpMessage={''}
+          errorMessage={'Password가 일치하지 않습니다.'}
+        />
+
         <ButtonContainer>
           <Button color={'#FDFBE8'} onClick={() => router.push('/signup')}>
             Sign Up
