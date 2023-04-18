@@ -17,7 +17,8 @@ const LoginPage = () => {
 
   const [showPw, setShowPw] = useState(false);
 
-  const handleShowPw = () => {
+  const handleShowPw = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
     setShowPw((prev) => !prev);
   };
 
@@ -43,7 +44,7 @@ const LoginPage = () => {
   return (
     <LoginContainer>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <InputContainer>
+        <InputSet>
           <Label id={'email'}>{'Email'}</Label>
           <Input
             placeholder={'Email을 입력해주세요'}
@@ -51,25 +52,37 @@ const LoginPage = () => {
           />
           {/* <HelpMessage>{''}</HelpMessage> */}
           <ErrorMessage>{'올바른 이메일 주소를 입력해주세요'}</ErrorMessage>
-        </InputContainer>
+        </InputSet>
 
-        <InputContainer>
+        <InputSet>
           <Label id={'pw'}>{'Password'}</Label>
-          <Input
-            type={showPw ? 'text' : 'password'}
-            placeholder={'Password를 입력해주세요'}
-            {...register('pw', { required: true })}
-          ></Input>
-          <Image
-            src="password/eye.svg"
-            className="diaryImg"
-            width="26"
-            height="26"
-            alt="today is..."
-          />
+          <InputContainer>
+            <Input
+              type={showPw ? 'text' : 'password'}
+              placeholder={'Password를 입력해주세요'}
+              {...register('pw', { required: true })}
+            />
+            <EyeBtn onClick={handleShowPw}>
+              {showPw ? (
+                <Image
+                  src="password/closedeye.svg"
+                  width="20"
+                  height="20"
+                  alt="not show password"
+                />
+              ) : (
+                <Image
+                  src="password/eye.svg"
+                  width="20"
+                  height="20"
+                  alt="show password"
+                />
+              )}
+            </EyeBtn>
+          </InputContainer>
           {/* <HelpMessage>{''}</HelpMessage> */}
           <ErrorMessage>{'올바른 이메일 주소를 입력해주세요'}</ErrorMessage>
-        </InputContainer>
+        </InputSet>
 
         <ButtonContainer>
           <LogInBtn type="submit" value={'Log In'} />
@@ -90,19 +103,6 @@ const LoginContainer = styled.div`
   justify-content: center;
 `;
 
-// const FormContainer = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   width: 400px;
-//   height: 500px;
-//   margin: 150px auto;
-//   border: 3px solid ${({ theme }) => theme.color.brown};
-//   border-radius: 20px;
-//   background-color: ${({ theme }) => theme.color.lime};
-// `;
-
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -122,7 +122,20 @@ const ButtonContainer = styled.div`
   margin-top: 20px;
 `;
 
-const InputContainer = styled.div`
+const LogInBtn = styled.input`
+  width: 200px;
+  padding: 10px 0;
+  margin: 10px;
+  border: 4px solid ${({ theme }) => theme.color.brown};
+  border-radius: 10px;
+  color: ${({ theme }) => theme.color.brown};
+  background-color: ${(props) =>
+    props.color ? props.color : ({ theme }) => theme.color.pink};
+  font-size: 20px;
+  font-weight: 600;
+`;
+
+const InputSet = styled.div`
   display: flex;
   flex-direction: column;
   color: ${({ theme }) => theme.color.brown};
@@ -145,6 +158,10 @@ const Input = styled.input`
   font-weight: 500;
   font-size: 18px;
   color: ${({ theme }) => theme.color.brown};
+
+  :focus {
+    outline: none;
+  }
 `;
 
 const HelpMessage = styled.strong`
@@ -157,15 +174,21 @@ const ErrorMessage = styled(HelpMessage)`
   color: ${({ theme }) => theme.color.red};
 `;
 
-const LogInBtn = styled.input`
-  width: 200px;
-  padding: 10px 0;
-  margin: 10px;
-  border: 4px solid ${({ theme }) => theme.color.brown};
-  border-radius: 10px;
-  color: ${({ theme }) => theme.color.brown};
-  background-color: ${(props) =>
-    props.color ? props.color : ({ theme }) => theme.color.pink};
-  font-size: 20px;
-  font-weight: 600;
+const InputContainer = styled.div`
+  position: relative;
+`;
+const EyeBtn = styled.button`
+  width: 36px;
+  height: 36px;
+  background-color: inherit;
+  border: none;
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  border-radius: 50%;
+
+  :hover {
+    cursor: pointer;
+    background-color: #efeeee;
+  }
 `;
