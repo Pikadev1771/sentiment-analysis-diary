@@ -22,6 +22,14 @@ const LoginPage = () => {
     setShowPw((prev) => !prev);
   };
 
+  // Enter 시 로그인
+  const handleKeyPress = (e: { type: string; code: string }) => {
+    if (e.type === 'keypress' && e.code === 'Enter') {
+      onSubmit(watch());
+      setShowPw((prev) => !prev);
+    }
+  };
+
   const {
     register,
     handleSubmit,
@@ -31,14 +39,14 @@ const LoginPage = () => {
 
   const onSubmit: SubmitHandler<LoginFormProps> = (form) => {
     console.log(form);
-    requestLogin(form).then((res) => {
-      res?.headers?.authorization &&
-        Cookies.set('access_token', res.headers.authorization, {
-          expires: 0.079,
-        });
-      Cookies.set('refresh_token', res.headers.refresh, { expires: 20 });
-      router.push('/');
-    });
+    // requestLogin(form).then((res) => {
+    //   res?.headers?.authorization &&
+    //     Cookies.set('access_token', res.headers.authorization, {
+    //       expires: 0.079,
+    //     });
+    //   Cookies.set('refresh_token', res.headers.refresh, { expires: 20 });
+    //   router.push('/');
+    // });
   };
 
   return (
@@ -60,6 +68,7 @@ const LoginPage = () => {
             <Input
               type={showPw ? 'text' : 'password'}
               placeholder={'Password를 입력해주세요'}
+              onKeyPress={handleKeyPress}
               {...register('pw', { required: true })}
             />
             <EyeBtn onClick={handleShowPw}>
