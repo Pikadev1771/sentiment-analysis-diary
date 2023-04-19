@@ -22,7 +22,7 @@ const LoginPage = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<LoginFormProps>();
+  } = useForm<LoginFormProps>({ mode: 'onChange' });
 
   // 비번 보이기 / 숨기기
   const [showPassword, setShowPassword] = useState(false);
@@ -40,6 +40,7 @@ const LoginPage = () => {
     }
   };
 
+  // Email input 엔터 시 비번 보이기 방지
   const handleEmailKeyPress = (e: { type: string; code: string }) => {
     if (e.type === 'keypress' && e.code === 'Enter') {
       setShowPassword((prev) => !prev);
@@ -47,8 +48,9 @@ const LoginPage = () => {
   };
 
   // 유효성 검사
-  const emailRegex =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  // const emailRegex =
+  //   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  const emailRegex = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}');
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
 
   // 로그인 요청
@@ -67,14 +69,14 @@ const LoginPage = () => {
   return (
     <LoginLayout>
       <Box>
-        <Title>Sentimental Diary</Title>
+        {/* <Title>Sentimental Diary</Title> */}
         {/* <Description>로그인 하고 어쩌구 아무튼 멋진 슬로건</Description> */}
         <Form onSubmit={handleSubmit(onSubmit)}>
           <InputSet>
-            {/* <Label htmlFor="email">Email</Label> */}
+            <Label htmlFor="email">Email</Label>
             <Input
               id="email"
-              placeholder="Email"
+              placeholder="이메일을 입력해주세요"
               onKeyPress={handleEmailKeyPress}
               {...register('email', {
                 required: true,
@@ -90,12 +92,12 @@ const LoginPage = () => {
             )}
           </InputSet>
           <InputSet>
-            {/* <Label htmlFor="pw">Password</Label> */}
+            <Label htmlFor="pw">Password</Label>
             <InputContainer>
               <Input
                 id="pw"
                 type={showPassword ? 'text' : 'password'}
-                placeholder="Password"
+                placeholder="비밀번호를 입력해주세요"
                 onKeyPress={handleKeyPress}
                 {...register('pw', {
                   required: true,
@@ -133,9 +135,12 @@ const LoginPage = () => {
 
           <ButtonContainer>
             <LogInBtn type="submit" value={'Log In'} />
-            <Button color={'#FDFBE8'} onClick={() => router.push('/signup')}>
-              Sign Up
-            </Button>
+            <GoSignUp>
+              아직 회원이 아니신가요?
+              <LinkBtn color={'#FDFBE8'} onClick={() => router.push('/signup')}>
+                Sign Up
+              </LinkBtn>
+            </GoSignUp>
           </ButtonContainer>
         </Form>
       </Box>
@@ -156,8 +161,8 @@ const Box = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 700px;
-  height: 700px;
+  width: 650px;
+  height: 600px;
   margin: 120px auto;
   border: 3px solid ${({ theme }) => theme.color.brown};
   border-radius: 20px;
@@ -184,19 +189,19 @@ const InputSet = styled.div`
   display: flex;
   flex-direction: column;
   color: ${({ theme }) => theme.color.brown};
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 `;
 
-// const Label = styled.label`
-//   font-weight: 400;
-//   font-size: 18px;
-//   padding: 10px;
-// `;
+const Label = styled.label`
+  font-weight: 400;
+  font-size: 18px;
+  padding: 10px;
+`;
 
 const Input = styled.input`
   width: 450px;
   height: 70px;
-  padding: 12px;
+  padding: 16px;
   background: ${({ theme }) => theme.color.cream};
   border: 4px solid ${({ theme }) => theme.color.brown};
   box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.brown};
@@ -239,7 +244,7 @@ const EyeBtn = styled.button`
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 40px;
 `;
 
 const LogInBtn = styled.input`
@@ -254,4 +259,32 @@ const LogInBtn = styled.input`
     props.color ? props.color : ({ theme }) => theme.color.pink};
   font-size: 20px;
   font-weight: 600;
+
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+const GoSignUp = styled.div`
+  font-weight: 400;
+  color: ${({ theme }) => theme.color.brown};
+  font-size: 16px;
+  margin: 20px auto;
+`;
+
+const LinkBtn = styled.button`
+  width: 90px;
+  height: 30px;
+  margin-left: 8px;
+  border: 2px solid ${({ theme }) => theme.color.brown};
+  border-radius: 10px;
+  color: ${({ theme }) => theme.color.brown};
+  background-color: ${(props) =>
+    props.color ? props.color : ({ theme }) => theme.color.pink};
+  font-size: 16px;
+  font-weight: 600;
+  /* text-decoration: underline; */
+  :hover {
+    cursor: pointer;
+  }
 `;
