@@ -31,7 +31,7 @@ export default function ReactCalendar() {
         <>
           {/* <div className="dot"></div> */}
           <Image
-            src="good.svg"
+            src="emotion/good.svg"
             className="diaryImg"
             width="26"
             height="26"

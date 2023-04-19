@@ -9,7 +9,8 @@ const Button = (props: ButtonProps) => {
 export default Button;
 
 const BigButton = styled.button`
-  width: 200px;
+  width: 450px;
+  height: 70px;
   padding: 10px 0;
   margin: 10px;
   border: 4px solid ${({ theme }) => theme.color.brown};
