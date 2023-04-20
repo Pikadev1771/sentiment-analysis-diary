@@ -13,8 +13,12 @@ export default function Home() {
       </Head>
       <div>
         <MainContainer>
-          <ReactCalendar />
-          <DiaryList />
+          <Left>
+            <ReactCalendar />
+          </Left>
+          <Right>
+            <DiaryList />
+          </Right>
         </MainContainer>
       </div>
     </>
@@ -25,3 +29,15 @@ const MainContainer = styled.div`
   justify-content: center;
   width: 100%;
 `;
+
+const Left = styled.div`
+  width: 45vw;
+  min-width: 450px;
+  max-width: 800px;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Right = styled(Left)``;

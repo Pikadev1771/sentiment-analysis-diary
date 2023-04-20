@@ -58,44 +58,34 @@ export default function ReactCalendar() {
 
   return (
     <div>
-      <CalendarContainer>
-        {/* <Link href="/signup">회원가입</Link>
+      {/* <Link href="/signup">회원가입</Link>
         <Link href="/login">로그인</Link> */}
-        <Container>
-          <Calendar
-            locale="en"
-            onChange={onChange}
-            value={value}
-            next2Label={null}
-            prev2Label={null}
-            formatDay={(locale, date) => moment(date).format('D')}
-            tileContent={addContent}
-            showNeighboringMonth={false}
-            onActiveStartDateChange={({ activeStartDate }) =>
-              getActiveMonth(activeStartDate)
-            }
-          />
-        </Container>
-      </CalendarContainer>
+      <Container>
+        <Calendar
+          locale="en"
+          onChange={onChange}
+          value={value}
+          next2Label={null}
+          prev2Label={null}
+          formatDay={(locale, date) => moment(date).format('D')}
+          tileContent={addContent}
+          showNeighboringMonth={false}
+          onActiveStartDateChange={({ activeStartDate }) =>
+            getActiveMonth(activeStartDate)
+          }
+        />
+      </Container>
     </div>
   );
 }
 
-const CalendarContainer = styled.div`
-  width: 40vw;
-  height: 90vh;
-  /* border: 1px solid red; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 const Container = styled.div`
   width: 90%;
+  margin: 0 auto;
 
   .react-calendar {
     width: 100%;
-    height: 500px;
+    height: 520px;
     background: ${({ theme }) => theme.color.cream};
     border: 4px solid ${({ theme }) => theme.color.brown};
     box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.brown};

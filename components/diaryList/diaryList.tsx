@@ -67,29 +67,29 @@ export default function DiaryList() {
           );
         })}
       </List>
+      {/* <Pagenation>1 2 3 4 5</Pagenation> */}
     </Container>
   );
 }
 
+const Container = styled.div`
+  width: 90%;
+  height: 520px;
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+`;
+
 const Title = styled.p`
-  text-align: center;
   margin: 10px;
   padding-left: 10px;
   font-size: 28px;
   font-weight: 600;
   color: ${({ theme }) => theme.color.brown};
-`;
-
-const Container = styled.div`
-  width: 40vw;
-  height: 90vh;
-  /* border: 1px solid blue; */
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  align-content: center;
-  /* align-content: flex-start; */
-  flex-wrap: wrap;
 `;
 
 const List = styled.div`
@@ -99,4 +99,11 @@ const List = styled.div`
   align-content: center;
   /* align-content: flex-start; */
   flex-wrap: wrap;
+`;
+
+const Pagenation = styled.div`
+  margin: 20px auto;
+  font-size: 20px;
+  font-weight: 600;
+  color: ${({ theme }) => theme.color.brown};
 `;
