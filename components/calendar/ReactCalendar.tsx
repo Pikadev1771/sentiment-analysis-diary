@@ -3,17 +3,29 @@ import styled from 'styled-components';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment';
-
-import Link from 'next/link';
 import Image from 'next/image';
 
 export default function ReactCalendar() {
-  const [value, onChange] = useState<Date>(new Date());
-  const day = moment(value).format('YYYY-MM-DD');
-  const curDate = new Date();
-  const curDateTime = moment(curDate).format('MM-DD');
+  const curDate = new Date(); // 오늘 날짜
 
-  const mark = [
+  const [value, onChange] = useState<any>(curDate); // 클릭한 날짜
+
+  const activeDate = moment(value).format('YYYY-MM-DD'); // 클릭한 날짜 (년-월-일))
+
+  const monthOfActiveDate = moment(value).format('YYYY-MM'); // 클릭한 날짜의 달(년-월) (맨 처음에는 오늘 날짜의 달))
+
+  const [activeMonth, setActiveMonth] = useState(monthOfActiveDate); // 보여지는 달
+
+  console.log(activeMonth);
+
+  // 보여지는 달 변경 함수
+  const getActiveMonth = (activeStartDate: moment.MomentInput) => {
+    const newActiveMonth = moment(activeStartDate).format('YYYY-MM');
+    setActiveMonth(newActiveMonth);
+  };
+
+  // 일기 작성 날짜 리스트
+  const dayList = [
     '2023-03-10',
     '2023-03-21',
     '2023-04-02',
@@ -21,12 +33,13 @@ export default function ReactCalendar() {
     '2023-04-27',
   ];
 
-  // 날짜 타일에 컨텐츠 추가
-  const addContent = ({ date, view }) => {
-    // 해당 날짜에 추가할 컨텐츠 배열
+  // 각 날짜 타일에 컨텐츠 추가
+  const addContent = ({ date }: any) => {
+    // 해당 날짜(하루)에 추가할 컨텐츠의 배열
     const contents = [];
-    // 현재 날짜가 post 작성한 날짜 배열(mark)에 있다면, dot div 추가
-    if (mark.find((x) => x === moment(date).format('YYYY-MM-DD'))) {
+
+    // date(각 날짜)가  리스트의 날짜와 일치하면 해당 컨텐츠(이모티콘) 추가
+    if (dayList.find((day) => day === moment(date).format('YYYY-MM-DD'))) {
       contents.push(
         <>
           {/* <div className="dot"></div> */}
@@ -56,11 +69,11 @@ export default function ReactCalendar() {
             next2Label={null}
             prev2Label={null}
             formatDay={(locale, date) => moment(date).format('D')}
-            // tileDisabled={({ date, view }) =>
-            //   moment(date).format('MM-DD') < curDateTime
-            // }
             tileContent={addContent}
             showNeighboringMonth={false}
+            onActiveStartDateChange={({ activeStartDate }) =>
+              getActiveMonth(activeStartDate)
+            }
           />
         </Container>
       </CalendarContainer>
@@ -106,7 +119,7 @@ const Container = styled.div`
     }
   }
 
-  // 상단 년, 월
+  // 상단 내비게이션(년, 월)
   .react-calendar__navigation {
     background: ${({ theme }) => theme.color.pink};
     border-bottom: 4px solid ${({ theme }) => theme.color.brown};
@@ -131,7 +144,7 @@ const Container = styled.div`
     border-radius: 20px 20px 0 0;
   }
 
-  // 월 달력
+  // 월 달력 (내비게이션 제외)
   .react-calendar__month-view {
     padding: 12px 32px;
     abbr {
@@ -159,6 +172,12 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+  }
+  .react-calendar__tile:enabled:hover,
+  .react-calendar__tile:enabled:focus,
+  .react-calendar__tile--active {
+    background: ${({ theme }) => theme.color.blue};
+    border-radius: 14px;
   }
 
   // 오늘
