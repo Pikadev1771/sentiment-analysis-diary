@@ -3,6 +3,7 @@ import Head from 'next/head';
 import ReactCalendar from '../components/calendar/ReactCalendar';
 import DiaryForm from '../components/diaryForm/DiaryForm';
 import styled from 'styled-components';
+import DiaryList from '../components/diaryList/diaryList';
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
       <div>
         <MainContainer>
           <ReactCalendar />
-          {/* <DiaryForm /> */}
+          <DiaryList />
         </MainContainer>
       </div>
     </>
@@ -23,5 +24,4 @@ const MainContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  /* border: 1px solid green; */
 `;
