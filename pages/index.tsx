@@ -5,6 +5,9 @@ import DiaryForm from '../components/diaryForm/DiaryForm';
 import styled from 'styled-components';
 import DiaryList from '../components/diaryList/diaryList';
 
+import Button from '../components/button/Button';
+import GoLogin from '../components/goLogin/GoLogin';
+
 export default function Home() {
   return (
     <>
@@ -17,7 +20,8 @@ export default function Home() {
             <ReactCalendar />
           </Left>
           <Right>
-            <DiaryList />
+            {/* <DiaryList /> */}
+            <GoLogin />
           </Right>
         </MainContainer>
       </div>

@@ -287,6 +287,7 @@ const DuplicationCheckContainer = styled.div`
   justify-content: right;
   align-items: center;
   padding-right: 20px;
+  margin-top: 8px;
 `;
 
 const DuplicationCheckMessage = styled.span`
@@ -297,7 +298,7 @@ const DuplicationCheckMessage = styled.span`
 `;
 
 const DuplicationCheckBtn = styled.button`
-  width: 150px;
+  width: 140px;
   height: 30px;
   margin-left: 8px;
   border: 2px solid ${({ theme }) => theme.color.brown};

@@ -58,8 +58,6 @@ export default function ReactCalendar() {
 
   return (
     <div>
-      {/* <Link href="/signup">회원가입</Link>
-        <Link href="/login">로그인</Link> */}
       <Container>
         <Calendar
           locale="en"
