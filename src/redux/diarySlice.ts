@@ -41,20 +41,6 @@ const initialState: StateType = {
       content: '날씨 좋다~~!',
       score: 1,
     },
-    {
-      id: 5,
-      date: '2023-04-16',
-      title: '날씨가 넘 좋아요',
-      content: '날씨가 미쳤어요 한강 가서 자전거 탔는데...',
-      score: 0.5,
-    },
-    {
-      id: 6,
-      date: '2023-04-18',
-      title: '해피 뉴이어',
-      content: '행복한 2023년',
-      score: 0.1,
-    },
   ],
 };
 

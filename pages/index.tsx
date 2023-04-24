@@ -3,7 +3,7 @@ import Head from 'next/head';
 import ReactCalendar from '../components/calendar/ReactCalendar';
 
 import styled from 'styled-components';
-import DiaryList from '../components/diaryList/diaryList';
+import DiaryList from '../components/diaryList/DiaryList';
 
 import Button from '../components/button/Button';
 import GoLogin from '../components/goLogin/GoLogin';
@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Sentiment Analysis Diary</title>
+        <title>ment Analysis Diary</title>
       </Head>
       <div>
         <MainContainer>

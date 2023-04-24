@@ -5,17 +5,48 @@ import 'react-calendar/dist/Calendar.css';
 import moment from 'moment';
 import Image from 'next/image';
 
+// 일기 데이터
+const diaryData = [
+  {
+    id: 1,
+    date: '2023-04-01',
+    title: '야호',
+    content: '날씨 좋다~~!',
+    score: 1,
+    emotion: 'good',
+  },
+  {
+    id: 2,
+    date: '2023-04-04',
+    title: '메리 크리스마스🎅🏽',
+    content: '🎄🎄🎄',
+    score: 0.5,
+    emotion: 'soso',
+  },
+  {
+    id: 3,
+    date: '2023-04-14',
+    title: '해피 뉴이어',
+    content: '행복한 2023년',
+    score: 0.1,
+    emotion: 'bad',
+  },
+  {
+    id: 4,
+    date: '2023-04-20',
+    title: '야호',
+    content: '날씨 좋다~~!',
+    score: 1,
+    emotion: 'happy',
+  },
+];
+
 export default function ReactCalendar() {
   const curDate = new Date(); // 오늘 날짜
-
   const [value, onChange] = useState<any>(curDate); // 클릭한 날짜
-
   const activeDate = moment(value).format('YYYY-MM-DD'); // 클릭한 날짜 (년-월-일))
-
   const monthOfActiveDate = moment(value).format('YYYY-MM'); // 클릭한 날짜의 달(년-월) (맨 처음에는 오늘 날짜의 달))
-
   const [activeMonth, setActiveMonth] = useState(monthOfActiveDate); // 보여지는 달
-
   console.log(activeMonth);
 
   // 보여지는 달 변경 함수
@@ -24,27 +55,23 @@ export default function ReactCalendar() {
     setActiveMonth(newActiveMonth);
   };
 
-  // 일기 작성 날짜 리스트
-  const dayList = [
-    '2023-03-10',
-    '2023-03-21',
-    '2023-04-02',
-    '2023-04-14',
-    '2023-04-27',
-  ];
-
   // 각 날짜 타일에 컨텐츠 추가
-  const addContent = ({ date }: any) => {
-    // 해당 날짜(하루)에 추가할 컨텐츠의 배열
+  const tileContent = ({ date }: any) => {
+    // 해당 날짜(하루)의 타일에 추가할 컨텐츠의 배열
     const contents = [];
 
-    // date(각 날짜)가  리스트의 날짜와 일치하면 해당 컨텐츠(이모티콘) 추가
-    if (dayList.find((day) => day === moment(date).format('YYYY-MM-DD'))) {
+    // 해당 날짜(하루)의 일기 데이터
+    const tileDiary = diaryData.find(
+      (diary) => diary.date === moment(date).format('YYYY-MM-DD')
+    );
+
+    // 해당 날짜(하루)의 일기 데이터가 존재하면 이모티콘 이미지 추가
+    if (tileDiary) {
       contents.push(
         <>
           {/* <div className="dot"></div> */}
           <Image
-            src="emotion/good.svg"
+            src={`emotion/${tileDiary?.emotion}.svg`}
             className="diaryImg"
             width="26"
             height="26"
@@ -66,7 +93,7 @@ export default function ReactCalendar() {
           next2Label={null}
           prev2Label={null}
           formatDay={(locale, date) => moment(date).format('D')}
-          tileContent={addContent}
+          tileContent={tileContent}
           showNeighboringMonth={false}
           onActiveStartDateChange={({ activeStartDate }) =>
             getActiveMonth(activeStartDate)

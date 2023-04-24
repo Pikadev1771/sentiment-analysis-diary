@@ -63,6 +63,7 @@ const HeaderContainer = styled.div`
 
 const LogoAndTitle = styled.div`
   font-size: 28px;
+  font-weight: 200;
 `;
 
 const Menu = styled.span`
