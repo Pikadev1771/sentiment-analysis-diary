@@ -4,17 +4,21 @@ import GlobalStyle from '../styles/global-style';
 import { theme } from '../styles/theme';
 import { JetBrains_Mono } from 'next/font/google';
 import Layout from '../components/layout/Layout';
+import { Provider } from 'react-redux';
+import store from '@/redux/store';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Layout>
-        <main className={jetBrains_Mono.className}>
-          <Component {...pageProps} />
-        </main>
-      </Layout>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Layout>
+          <main className={jetBrains_Mono.className}>
+            <Component {...pageProps} />
+          </main>
+        </Layout>
+      </ThemeProvider>
+    </Provider>
   );
 }
 

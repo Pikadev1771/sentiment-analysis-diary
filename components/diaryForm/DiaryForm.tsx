@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { use } from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
-
 import styles from '../../styles/DiaryForm.module.css';
 import { Roboto } from 'next/font/google';
-
 import { useForm, SubmitHandler } from 'react-hook-form';
+
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { create_diary } from '@/redux/diarySlice';
+import { RootState } from '@/redux/store';
+import moment from 'moment';
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -14,11 +18,21 @@ const roboto = Roboto({
 });
 
 type DiaryFormProps = {
-  diaryTitle: string;
-  diaryContent: string;
+  id: number;
+  date: string;
+  title: string;
+  content: string;
+  score: number | null;
 };
 
 export default function DiaryForm() {
+  const dispatch = useDispatch();
+  const diaryData = useSelector(
+    (state: RootState) => state.diaryReducer.diaryList
+  );
+
+  console.log(diaryData);
+
   const {
     register,
     handleSubmit,
@@ -26,57 +40,56 @@ export default function DiaryForm() {
     formState: { errors },
   } = useForm<DiaryFormProps>();
 
-  const onSubmit: SubmitHandler<DiaryFormProps> = (diaryData) =>
-    console.log(diaryData);
+  const onSubmit: SubmitHandler<DiaryFormProps> = (formData) => {
+    // 새 일기
+    let newDiary = {
+      ...formData,
+      id: diaryData.length + 1,
+      date: moment(new Date()).format('YYYY-MM-DD'),
+      score: null,
+    };
 
-  console.log('diaryTitle >>>', watch('diaryTitle'));
-  console.log('diaryContent >>>', watch('diaryContent'));
+    dispatch(create_diary(newDiary));
+  };
 
   return (
     <div>
       <DiaryFormContainer>
-        <Container>
-          {/* <h1>Today&apos;s Diary</h1>
-          <div className={roboto.variable}>
-            <p className={styles.text}>야호</p>
-          </div> */}
-
-          <Form onSubmit={handleSubmit(onSubmit)}>
-            <TitleContainer>
-              <h3>Title</h3>
-              <DiaryInput
-                {...register('diaryTitle', { required: true })}
-                id={'title'}
-              />
-            </TitleContainer>
-            {errors.diaryTitle && <p>제목을 작성해 주세요.</p>}
-            <DiaryTextarea
-              {...register('diaryContent', { required: true })}
-              id={'content'}
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <TitleContainer>
+            <h3>Title</h3>
+            <DiaryInput
+              {...register('title', { required: true })}
+              id={'diaryTitle'}
             />
+          </TitleContainer>
+          {errors.title && <p>제목을 작성해 주세요.</p>}
+          <DiaryTextarea
+            {...register('content', { required: true })}
+            id={'diaryContent'}
+          />
 
-            {errors.diaryContent && <p>일기를 작성해 주세요.</p>}
-            <DiaryInput type="submit" value={'SUBMIT'} />
-          </Form>
-        </Container>
+          {errors.content && <p>일기를 작성해 주세요.</p>}
+          <DiaryInput type="submit" value={'SUBMIT'} />
+        </Form>
       </DiaryFormContainer>
     </div>
   );
 }
 
 const DiaryFormContainer = styled.div`
-  width: 40vw;
-  height: 90vh;
-  /* border: 1px solid blue; */
+  width: 900px;
+  height: 800px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const Container = styled.div`
-  width: 90%;
-  height: 500px;
-  padding: 32px;
+const Form = styled.form`
+  width: 80%;
+  border: 8px solid blue;
+  height: 600px;
+  padding: 40px;
   background: ${({ theme }) => theme.color.cream};
   border: 4px solid ${({ theme }) => theme.color.brown};
   box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.brown};
@@ -84,17 +97,13 @@ const Container = styled.div`
   font-weight: 500;
   font-size: 18px;
   color: ${({ theme }) => theme.color.brown};
-
-  p {
-    font-size: 16px;
-    color: ${({ theme }) => theme.color.red};
-    text-align: right;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
-const Form = styled.form`
-  max-width: 500px;
-  margin: 0 auto;
+const TitleContainer = styled.div`
+  display: flex;
 `;
 
 const DiaryInput = styled.input`
@@ -107,10 +116,9 @@ const DiaryInput = styled.input`
   padding: 10px 15px;
   font-size: 16px;
   color: ${({ theme }) => theme.color.brown};
-  margin: 10px 0 8px 0;
 
   ${(props) =>
-    props.id === 'title' &&
+    props.id === 'diaryTitle' &&
     css`
       height: 60px;
       margin-left: 20px;
@@ -125,11 +133,14 @@ const DiaryInput = styled.input`
       border: 4px solid ${({ theme }) => theme.color.brown};
       height: 60px;
       text-transform: uppercase;
-      margin-top: 20px;
       padding: 20px;
       font-size: 14px;
       font-weight: 100;
       letter-spacing: 10px;
+
+      :hover {
+        cursor: pointer;
+      }
     `}
 `;
 
@@ -137,15 +148,10 @@ const DiaryTextarea = styled.textarea`
   display: block;
   box-sizing: border-box;
   width: 100%;
-  height: 200px;
+  height: 330px;
   border-radius: 10px;
   border: 4px solid ${({ theme }) => theme.color.brown};
   padding: 10px 15px;
   font-size: 16px;
   color: ${({ theme }) => theme.color.brown};
-  margin: 10px 0 8px 0;
-`;
-
-const TitleContainer = styled.div`
-  display: flex;
 `;

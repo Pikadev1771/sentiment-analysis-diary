@@ -13,6 +13,7 @@ export interface layoutPropsType {
 export default function Layout({ children }: layoutPropsType) {
   return (
     <Wrapper>
+      <Header />
       {children}
       <Footer />
     </Wrapper>

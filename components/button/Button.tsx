@@ -3,12 +3,12 @@ import styled from 'styled-components';
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
 const Button = (props: ButtonProps) => {
-  return <BigButton {...props} />;
+  return <Btn {...props} />;
 };
 
 export default Button;
 
-const BigButton = styled.button`
+const Btn = styled.button`
   width: 450px;
   height: 70px;
   padding: 10px 0;

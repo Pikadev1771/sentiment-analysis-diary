@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
 import ReactCalendar from '../components/calendar/ReactCalendar';
-import DiaryForm from '../components/diaryForm/DiaryForm';
+
 import styled from 'styled-components';
 import DiaryList from '../components/diaryList/diaryList';
 
@@ -20,8 +20,8 @@ export default function Home() {
             <ReactCalendar />
           </Left>
           <Right>
-            {/* <DiaryList /> */}
-            <GoLogin />
+            <DiaryList />
+            {/* <GoLogin /> */}
           </Right>
         </MainContainer>
       </div>
