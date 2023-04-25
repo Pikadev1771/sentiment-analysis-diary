@@ -1,49 +1,55 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
 
 // 일기 데이터
-const diaryData = [
-  {
-    id: 1,
-    date: '2023-04-01',
-    title: '야호',
-    content: '날씨 좋다~~!',
-    score: 1,
-    emotion: 'good',
-  },
-  {
-    id: 2,
-    date: '2023-04-04',
-    title: '메리 크리스마스🎅🏽',
-    content: '🎄🎄🎄',
-    score: 0.5,
-    emotion: 'soso',
-  },
-  {
-    id: 3,
-    date: '2023-04-14',
-    title: '해피 뉴이어',
-    content: '행복한 2023년',
-    score: 0.1,
-    emotion: 'bad',
-  },
-  {
-    id: 4,
-    date: '2023-04-20',
-    title: '야호',
-    content: '날씨 좋다~~!',
-    score: 1,
-    emotion: 'happy',
-  },
-];
+// const diaryData = [
+//   {
+//     id: 1,
+//     date: '2023-04-01',
+//     title: '야호',
+//     content: '날씨 좋다~~!',
+//     score: 1,
+//     emotion: 'good',
+//   },
+//   {
+//     id: 2,
+//     date: '2023-04-04',
+//     title: '메리 크리스마스🎅🏽',
+//     content: '🎄🎄🎄',
+//     score: 0.5,
+//     emotion: 'soso',
+//   },
+//   {
+//     id: 3,
+//     date: '2023-04-14',
+//     title: '해피 뉴이어',
+//     content: '행복한 2023년',
+//     score: 0.1,
+//     emotion: 'bad',
+//   },
+//   {
+//     id: 4,
+//     date: '2023-04-20',
+//     title: '야호',
+//     content: '날씨 좋다~~!',
+//     score: 1,
+//     emotion: 'happy',
+//   },
+// ];
 
 export default function ReactCalendar() {
   const router = useRouter();
+
+  const diaryData = useSelector(
+    (state: RootState) => state.diaryReducer.diaryList
+  );
 
   const curDate = new Date(); // 오늘 날짜
   const [value, setValue] = useState<Date>(curDate); // 클릭한 날짜
@@ -58,6 +64,10 @@ export default function ReactCalendar() {
     setActiveMonth(newActiveMonth);
   };
 
+  useEffect(() => {
+    console.log('render! >>', diaryData);
+  }, [diaryData]);
+
   const handleClick = (value: any) => {
     // 클릭한 날짜 변경
     setValue(value);
@@ -69,12 +79,15 @@ export default function ReactCalendar() {
     ) {
       router.push('/diary/1');
     } else {
-      router.push({
-        pathname: '/addnew',
-        query: {
-          date: moment(value).format('YYYYMMDD'),
+      router.push(
+        {
+          pathname: '/addnew',
+          query: {
+            date: moment(value).format('YYYY-MM-DD'),
+          },
         },
-      });
+        '/addnew' // query 숨김(as)
+      );
     }
   };
 

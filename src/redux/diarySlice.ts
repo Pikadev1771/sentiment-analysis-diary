@@ -2,10 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface DiaryProps {
   id: number;
-  date: string;
+  date: string | string[] | undefined;
   title: string;
   content: string;
   score: number | null;
+  emotion: string;
 }
 interface StateType {
   diaryList: DiaryProps[];
@@ -19,27 +20,31 @@ const initialState: StateType = {
       title: '야호',
       content: '날씨 좋다~~!',
       score: 1,
+      emotion: 'good',
     },
     {
       id: 2,
-      date: '2023-04-02',
+      date: '2023-04-04',
       title: '메리 크리스마스🎅🏽',
       content: '🎄🎄🎄',
       score: 0.5,
+      emotion: 'soso',
     },
     {
       id: 3,
-      date: '2023-04-10',
+      date: '2023-04-14',
       title: '해피 뉴이어',
       content: '행복한 2023년',
       score: 0.1,
+      emotion: 'bad',
     },
     {
       id: 4,
-      date: '2023-04-13',
+      date: '2023-04-20',
       title: '야호',
       content: '날씨 좋다~~!',
       score: 1,
+      emotion: 'happy',
     },
   ],
 };

@@ -56,21 +56,19 @@ const LoginPage = () => {
   // 로그인 요청
   const onSubmit: SubmitHandler<LoginFormProps> = (form) => {
     console.log(form);
-    // requestLogin(form).then((res) => {
-    //   res?.headers?.authorization &&
-    //     Cookies.set('access_token', res.headers.authorization, {
-    //       expires: 0.079,
-    //     });
-    //   Cookies.set('refresh_token', res.headers.refresh, { expires: 20 });
-    //   router.push('/');
-    // });
+    requestLogin(form).then((res) => {
+      res?.headers?.authorization &&
+        Cookies.set('access_token', res.headers.authorization, {
+          expires: 0.079,
+        });
+      Cookies.set('refresh_token', res.headers.refresh, { expires: 20 });
+      router.push('/');
+    });
   };
 
   return (
     <LoginLayout>
       <Box>
-        {/* <Title>Sentimental Diary</Title> */}
-        {/* <Description>로그인 하고 어쩌구 아무튼 멋진 슬로건</Description> */}
         <Form onSubmit={handleSubmit(onSubmit)}>
           <InputSet>
             <Label htmlFor="email">Email</Label>

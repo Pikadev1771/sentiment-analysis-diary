@@ -32,7 +32,7 @@ export default function Header() {
               router.push({
                 pathname: '/addnew',
                 query: {
-                  date: moment(new Date()).format('YYYYMMDD'),
+                  date: moment(new Date()).format('YYYY-MM-DD'),
                 },
               })
             }

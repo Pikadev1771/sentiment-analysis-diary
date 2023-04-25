@@ -94,7 +94,7 @@ const Title = styled.span`
 
 const List = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
   align-content: center;
   /* align-content: flex-start; */
