@@ -2,18 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
 
-export default function DiaryCard({ date, title, content, score }) {
+export default function DiaryCard({ date, title, content, score }: any) {
   return (
     <Card>
       <DiaryTitle>{title}</DiaryTitle>
       <Content>{content}</Content>
-      <Date>{date}</Date>
+      <Date>
+        <p>{date}</p>
+      </Date>
     </Card>
   );
 }
 
 const Card = styled.div`
-  width: 180px;
+  width: 190px;
   height: 170px;
   padding: 10px;
   background: ${({ theme }) => theme.color.lime};
@@ -24,6 +26,10 @@ const Card = styled.div`
 
   color: ${({ theme }) => theme.color.brown};
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const DiaryTitle = styled.p`
@@ -43,6 +49,9 @@ const Content = styled.div`
 `;
 
 const Date = styled.div`
+  width: 100%;
   text-align: right;
-  margin: 10px;
+  p {
+    margin: 10px 20px;
+  }
 `;
