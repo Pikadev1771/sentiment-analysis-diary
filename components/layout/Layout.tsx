@@ -6,15 +6,14 @@ import { NextPage } from 'next';
 import { ReactElement, ReactNode } from 'react';
 import styled from 'styled-components';
 
-export interface layoutPropsType {
-  children: ReactElement;
-}
+// export interface layoutPropsType {
+//   children: ReactElement;
+// }
 
-export default function Layout({ children }: layoutPropsType) {
+export default function Layout(props: { children: React.ReactNode }) {
   return (
     <Wrapper>
-      <Header />
-      {children}
+      {props.children}
       <Footer />
     </Wrapper>
   );

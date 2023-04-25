@@ -4,11 +4,11 @@ import { ReactElement, ReactNode } from 'react';
 export interface layoutPropsType {
   children: ReactElement;
 }
-const HeaderLayout = ({ children }: layoutPropsType) => {
+const HeaderLayout = (props: { children: ReactNode }) => {
   return (
     <>
       <Header />
-      {children}
+      {props.children}
     </>
   );
 };

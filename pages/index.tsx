@@ -5,14 +5,16 @@ import ReactCalendar from '../components/calendar/ReactCalendar';
 import styled from 'styled-components';
 import DiaryList from '../components/diaryList/DiaryList';
 
-import Button from '../components/button/Button';
-import GoLogin from '../components/goLogin/GoLogin';
+import type { ReactElement } from 'react';
+import Layout from '../components/layout/Layout';
+import HeaderLayout from '../components/layout/HeaderLayout';
+import type { NextPageWithLayout } from './_app';
 
-export default function Home() {
+const Home: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>ment Analysis Diary</title>
+        <title>sentiment Analysis Diary</title>
       </Head>
       <div>
         <MainContainer>
@@ -27,7 +29,7 @@ export default function Home() {
       </div>
     </>
   );
-}
+};
 
 const MainContainer = styled.div`
   display: flex;
@@ -48,3 +50,13 @@ const Left = styled.div`
 const Right = styled(Left)`
   justify-content: left;
 `;
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <Layout>
+      <HeaderLayout>{page}</HeaderLayout>
+    </Layout>
+  );
+};
+
+export default Home;
