@@ -68,10 +68,8 @@ export default function DiaryList() {
 }
 
 const Container = styled.div`
-  width: 85%;
+  width: 80%;
   height: 520px;
-  margin: 0 auto;
-
   display: flex;
   justify-content: left;
   align-items: center;

@@ -4,6 +4,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 // 일기 데이터
 const diaryData = [
@@ -42,17 +43,39 @@ const diaryData = [
 ];
 
 export default function ReactCalendar() {
+  const router = useRouter();
+
   const curDate = new Date(); // 오늘 날짜
-  const [value, onChange] = useState<any>(curDate); // 클릭한 날짜
+  const [value, setValue] = useState<Date>(curDate); // 클릭한 날짜
   const activeDate = moment(value).format('YYYY-MM-DD'); // 클릭한 날짜 (년-월-일))
   const monthOfActiveDate = moment(value).format('YYYY-MM'); // 클릭한 날짜의 달(년-월) (맨 처음에는 오늘 날짜의 달))
   const [activeMonth, setActiveMonth] = useState(monthOfActiveDate); // 보여지는 달
-  console.log(activeMonth);
+  console.log(value);
 
   // 보여지는 달 변경 함수
   const getActiveMonth = (activeStartDate: moment.MomentInput) => {
     const newActiveMonth = moment(activeStartDate).format('YYYY-MM');
     setActiveMonth(newActiveMonth);
+  };
+
+  const handleClick = (value: any) => {
+    // 클릭한 날짜 변경
+    setValue(value);
+
+    if (
+      diaryData.find(
+        (diary) => diary.date === moment(value).format('YYYY-MM-DD')
+      )
+    ) {
+      router.push('/diary/1');
+    } else {
+      router.push({
+        pathname: '/addnew',
+        query: {
+          date: moment(value).format('YYYYMMDD'),
+        },
+      });
+    }
   };
 
   // 각 날짜 타일에 컨텐츠 추가
@@ -73,8 +96,8 @@ export default function ReactCalendar() {
           <Image
             src={`emotion/${tileDiary?.emotion}.svg`}
             className="diaryImg"
-            width="26"
-            height="26"
+            width="28"
+            height="28"
             alt="today is..."
           />
         </>
@@ -83,13 +106,27 @@ export default function ReactCalendar() {
     return <div>{contents}</div>;
   };
 
+  const leftArrow = (
+    <>
+      <Image src="calendar/left.svg" width="18" height="18" alt="previous" />
+    </>
+  );
+
+  const rightArrow = (
+    <>
+      <Image src="calendar/right.svg" width="18" height="18" alt="next" />
+    </>
+  );
+
   return (
     <div>
       <Container>
         <Calendar
           locale="en"
-          onChange={onChange}
+          onChange={handleClick}
           value={value}
+          prevLabel={leftArrow}
+          nextLabel={rightArrow}
           next2Label={null}
           prev2Label={null}
           formatDay={(locale, date) => moment(date).format('D')}
@@ -105,7 +142,7 @@ export default function ReactCalendar() {
 }
 
 const Container = styled.div`
-  width: 90%;
+  width: 70%;
   margin: 0 auto;
 
   .react-calendar {

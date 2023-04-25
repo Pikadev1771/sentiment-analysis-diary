@@ -3,13 +3,21 @@ import Link from 'next/link';
 import SmallButton from '../button/SmallButton';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import moment from 'moment';
 
 export default function Header() {
   const router = useRouter();
   return (
     <div>
       <HeaderContainer>
-        <LogoAndTitle> Sentiment Analysis Diary</LogoAndTitle>
+        <Link href={'/'}>
+          <Image
+            src="logo/logo_01.svg"
+            width="200"
+            height="60"
+            alt="not show password"
+          />
+        </Link>
         <Menu>
           <Btn>
             <Image
@@ -19,7 +27,16 @@ export default function Header() {
               alt="not show password"
             />
           </Btn>
-          <SmallButton onClick={() => router.push('/addnew')}>
+          <SmallButton
+            onClick={() =>
+              router.push({
+                pathname: '/addnew',
+                query: {
+                  date: moment(new Date()).format('YYYYMMDD'),
+                },
+              })
+            }
+          >
             새 일기 쓰기
           </SmallButton>
           <ProfileBtn>P</ProfileBtn>
@@ -29,26 +46,6 @@ export default function Header() {
   );
 }
 
-// const HeaderContainer = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-
-//   z-index: '10';
-
-//   width: 90vw;
-//   height: 70px;
-//   padding: 30px;
-//   background: ${({ theme }) => theme.color.cream};
-//   border: 4px solid ${({ theme }) => theme.color.brown};
-//   box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.brown};
-//   border-radius: 24px;
-//   font-weight: 500;
-
-//   color: ${({ theme }) => theme.color.brown};
-//   margin: 10px;
-// `;
-
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -57,13 +54,8 @@ const HeaderContainer = styled.div`
   height: 100px;
   background-color: ${({ theme }) => theme.color.lightBrown};
   color: ${({ theme }) => theme.color.cream};
-  padding: 50px;
+  padding: 0 40px;
   z-index: '10';
-`;
-
-const LogoAndTitle = styled.div`
-  font-size: 28px;
-  font-weight: 200;
 `;
 
 const Menu = styled.span`

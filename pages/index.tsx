@@ -28,6 +28,7 @@ export default function Home() {
     </>
   );
 }
+
 const MainContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -35,7 +36,7 @@ const MainContainer = styled.div`
 `;
 
 const Left = styled.div`
-  width: 45vw;
+  width: 50vw;
   min-width: 450px;
   max-width: 800px;
   height: 90vh;
@@ -44,4 +45,6 @@ const Left = styled.div`
   align-items: center;
 `;
 
-const Right = styled(Left)``;
+const Right = styled(Left)`
+  justify-content: left;
+`;
