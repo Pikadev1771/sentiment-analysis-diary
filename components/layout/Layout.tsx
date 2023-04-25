@@ -1,18 +1,19 @@
 import React from 'react';
+import Header from '../header/Header';
 import Footer from '../footer/Footer';
 
 import { NextPage } from 'next';
 import { ReactElement, ReactNode } from 'react';
 import styled from 'styled-components';
 
-export interface layoutPropsType {
-  children: ReactElement;
-}
+// export interface layoutPropsType {
+//   children: ReactElement;
+// }
 
-export default function Layout({ children }: layoutPropsType) {
+export default function Layout(props: { children: React.ReactNode }) {
   return (
     <Wrapper>
-      {children}
+      {props.children}
       <Footer />
     </Wrapper>
   );

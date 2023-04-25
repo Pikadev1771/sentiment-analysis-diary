@@ -3,13 +3,14 @@ import Button from '../../components/button/Button';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import Cookies from 'js-cookie';
-import { requestLogin } from '../../api/users';
+import { checkEmail, requestSignup } from '../../api/users';
 import { useState } from 'react';
 import Image from 'next/image';
 // import useRegexText from '../../hooks/useRegexText';
 
 type SignUpFormProps = {
   email: string;
+  nickName: string;
   pw: string;
   pwConfirm: string;
 };
@@ -51,22 +52,39 @@ const SignUpPage = () => {
   // const emailRegex =
   //   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   const emailRegex = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}');
+  const nickNameRegex = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
 
-  // 로그인 요청
-  const onSubmit: SubmitHandler<SignUpFormProps> = (form) => {
-    console.log(form);
-    // requestLogin(form).then((res) => {
-    //   res?.headers?.authorization &&
-    //     Cookies.set('access_token', res.headers.authorization, {
-    //       expires: 0.079,
-    //     });
-    //   Cookies.set('refresh_token', res.headers.refresh, { expires: 20 });
-    //   router.push('/');
-    // });
+  type EmailDuplicationCheckMessageType = 'failed' | 'passed' | 'check me';
+  const [emailDuplicationCheckMessage, setEmailDuplicationCheckMessage] =
+    useState<EmailDuplicationCheckMessageType>('check me');
+
+  // 이메일 중복 검사
+  const handleEmailDuplicationCheck = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const emailForm = { email: watch('email') };
+    console.log(emailForm);
+
+    try {
+      await checkEmail(emailForm).then((res) => {
+        if (res.data) {
+          setEmailDuplicationCheckMessage('passed');
+        }
+      });
+    } catch (error: any) {
+      if (error?.response?.data?.status === 419) {
+        setEmailDuplicationCheckMessage('failed');
+      }
+    }
   };
 
-  console.log(errors.pwConfirm);
+  // 회원가입 요청
+  const onSubmit: SubmitHandler<SignUpFormProps> = (form) => {
+    requestSignup(form).then((res) => {
+      console.log(res);
+      router.push('/');
+    });
+  };
 
   return (
     <SignupLayout>
@@ -94,17 +112,45 @@ const SignUpPage = () => {
 
             <DuplicationCheckContainer>
               <DuplicationCheckMessage>
-                중복 확인 해주세요
+                {emailDuplicationCheckMessage === 'check me' && (
+                  <p className="check me">중복 확인 해주세요</p>
+                )}
+                {emailDuplicationCheckMessage === 'failed' && (
+                  <p className="failed">이미 존재하는 이메일입니다</p>
+                )}
+                {emailDuplicationCheckMessage === 'passed' && (
+                  <p className="passed">사용 가능한 이메일입니다</p>
+                )}
               </DuplicationCheckMessage>
               <DuplicationCheckBtn
                 disabled={
                   !errors?.email && watch('email')?.length > 0 ? false : true
                 }
-                onClick={() => router.push('/login')}
+                onClick={handleEmailDuplicationCheck}
               >
                 이메일 중복 확인
               </DuplicationCheckBtn>
             </DuplicationCheckContainer>
+          </InputSet>
+          <InputSet>
+            {/* <Label htmlFor="email">Email</Label> */}
+            <Input
+              id="nickName"
+              placeholder="닉네임"
+              {...register('nickName', {
+                required: true,
+                pattern: nickNameRegex,
+              })}
+            />
+
+            {errors?.nickName?.type === 'required' && (
+              <ErrorMessage>닉네임을 입력해주세요</ErrorMessage>
+            )}
+            {errors?.nickName?.type === 'pattern' && (
+              <ErrorMessage>
+                2자 이상 16자 이하, 영어, 숫자 또는 한글로 구성되어야 합니다.
+              </ErrorMessage>
+            )}
           </InputSet>
           <InputSet>
             {/* <Label htmlFor="pw">Password</Label> */}
@@ -143,7 +189,7 @@ const SignUpPage = () => {
 
             {errors?.pw?.type === 'pattern' && (
               <ErrorMessage>
-                소문자, 숫자, 특수문자를 각 하나 포함한 8자리 이상이여야 합니다.
+                소문자, 숫자, 특수문자를 각 하나 포함한 8자리 이상이어야 합니다.
               </ErrorMessage>
             )}
           </InputSet>
@@ -216,7 +262,7 @@ const Box = styled.div`
   justify-content: center;
   align-items: center;
   width: 650px;
-  height: 750px;
+  height: 900px;
   margin: 120px auto;
   border: 3px solid ${({ theme }) => theme.color.brown};
   border-radius: 20px;
@@ -287,6 +333,7 @@ const DuplicationCheckContainer = styled.div`
   justify-content: right;
   align-items: center;
   padding-right: 20px;
+  margin-top: 8px;
 `;
 
 const DuplicationCheckMessage = styled.span`
@@ -294,10 +341,19 @@ const DuplicationCheckMessage = styled.span`
   color: ${({ theme }) => theme.color.brown};
   /* color: #2fc25d; */
   font-size: 14px;
+
+  .failed {
+    color: ${({ theme }) => theme.color.red};
+    font-size: 50px;
+  }
+
+  .passed {
+    color: ${({ theme }) => theme.color.blue};
+  }
 `;
 
 const DuplicationCheckBtn = styled.button`
-  width: 150px;
+  width: 140px;
   height: 30px;
   margin-left: 8px;
   border: 2px solid ${({ theme }) => theme.color.brown};

@@ -1,20 +1,38 @@
 import type { AppProps } from 'next/app';
-import { ThemeProvider } from 'styled-components';
-import GlobalStyle from '../styles/global-style';
-import { theme } from '../styles/theme';
+
 import { JetBrains_Mono } from 'next/font/google';
+import { Provider } from 'react-redux';
+import store from '@/redux/store';
+import { ThemeProvider } from 'styled-components';
+import { theme } from '../styles/theme';
+import GlobalStyle from '../styles/global-style';
 import Layout from '../components/layout/Layout';
 
-export default function App({ Component, pageProps }: AppProps) {
+import type { ReactElement, ReactNode } from 'react';
+import type { NextPage } from 'next';
+
+export type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page);
+
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Layout>
-        <main className={jetBrains_Mono.className}>
-          <Component {...pageProps} />
-        </main>
-      </Layout>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        {getLayout(
+          <main className={jetBrains_Mono.className}>
+            <Component {...pageProps} />
+          </main>
+        )}
+      </ThemeProvider>
+    </Provider>
   );
 }
 
