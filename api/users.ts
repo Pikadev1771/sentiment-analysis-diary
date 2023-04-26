@@ -14,14 +14,22 @@ type LogInFormProps = {
   pw: string;
 };
 
+type EmailFormProps = {
+  email: string;
+  pw: string;
+};
+
+// 회원가입
 export const requestSignup = (form: SignUpFormProps) => {
   return axios.post(`${REQUEST_URL}/api/members`, form);
 };
 
+// 로그인
 export const requestLogin = (form: LogInFormProps) => {
   return axios.post(`${REQUEST_URL}/auth/login`, form);
 };
 
-export const checkEmail = (emailForm: object) => {
+// 이메일 중복체크
+export const checkEmailDuplication = (emailForm: EmailFormProps) => {
   return axios.post(`${REQUEST_URL}/api/members/check`, emailForm);
 };

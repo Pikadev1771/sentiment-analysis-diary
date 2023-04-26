@@ -4,7 +4,12 @@ import Head from 'next/head';
 import ReactCalendar from '../../components/calendar/ReactCalendar';
 import DiaryForm from '../../components/diaryForm/DiaryForm';
 
-export default function AddNew() {
+import type { ReactElement } from 'react';
+import Layout from '../../components/layout/Layout';
+import HeaderLayout from '../../components/layout/HeaderLayout';
+import type { NextPageWithLayout } from '../_app';
+
+const AddNew: NextPageWithLayout = () => {
   return (
     <>
       <Head>
@@ -22,7 +27,7 @@ export default function AddNew() {
       </div>
     </>
   );
-}
+};
 
 const MainContainer = styled.div`
   display: flex;
@@ -43,3 +48,13 @@ const Left = styled.div`
 const Right = styled(Left)`
   justify-content: left;
 `;
+
+AddNew.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <Layout>
+      <HeaderLayout>{page}</HeaderLayout>
+    </Layout>
+  );
+};
+
+export default AddNew;

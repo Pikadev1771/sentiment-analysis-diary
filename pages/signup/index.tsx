@@ -1,12 +1,13 @@
 import styled from 'styled-components';
-import Button from '../../components/button/Button';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import Cookies from 'js-cookie';
-import { checkEmail, requestSignup } from '../../api/users';
+import { requestSignup, checkEmailDuplication } from '../../api/users';
 import { useState } from 'react';
 import Image from 'next/image';
-// import useRegexText from '../../hooks/useRegexText';
+
+import type { ReactElement } from 'react';
+import Layout from '../../components/layout/Layout';
+import type { NextPageWithLayout } from '../_app';
 
 type SignUpFormProps = {
   email: string;
@@ -15,7 +16,7 @@ type SignUpFormProps = {
   pwConfirm: string;
 };
 
-const SignUpPage = () => {
+const SignUpPage: NextPageWithLayout = () => {
   const router = useRouter();
 
   // react-hook-form
@@ -49,24 +50,22 @@ const SignUpPage = () => {
   // };
 
   // 유효성 검사
-  // const emailRegex =
-  //   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   const emailRegex = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}');
   const nickNameRegex = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
 
+  // 이메일 중복 검사
   type EmailDuplicationCheckMessageType = 'failed' | 'passed' | 'check me';
+
   const [emailDuplicationCheckMessage, setEmailDuplicationCheckMessage] =
     useState<EmailDuplicationCheckMessageType>('check me');
 
-  // 이메일 중복 검사
   const handleEmailDuplicationCheck = async (event: React.FormEvent) => {
     event.preventDefault();
     const emailForm = { email: watch('email') };
-    console.log(emailForm);
 
     try {
-      await checkEmail(emailForm).then((res) => {
+      await checkEmailDuplication(emailForm).then((res) => {
         if (res.data) {
           setEmailDuplicationCheckMessage('passed');
         }
@@ -81,7 +80,6 @@ const SignUpPage = () => {
   // 회원가입 요청
   const onSubmit: SubmitHandler<SignUpFormProps> = (form) => {
     requestSignup(form).then((res) => {
-      console.log(res);
       router.push('/');
     });
   };
@@ -89,11 +87,8 @@ const SignUpPage = () => {
   return (
     <SignupLayout>
       <Box>
-        {/* <Title>Sentimental Diary</Title> */}
-        {/* <Description>로그인 하고 어쩌구 아무튼 멋진 슬로건</Description> */}
         <Form onSubmit={handleSubmit(onSubmit)}>
           <InputSet>
-            {/* <Label htmlFor="email">Email</Label> */}
             <Input
               id="email"
               placeholder="이메일"
@@ -133,7 +128,6 @@ const SignUpPage = () => {
             </DuplicationCheckContainer>
           </InputSet>
           <InputSet>
-            {/* <Label htmlFor="email">Email</Label> */}
             <Input
               id="nickName"
               placeholder="닉네임"
@@ -153,7 +147,6 @@ const SignUpPage = () => {
             )}
           </InputSet>
           <InputSet>
-            {/* <Label htmlFor="pw">Password</Label> */}
             <InputContainer>
               <Input
                 id="pw"
@@ -194,7 +187,6 @@ const SignUpPage = () => {
             )}
           </InputSet>
           <InputSet>
-            {/* <Label htmlFor="pwConfirm">Password 확인</Label> */}
             <InputContainer>
               <Input
                 id="pwConfirm"
@@ -248,6 +240,10 @@ const SignUpPage = () => {
   );
 };
 
+SignUpPage.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
+};
+
 export default SignUpPage;
 
 const SignupLayout = styled.div`
@@ -269,20 +265,6 @@ const Box = styled.div`
   background-color: ${({ theme }) => theme.color.lime};
 `;
 
-const Title = styled.p`
-  color: ${({ theme }) => theme.color.brown};
-  margin-bottom: 60px;
-  font-size: 32px;
-  font-weight: 600;
-`;
-
-const Description = styled.p`
-  color: ${({ theme }) => theme.color.brown};
-  margin-bottom: 60px;
-  font-size: 20px;
-  font-weight: 400;
-`;
-
 const Form = styled.form``;
 
 const InputSet = styled.div`
@@ -290,12 +272,6 @@ const InputSet = styled.div`
   flex-direction: column;
   color: ${({ theme }) => theme.color.brown};
   margin-bottom: 30px;
-`;
-
-const Label = styled.label`
-  font-weight: 400;
-  font-size: 18px;
-  padding: 10px;
 `;
 
 const Input = styled.input`
@@ -316,11 +292,6 @@ const Input = styled.input`
   }
 `;
 
-const MessageBox = styled.div`
-  width: 300px;
-  height: 40px;
-`;
-
 const ErrorMessage = styled.span`
   font-weight: 400;
   color: ${({ theme }) => theme.color.red};
@@ -339,12 +310,9 @@ const DuplicationCheckContainer = styled.div`
 const DuplicationCheckMessage = styled.span`
   font-weight: 400;
   color: ${({ theme }) => theme.color.brown};
-  /* color: #2fc25d; */
-  font-size: 14px;
 
   .failed {
     color: ${({ theme }) => theme.color.red};
-    font-size: 50px;
   }
 
   .passed {

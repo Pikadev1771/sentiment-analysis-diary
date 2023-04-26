@@ -6,14 +6,17 @@ import Cookies from 'js-cookie';
 import { requestLogin } from '../../api/users';
 import { useState } from 'react';
 import Image from 'next/image';
-// import useRegexText from '../../hooks/useRegexText';
+
+import type { ReactElement } from 'react';
+import Layout from '../../components/layout/Layout';
+import type { NextPageWithLayout } from '../_app';
 
 type LoginFormProps = {
   email: string;
   pw: string;
 };
 
-const LoginPage = () => {
+const LoginPage: NextPageWithLayout = () => {
   const router = useRouter();
 
   // react-hook-form
@@ -144,6 +147,10 @@ const LoginPage = () => {
       </Box>
     </LoginLayout>
   );
+};
+
+LoginPage.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
 };
 
 export default LoginPage;
