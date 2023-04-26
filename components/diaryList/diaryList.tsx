@@ -62,7 +62,6 @@ export default function DiaryList() {
           );
         })}
       </List>
-      {/* <Pagenation>1 2 3 4 5</Pagenation> */}
     </Container>
   );
 }
@@ -116,11 +115,4 @@ const ShowMoreBtn = styled.button`
   :hover {
     cursor: pointer;
   }
-`;
-
-const Pagenation = styled.div`
-  margin: 20px auto;
-  font-size: 20px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.color.brown};
 `;

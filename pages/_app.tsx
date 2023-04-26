@@ -6,7 +6,6 @@ import store from '@/redux/store';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../styles/theme';
 import GlobalStyle from '../styles/global-style';
-import Layout from '../components/layout/Layout';
 
 import type { ReactElement, ReactNode } from 'react';
 import type { NextPage } from 'next';
@@ -26,11 +25,10 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        {getLayout(
-          <main className={jetBrains_Mono.className}>
-            <Component {...pageProps} />
-          </main>
-        )}
+
+        <main className={jetBrains_Mono.className}>
+          {getLayout(<Component {...pageProps} />)}
+        </main>
       </ThemeProvider>
     </Provider>
   );

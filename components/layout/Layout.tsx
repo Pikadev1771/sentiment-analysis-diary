@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../header/Header';
 import Footer from '../footer/Footer';
 
 import { NextPage } from 'next';
@@ -10,14 +9,14 @@ import styled from 'styled-components';
 //   children: ReactElement;
 // }
 
-export default function Layout(props: { children: React.ReactNode }) {
+const Layout = (props: { children: ReactNode }) => {
   return (
     <Wrapper>
       {props.children}
       <Footer />
     </Wrapper>
   );
-}
+};
 
 // footer 고정
 const Wrapper = styled.div`
@@ -26,3 +25,5 @@ const Wrapper = styled.div`
   justify-content: space-between;
   height: 100vh;
 `;
+
+export default Layout;

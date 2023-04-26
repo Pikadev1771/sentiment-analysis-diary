@@ -38,8 +38,6 @@ export default function DiaryForm() {
     (state: RootState) => state.diaryReducer.diaryList
   );
 
-  console.log('date >>>', router.query.date);
-
   const {
     register,
     handleSubmit,
@@ -78,28 +76,16 @@ export default function DiaryForm() {
 
       {errors.content && <p>일기를 작성해 주세요.</p>}
       <DateContainer>
-        <p>{`${date?.slice(0, 4)}년 ${date?.slice(5, 7)}월 ${date?.slice(
-          8
-        )}일`}</p>
+        <p>
+          {date
+            ? `${moment(date).format('YYYY년 MM월 DD일')}`
+            : `${moment(new Date()).format('YYYY년 MM월 DD일')}`}
+        </p>
       </DateContainer>
       <DiaryInput type="submit" value={'SUBMIT'} />
     </Form>
   );
 }
-
-// const AddNewLayout = styled.div`
-//   width: 100%;
-//   display: flex;
-//   justify-content: center;
-// `;
-
-// const DiaryFormContainer = styled.div`
-//   width: 1000px;
-//   height: 800px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// `;
 
 const Form = styled.form`
   width: 85%;
