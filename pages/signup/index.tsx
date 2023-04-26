@@ -8,6 +8,7 @@ import Image from 'next/image';
 import type { ReactElement } from 'react';
 import Layout from '../../components/layout/Layout';
 import type { NextPageWithLayout } from '../_app';
+import HomeButton from '../../components/button/HomeButton';
 
 type SignUpFormProps = {
   email: string;
@@ -86,156 +87,159 @@ const SignUpPage: NextPageWithLayout = () => {
 
   return (
     <SignupLayout>
-      <Box>
-        <Form onSubmit={handleSubmit(onSubmit)}>
-          <InputSet>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <HomeButton />
+        <InputSet>
+          <Label htmlFor="email">Email</Label>
+          <Input
+            id="email"
+            placeholder="이메일을 입력해 주세요"
+            {...register('email', {
+              required: true,
+              pattern: emailRegex,
+            })}
+          />
+
+          {errors?.email?.type === 'required' && (
+            <ErrorMessage>이메일을 입력해주세요</ErrorMessage>
+          )}
+          {errors?.email?.type === 'pattern' && (
+            <ErrorMessage>이메일 양식에 맞게 입력해주세요</ErrorMessage>
+          )}
+
+          <DuplicationCheckContainer>
+            <DuplicationCheckMessage>
+              {emailDuplicationCheckMessage === 'check me' && (
+                <p className="check me">중복 확인 해주세요</p>
+              )}
+              {emailDuplicationCheckMessage === 'failed' && (
+                <p className="failed">이미 존재하는 이메일입니다</p>
+              )}
+              {emailDuplicationCheckMessage === 'passed' && (
+                <p className="passed">사용 가능한 이메일입니다</p>
+              )}
+            </DuplicationCheckMessage>
+            <DuplicationCheckBtn
+              disabled={
+                !errors?.email && watch('email')?.length > 0 ? false : true
+              }
+              onClick={handleEmailDuplicationCheck}
+            >
+              이메일 중복 확인
+            </DuplicationCheckBtn>
+          </DuplicationCheckContainer>
+        </InputSet>
+        <InputSet>
+          <Label htmlFor="nickName">Nickname</Label>
+          <Input
+            id="nickName"
+            placeholder="닉네임을 입력해 주세요"
+            {...register('nickName', {
+              required: true,
+              pattern: nickNameRegex,
+            })}
+          />
+
+          {errors?.nickName?.type === 'required' && (
+            <ErrorMessage>닉네임을 입력해주세요</ErrorMessage>
+          )}
+          {errors?.nickName?.type === 'pattern' && (
+            <ErrorMessage>
+              2자 이상 16자 이하, 영어, 숫자 또는 한글로 구성되어야 합니다.
+            </ErrorMessage>
+          )}
+        </InputSet>
+        <InputSet>
+          <Label htmlFor="pw">Password</Label>
+          <InputContainer>
             <Input
-              id="email"
-              placeholder="이메일"
-              {...register('email', {
+              id="pw"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="비밀번호를 입력해 주세요"
+              {...register('pw', {
                 required: true,
-                pattern: emailRegex,
+                pattern: passwordRegex,
               })}
             />
+            <EyeBtn onClick={handleShowPassword}>
+              {showPassword ? (
+                <Image
+                  src="password/closedeye.svg"
+                  width="24"
+                  height="24"
+                  alt="not show password"
+                />
+              ) : (
+                <Image
+                  src="password/eye.svg"
+                  width="24"
+                  height="24"
+                  alt="show password"
+                />
+              )}
+            </EyeBtn>
+          </InputContainer>
 
-            {errors?.email?.type === 'required' && (
-              <ErrorMessage>이메일을 입력해주세요</ErrorMessage>
-            )}
-            {errors?.email?.type === 'pattern' && (
-              <ErrorMessage>이메일 양식에 맞게 입력해주세요</ErrorMessage>
-            )}
+          {errors?.pw?.type === 'required' && (
+            <ErrorMessage>비밀번호를 입력해주세요</ErrorMessage>
+          )}
 
-            <DuplicationCheckContainer>
-              <DuplicationCheckMessage>
-                {emailDuplicationCheckMessage === 'check me' && (
-                  <p className="check me">중복 확인 해주세요</p>
-                )}
-                {emailDuplicationCheckMessage === 'failed' && (
-                  <p className="failed">이미 존재하는 이메일입니다</p>
-                )}
-                {emailDuplicationCheckMessage === 'passed' && (
-                  <p className="passed">사용 가능한 이메일입니다</p>
-                )}
-              </DuplicationCheckMessage>
-              <DuplicationCheckBtn
-                disabled={
-                  !errors?.email && watch('email')?.length > 0 ? false : true
-                }
-                onClick={handleEmailDuplicationCheck}
-              >
-                이메일 중복 확인
-              </DuplicationCheckBtn>
-            </DuplicationCheckContainer>
-          </InputSet>
-          <InputSet>
+          {errors?.pw?.type === 'pattern' && (
+            <ErrorMessage>
+              소문자, 숫자, 특수문자를 각 하나 포함한 8자리 이상이어야 합니다.
+            </ErrorMessage>
+          )}
+        </InputSet>
+        <InputSet>
+          <Label htmlFor="pwConfirm">Password Confirm</Label>
+          <InputContainer>
             <Input
-              id="nickName"
-              placeholder="닉네임"
-              {...register('nickName', {
+              id="pwConfirm"
+              type={showPwConfirm ? 'text' : 'password'}
+              placeholder="비밀번호를 다시 한 번 입력해 주세요"
+              {...register('pwConfirm', {
                 required: true,
-                pattern: nickNameRegex,
+                validate: (value: string) => {
+                  const password = watch('pw');
+                  return password === value;
+                },
               })}
             />
+            <EyeBtn onClick={handleShowPwConfirm}>
+              {showPwConfirm ? (
+                <Image
+                  src="password/closedeye.svg"
+                  width="24"
+                  height="24"
+                  alt="not show password"
+                />
+              ) : (
+                <Image
+                  src="password/eye.svg"
+                  width="24"
+                  height="24"
+                  alt="show password"
+                />
+              )}
+            </EyeBtn>
+          </InputContainer>
 
-            {errors?.nickName?.type === 'required' && (
-              <ErrorMessage>닉네임을 입력해주세요</ErrorMessage>
-            )}
-            {errors?.nickName?.type === 'pattern' && (
-              <ErrorMessage>
-                2자 이상 16자 이하, 영어, 숫자 또는 한글로 구성되어야 합니다.
-              </ErrorMessage>
-            )}
-          </InputSet>
-          <InputSet>
-            <InputContainer>
-              <Input
-                id="pw"
-                type={showPassword ? 'text' : 'password'}
-                placeholder="비밀번호"
-                {...register('pw', {
-                  required: true,
-                  pattern: passwordRegex,
-                })}
-              />
-              <EyeBtn onClick={handleShowPassword}>
-                {showPassword ? (
-                  <Image
-                    src="password/closedeye.svg"
-                    width="24"
-                    height="24"
-                    alt="not show password"
-                  />
-                ) : (
-                  <Image
-                    src="password/eye.svg"
-                    width="24"
-                    height="24"
-                    alt="show password"
-                  />
-                )}
-              </EyeBtn>
-            </InputContainer>
+          {errors?.pwConfirm?.type === 'required' && (
+            <ErrorMessage>비밀번호를 한 번 더 입력해주세요</ErrorMessage>
+          )}
 
-            {errors?.pw?.type === 'required' && (
-              <ErrorMessage>비밀번호를 입력해주세요</ErrorMessage>
-            )}
-
-            {errors?.pw?.type === 'pattern' && (
-              <ErrorMessage>
-                소문자, 숫자, 특수문자를 각 하나 포함한 8자리 이상이어야 합니다.
-              </ErrorMessage>
-            )}
-          </InputSet>
-          <InputSet>
-            <InputContainer>
-              <Input
-                id="pwConfirm"
-                type={showPwConfirm ? 'text' : 'password'}
-                placeholder="비밀번호 확인"
-                {...register('pwConfirm', {
-                  required: true,
-                  validate: (value: string) => {
-                    const password = watch('pw');
-                    return password === value;
-                  },
-                })}
-              />
-              <EyeBtn onClick={handleShowPwConfirm}>
-                {showPwConfirm ? (
-                  <Image
-                    src="password/closedeye.svg"
-                    width="24"
-                    height="24"
-                    alt="not show password"
-                  />
-                ) : (
-                  <Image
-                    src="password/eye.svg"
-                    width="24"
-                    height="24"
-                    alt="show password"
-                  />
-                )}
-              </EyeBtn>
-            </InputContainer>
-
-            {errors?.pwConfirm?.type === 'required' && (
-              <ErrorMessage>비밀번호를 한 번 더 입력해주세요</ErrorMessage>
-            )}
-
-            {errors?.pwConfirm?.type === 'validate' && (
-              <ErrorMessage>비밀번호가 일치하지 않습니다</ErrorMessage>
-            )}
-          </InputSet>
-          <ButtonContainer>
-            <LogInBtn type="submit" value={'Sign Up'} />
-            <GoLogin>
-              이미 가입한 회원이신가요?
-              <LinkBtn onClick={() => router.push('/login')}>Log in</LinkBtn>
-            </GoLogin>
-          </ButtonContainer>
-        </Form>
-      </Box>
+          {errors?.pwConfirm?.type === 'validate' && (
+            <ErrorMessage>비밀번호가 일치하지 않습니다</ErrorMessage>
+          )}
+        </InputSet>
+        <ButtonContainer>
+          <LogInBtn type="submit" value={'Sign Up'} />
+          <GoLogin>
+            이미 가입한 회원이신가요?
+            <LinkBtn onClick={() => router.push('/login')}>Log in</LinkBtn>
+          </GoLogin>
+        </ButtonContainer>
+      </Form>
     </SignupLayout>
   );
 };
@@ -252,26 +256,29 @@ const SignupLayout = styled.div`
   justify-content: center;
 `;
 
-const Box = styled.div`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 650px;
-  height: 900px;
+  height: 1050px;
   margin: 120px auto;
   border: 3px solid ${({ theme }) => theme.color.brown};
   border-radius: 20px;
   background-color: ${({ theme }) => theme.color.lime};
 `;
 
-const Form = styled.form``;
-
 const InputSet = styled.div`
   display: flex;
   flex-direction: column;
   color: ${({ theme }) => theme.color.brown};
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+`;
+const Label = styled.label`
+  font-weight: 400;
+  font-size: 18px;
+  padding: 10px;
 `;
 
 const Input = styled.input`
@@ -365,7 +372,7 @@ const EyeBtn = styled.button`
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  margin-top: 20px;
 `;
 
 const LogInBtn = styled.input`

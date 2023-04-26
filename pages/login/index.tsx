@@ -10,6 +10,7 @@ import Image from 'next/image';
 import type { ReactElement } from 'react';
 import Layout from '../../components/layout/Layout';
 import type { NextPageWithLayout } from '../_app';
+import HomeButton from '../../components/button/HomeButton';
 
 type LoginFormProps = {
   email: string;
@@ -71,80 +72,78 @@ const LoginPage: NextPageWithLayout = () => {
 
   return (
     <LoginLayout>
-      <Box>
-        <Form onSubmit={handleSubmit(onSubmit)}>
-          <InputSet>
-            <Label htmlFor="email">Email</Label>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <HomeButton />
+        <InputSet>
+          <Label htmlFor="email">Email</Label>
+          <Input
+            id="email"
+            placeholder="이메일을 입력해주세요"
+            onKeyPress={handleEmailKeyPress}
+            {...register('email', {
+              required: true,
+              pattern: emailRegex,
+            })}
+          />
+          {errors?.email?.type === 'required' && (
+            <HelpMessage>이메일을 입력해주세요</HelpMessage>
+          )}
+
+          {errors?.email?.type === 'pattern' && (
+            <HelpMessage>이메일 양식에 맞게 입력해주세요</HelpMessage>
+          )}
+        </InputSet>
+        <InputSet>
+          <Label htmlFor="pw">Password</Label>
+          <InputContainer>
             <Input
-              id="email"
-              placeholder="이메일을 입력해주세요"
-              onKeyPress={handleEmailKeyPress}
-              {...register('email', {
+              id="pw"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="비밀번호를 입력해주세요"
+              onKeyPress={handleKeyPress}
+              {...register('pw', {
                 required: true,
-                pattern: emailRegex,
+                pattern: passwordRegex,
               })}
             />
-            {errors?.email?.type === 'required' && (
-              <HelpMessage>이메일을 입력해주세요</HelpMessage>
-            )}
+            <EyeBtn onClick={handleShowPassword}>
+              {showPassword ? (
+                <Image
+                  src="password/closedeye.svg"
+                  width="24"
+                  height="24"
+                  alt="not show password"
+                />
+              ) : (
+                <Image
+                  src="password/eye.svg"
+                  width="24"
+                  height="24"
+                  alt="show password"
+                />
+              )}
+            </EyeBtn>
+          </InputContainer>
+          {errors?.pw?.type === 'required' && (
+            <HelpMessage>비밀번호를 입력해주세요</HelpMessage>
+          )}
 
-            {errors?.email?.type === 'pattern' && (
-              <HelpMessage>이메일 양식에 맞게 입력해주세요</HelpMessage>
-            )}
-          </InputSet>
-          <InputSet>
-            <Label htmlFor="pw">Password</Label>
-            <InputContainer>
-              <Input
-                id="pw"
-                type={showPassword ? 'text' : 'password'}
-                placeholder="비밀번호를 입력해주세요"
-                onKeyPress={handleKeyPress}
-                {...register('pw', {
-                  required: true,
-                  pattern: passwordRegex,
-                })}
-              />
-              <EyeBtn onClick={handleShowPassword}>
-                {showPassword ? (
-                  <Image
-                    src="password/closedeye.svg"
-                    width="24"
-                    height="24"
-                    alt="not show password"
-                  />
-                ) : (
-                  <Image
-                    src="password/eye.svg"
-                    width="24"
-                    height="24"
-                    alt="show password"
-                  />
-                )}
-              </EyeBtn>
-            </InputContainer>
-            {errors?.pw?.type === 'required' && (
-              <HelpMessage>비밀번호를 입력해주세요</HelpMessage>
-            )}
-
-            {errors?.pw?.type === 'pattern' && (
-              <HelpMessage>
-                소문자, 숫자, 특수문자를 각 하나 포함한 8자리 이상이여야 합니다.
-              </HelpMessage>
-            )}
-          </InputSet>
-
-          <ButtonContainer>
-            <LogInBtn type="submit" value={'Log In'} />
-            <GoSignUp>
-              아직 회원이 아니신가요?
-              <LinkBtn color={'#FDFBE8'} onClick={() => router.push('/signup')}>
-                Sign Up
-              </LinkBtn>
-            </GoSignUp>
-          </ButtonContainer>
-        </Form>
-      </Box>
+          {errors?.pw?.type === 'pattern' && (
+            <HelpMessage>
+              소문자, 숫자, 특수문자를 각 하나 포함한 8자리 이상이여야 합니다.
+            </HelpMessage>
+          )}
+        </InputSet>
+        <ButtonContainer>
+          <LogInBtn type="submit" value={'Log In'} />
+          <LinkContainer>
+            아직 회원이 아니신가요?
+            <LinkBtn color={'#FDFBE8'} onClick={() => router.push('/signup')}>
+              Sign Up
+            </LinkBtn>
+          </LinkContainer>
+        </ButtonContainer>
+      </Form>
     </LoginLayout>
   );
 };
@@ -158,37 +157,23 @@ export default LoginPage;
 const LoginLayout = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 120px auto;
 `;
 
-const Box = styled.div`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 650px;
-  height: 600px;
-  margin: 120px auto;
+  height: 700px;
+  margin: 0 auto;
   border: 3px solid ${({ theme }) => theme.color.brown};
   border-radius: 20px;
   background-color: ${({ theme }) => theme.color.lime};
 `;
-
-const Title = styled.p`
-  color: ${({ theme }) => theme.color.brown};
-  margin-bottom: 60px;
-  font-size: 32px;
-  font-weight: 600;
-`;
-
-const Description = styled.p`
-  color: ${({ theme }) => theme.color.brown};
-  margin-bottom: 60px;
-  font-size: 20px;
-  font-weight: 400;
-`;
-
-const Form = styled.form``;
 
 const InputSet = styled.div`
   display: flex;
@@ -249,7 +234,8 @@ const EyeBtn = styled.button`
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  align-items: center;
+  margin-top: 30px;
 `;
 
 const LogInBtn = styled.input`
@@ -270,7 +256,7 @@ const LogInBtn = styled.input`
   }
 `;
 
-const GoSignUp = styled.div`
+const LinkContainer = styled.div`
   font-weight: 400;
   color: ${({ theme }) => theme.color.brown};
   font-size: 16px;
