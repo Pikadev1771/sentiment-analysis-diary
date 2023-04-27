@@ -20,31 +20,21 @@ export const createDiary = (form: DiaryProps) => {
   });
 };
 
-// id별 일기 데이터 가져오기
+// id별 일기 데이터 가져오기 (Server Side / token 필요 X)
 export const getDiaryById = async (id: number | string) => {
-  const res = await axios.get(`${REQUEST_URL}/api/diary/${id}`, {
+  const res = await axios.get(`${REQUEST_URL}/api/diary/${id}`);
+
+  return res.data;
+};
+
+// 날짜별 일기 데이터 가져오기 (Client Side)
+export const getDiaryByDate = async (date: string) => {
+  return axios.get(`${REQUEST_URL}/api/diary/date?createdAt=${date}`, {
     headers: {
       Authorization: Cookies.get('access_token'),
       Refresh: Cookies.get('refresh_token'),
     },
   });
-
-  return res.data;
-};
-
-// 날짜별 일기 데이터 가져오기
-export const getDiaryByDate = async (date: string) => {
-  const res = await axios.get(
-    `${REQUEST_URL}/api/diary/date?createdAt=${date}`,
-    {
-      headers: {
-        Authorization: Cookies.get('access_token'),
-        Refresh: Cookies.get('refresh_token'),
-      },
-    }
-  );
-
-  return res.data;
 };
 
 // 수정하기
@@ -58,7 +48,7 @@ export function editDiary(id: number, form: any) {
 }
 
 // 삭제하기
-export function deleteDiary(id: number) {
+export function deleteDiary(id: number | undefined) {
   return axios.delete(`${REQUEST_URL}/api/diary/${id}`, {
     headers: {
       Authorization: Cookies.get('access_token'),

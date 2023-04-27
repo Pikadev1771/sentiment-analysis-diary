@@ -37,7 +37,7 @@ export default function DiaryForm() {
     formState: { errors },
   } = useForm<DiaryFormProps>();
 
-  console.log(date);
+
   const onSubmit: SubmitHandler<DiaryFormProps> = (data) => {
     // const formDate = watch();
 
@@ -47,15 +47,14 @@ export default function DiaryForm() {
     };
 
     createDiary(formData).then(() => {
-      console.log('created!!!!!');
-      console.log('formData >>>', formData);
+   
       router.push('/');
     });
   };
 
-  // console.log(date);
-  console.log(watch());
-  // console.log(router.query);
+
+
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <DateAndTitleContainer>

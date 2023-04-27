@@ -48,8 +48,7 @@ const EditPage: NextPageWithLayout = ({ data }: any) => {
     formState: { errors },
   } = useForm<DiaryFormProps>();
 
-  console.log('watch >>>', watch());
-  // console.log(data);
+
 
   const onSubmit: SubmitHandler<DiaryFormProps> = (editFormData) => {
     // const formDate = watch();
@@ -61,8 +60,6 @@ const EditPage: NextPageWithLayout = ({ data }: any) => {
     };
 
     editDiary(id, formData).then(() => {
-      console.log('edited!!!!!');
-      console.log('formData >>>', formData);
       router.push(`/diary/${id}`);
     });
   };

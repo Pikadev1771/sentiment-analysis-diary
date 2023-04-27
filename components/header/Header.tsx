@@ -23,8 +23,6 @@ export default function Header() {
     }
   }, [accessToken, refreshToken]);
 
-  console.log(isLogin);
-
   const router = useRouter();
   return (
     <div>

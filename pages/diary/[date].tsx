@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
 import styles from '../../styles/DiaryForm.module.css';
@@ -6,12 +6,7 @@ import { Roboto } from 'next/font/google';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { useRouter } from 'next/router';
-import {
-  editDiary,
-  getDiaryByDate,
-  getDiaryById,
-  deleteDiary,
-} from '../../api/diary';
+import { getDiaryByDate, getDiaryById, deleteDiary } from '../../api/diary';
 
 import type { ReactElement } from 'react';
 import Layout from '../../components/layout/Layout';
@@ -24,18 +19,31 @@ import SmallButton from '../../components/button/SmallButton';
 
 export async function getServerSideProps(context: any) {
   const { date } = context.params;
-  console.log('date >>>', date);
-  const data = await getDiaryByDate(date);
-  // const data = await getDiaryById(date);
-  return { props: { data } }; // 컴포넌트에 넘겨줄 props
+  return { props: { date } };
 }
 
-const DiaryPage: NextPageWithLayout = ({ data }: any) => {
+interface DiaryDataProps {
+  diaryId: number;
+  title: string;
+  content: string;
+  createdAt: string;
+  emotion: string;
+  emotionString: string;
+}
+
+const DiaryPage: NextPageWithLayout = ({ date }: any) => {
   const router = useRouter();
 
-  const handleDelete = () => {
-    deleteDiary(data.diaryId).then(() => {
-      console.log('data.diaryId >>', data.diaryId);
+  const [diaryData, setDiaryData] = useState<DiaryDataProps | undefined>();
+
+  useEffect(() => {
+    getDiaryByDate(date).then((res) => {
+      setDiaryData(res.data);
+    });
+  }, [date]);
+
+  const handleDelete = (id: number | undefined) => {
+    deleteDiary(id).then(() => {
       router.push('/');
     });
   };
@@ -47,28 +55,30 @@ const DiaryPage: NextPageWithLayout = ({ data }: any) => {
           <Content>
             <DateBox>
               <h3>Date: </h3>
-              <Date value={data.createdAt} readOnly />
+              <Date value={diaryData?.createdAt} readOnly />
             </DateBox>
             <TitleBox>
               <h3>Title:</h3>
-              <Title value={data.title} readOnly />
+              <Title value={diaryData?.title} readOnly />
             </TitleBox>
-            <DiaryContent value={data.content} readOnly></DiaryContent>
+            <DiaryContent value={diaryData?.content} readOnly></DiaryContent>
             <Menu>
               <SmallButton
                 onClick={() => {
-                  router.push(`/edit/${data.diaryId}`);
+                  router.push(`/edit/${diaryData?.diaryId}`);
                 }}
               >
                 Edit
               </SmallButton>
-              <SmallButton onClick={handleDelete}>Delete</SmallButton>
+              <SmallButton onClick={() => handleDelete(diaryData?.diaryId)}>
+                Delete
+              </SmallButton>
             </Menu>
           </Content>
           <Analysis>
             <Image src="/emotion/happy.svg" width="65" height="65" alt="mood" />
-            <p>Mood: {data.emotionString || `Happy`}</p>
-            <p>Score: {data.emotion}</p>
+            <p>Mood: {diaryData?.emotionString || `Happy`}</p>
+            <p>Score: {diaryData?.emotion}</p>
           </Analysis>
         </ContentAndAnalysis>
       </DiaryBox>
