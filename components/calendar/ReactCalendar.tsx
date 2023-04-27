@@ -56,7 +56,6 @@ export default function ReactCalendar() {
   const activeDate = moment(value).format('YYYY-MM-DD'); // 클릭한 날짜 (년-월-일))
   const monthOfActiveDate = moment(value).format('YYYY-MM'); // 클릭한 날짜의 달(년-월) (맨 처음에는 오늘 날짜의 달))
   const [activeMonth, setActiveMonth] = useState(monthOfActiveDate); // 보여지는 달
-  console.log(value);
 
   // 보여지는 달 변경 함수
   const getActiveMonth = (activeStartDate: moment.MomentInput) => {
@@ -64,9 +63,7 @@ export default function ReactCalendar() {
     setActiveMonth(newActiveMonth);
   };
 
-  useEffect(() => {
-    console.log('render! >>', diaryData);
-  }, [diaryData]);
+  useEffect(() => {}, [diaryData]);
 
   const handleClick = (value: any) => {
     // 클릭한 날짜 변경

@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const HomeButton = () => {
+  const router = useRouter();
+
   return (
     <HomeBtnContainer>
       <HomeBtn color={'#FDFBE8'} onClick={() => router.push('/')}>
-        <Image src="home.svg" width="30" height="30" alt="previous" />
+        <Image src="home.svg" width="30" height="30" alt="HOME" />
         <p>HOME</p>
       </HomeBtn>
     </HomeBtnContainer>

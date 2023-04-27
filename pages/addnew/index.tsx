@@ -13,7 +13,7 @@ const AddNew: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>ment Analysis Diary</title>
+        <title>Sentiment Analysis Diary</title>
       </Head>
       <div>
         <MainContainer>

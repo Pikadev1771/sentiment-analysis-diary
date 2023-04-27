@@ -16,7 +16,6 @@ type LogInFormProps = {
 
 type EmailFormProps = {
   email: string;
-  pw: string;
 };
 
 // 회원가입

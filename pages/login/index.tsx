@@ -59,7 +59,6 @@ const LoginPage: NextPageWithLayout = () => {
 
   // 로그인 요청
   const onSubmit: SubmitHandler<LoginFormProps> = (form) => {
-    console.log(form);
     requestLogin(form).then((res) => {
       res?.headers?.authorization &&
         Cookies.set('access_token', res.headers.authorization, {
@@ -68,6 +67,11 @@ const LoginPage: NextPageWithLayout = () => {
       Cookies.set('refresh_token', res.headers.refresh, { expires: 20 });
       router.push('/');
     });
+  };
+
+  // 구글 로그인 이동
+  const handleGoogleLogin = async () => {
+    router.push('/google');
   };
 
   return (
@@ -136,6 +140,14 @@ const LoginPage: NextPageWithLayout = () => {
         </InputSet>
         <ButtonContainer>
           <LogInBtn type="submit" value={'Log In'} />
+          <GoogleLoginBtn onClick={() => handleGoogleLogin()}>
+            <Image
+              alt="google login"
+              src="/login/googleLogin.png"
+              layout="fill"
+              objectFit="contain"
+            />
+          </GoogleLoginBtn>
           <LinkContainer>
             아직 회원이 아니신가요?
             <LinkBtn color={'#FDFBE8'} onClick={() => router.push('/signup')}>
@@ -168,7 +180,7 @@ const Form = styled.form`
   justify-content: center;
   align-items: center;
   width: 650px;
-  height: 700px;
+  height: 780px;
   margin: 0 auto;
   border: 3px solid ${({ theme }) => theme.color.brown};
   border-radius: 20px;
@@ -275,6 +287,18 @@ const LinkBtn = styled.button`
   font-size: 16px;
   font-weight: 600;
   /* text-decoration: underline; */
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+const GoogleLoginBtn = styled.button`
+  position: relative;
+  border: none;
+  width: 280px;
+  height: 70px;
+  background-color: inherit;
+  margin-top: 8px;
   :hover {
     cursor: pointer;
   }

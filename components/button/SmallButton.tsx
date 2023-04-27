@@ -16,6 +16,7 @@ const SmallBtn = styled.button`
   background-color: ${({ theme }) => theme.color.cream};
   font-size: 16px;
   font-weight: 600;
+  margin-left: 8px;
   :hover {
     cursor: pointer;
   }
