@@ -54,60 +54,6 @@ const ChartBox = styled.div`
 
 const data = [
   {
-    id: 'germany',
-    color: 'hsl(207, 70%, 50%)',
-    data: [
-      {
-        x: 'plane',
-        y: 156,
-      },
-      {
-        x: 'helicopter',
-        y: 53,
-      },
-      {
-        x: 'boat',
-        y: 27,
-      },
-      {
-        x: 'train',
-        y: 148,
-      },
-      {
-        x: 'subway',
-        y: 44,
-      },
-      {
-        x: 'bus',
-        y: 272,
-      },
-      {
-        x: 'car',
-        y: 270,
-      },
-      {
-        x: 'moto',
-        y: 275,
-      },
-      {
-        x: 'bicycle',
-        y: 30,
-      },
-      {
-        x: 'horse',
-        y: 266,
-      },
-      {
-        x: 'skateboard',
-        y: 72,
-      },
-      {
-        x: 'others',
-        y: 91,
-      },
-    ],
-  },
-  {
     id: 'norway',
     color: 'hsl(167, 70%, 50%)',
     data: [
@@ -145,11 +91,11 @@ const data = [
       },
       {
         x: 'bicycle',
-        y: 3,
+        y: 140,
       },
       {
         x: 'horse',
-        y: 1,
+        y: 100,
       },
       {
         x: 'skateboard',

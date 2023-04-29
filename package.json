@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nivo/bar": "^0.81.0",
     "@nivo/circle-packing": "^0.81.0",
     "@nivo/core": "^0.81.0",
     "@nivo/line": "^0.81.0",
     "@reduxjs/toolkit": "^1.9.5",
+    "@svgr/webpack": "^7.0.0",
     "@tanstack/react-query": "^4.28.0",
     "@tanstack/react-query-devtools": "^4.28.0",
     "@types/node": "18.15.10",

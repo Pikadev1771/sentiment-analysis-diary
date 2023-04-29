@@ -27,8 +27,7 @@ interface DiaryDataProps {
   title: string;
   content: string;
   createdAt: string;
-  emotion: string;
-  emotionString: string;
+  emotion: number;
 }
 
 const DiaryPage: NextPageWithLayout = ({ date }: any) => {
@@ -48,6 +47,16 @@ const DiaryPage: NextPageWithLayout = ({ date }: any) => {
     });
   };
 
+  let mood;
+  const score = diaryData?.emotion;
+  if (score) {
+    if (score > 6) mood = 'Happy';
+    if (score > 2 && score <= 6) mood = 'Good';
+    if (score > -2 && score <= 2) mood = 'Soso';
+    if (score > -6 && score <= -2) mood = 'Bad';
+    if (score >= -10 && score <= -6) mood = 'Depressed';
+  }
+
   return (
     <DiaryLayout>
       <DiaryBox>
@@ -65,7 +74,15 @@ const DiaryPage: NextPageWithLayout = ({ date }: any) => {
             <Menu>
               <SmallButton
                 onClick={() => {
-                  router.push(`/edit/${diaryData?.diaryId}`);
+                  router.push(
+                    {
+                      pathname: `/edit/${date}`,
+                      query: {
+                        id: diaryData?.diaryId,
+                      },
+                    },
+                    `/edit/${date}`
+                  );
                 }}
               >
                 Edit
@@ -76,8 +93,13 @@ const DiaryPage: NextPageWithLayout = ({ date }: any) => {
             </Menu>
           </Content>
           <Analysis>
-            <Image src="/emotion/happy.svg" width="65" height="65" alt="mood" />
-            <p>Mood: {diaryData?.emotionString || `Happy`}</p>
+            <Image
+              src={`/emotion/${mood || 'Soso'}.svg`}
+              width="65"
+              height="65"
+              alt="mood"
+            />
+            <p>Mood: {mood || 'Soso'}</p>
             <p>Score: {diaryData?.emotion}</p>
           </Analysis>
         </ContentAndAnalysis>

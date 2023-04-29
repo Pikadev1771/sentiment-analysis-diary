@@ -37,6 +37,16 @@ export const getDiaryByDate = async (date: string) => {
   });
 };
 
+// 유저별 일기 데이터 가져오기
+export const getDiaryByUser = async () => {
+  return axios.get(`${REQUEST_URL}/api/diary?page=1&size=10`, {
+    headers: {
+      Authorization: Cookies.get('access_token'),
+      Refresh: Cookies.get('refresh_token'),
+    },
+  });
+};
+
 // 수정하기
 export function editDiary(id: number, form: any) {
   return axios.patch(`${REQUEST_URL}/api/diary/${id}`, form, {

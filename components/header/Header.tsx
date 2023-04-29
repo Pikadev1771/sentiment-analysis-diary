@@ -4,35 +4,20 @@ import SmallButton from '../button/SmallButton';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import moment from 'moment';
-import { useEffect, useState } from 'react';
-
 import Cookies from 'js-cookie';
+import useLogin from '../../hooks/useLogin';
 
 export default function Header() {
-  const [isLogin, setIsLogin] = useState<Boolean>(false);
-
-  const accessToken = Cookies.get('access_token');
-  const refreshToken = Cookies.get('refresh_token');
   const nickName = Cookies.get('nickName');
-
-  useEffect(() => {
-    if (refreshToken) {
-      setIsLogin(true);
-    } else {
-      setIsLogin(false);
-    }
-  }, [accessToken, refreshToken]);
-
+  const isLogin = useLogin();
   const router = useRouter();
   return (
     <div>
       <HeaderContainer>
         <Link href={'/'}>
           <Image src="/logo/logo_01.svg" width="200" height="60" alt="HOME" />
-          {/* <Logo onClick={() => router.push('/')}>Sentimant Analysis Diary</Logo> */}
         </Link>
         <Menu>
-          {/* a */}
           {isLogin ? (
             <>
               <SmallButton

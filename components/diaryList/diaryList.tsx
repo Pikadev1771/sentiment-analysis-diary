@@ -1,47 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import DiaryCard from './DiaryCard';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import SmallButton from '../button/SmallButton';
-
-// const diaryData = [
-//   {
-//     id: 1,
-//     date: '2023-04-01',
-//     title: '야호',
-//     content: '날씨 좋다~~!',
-//     score: 1,
-//   },
-//   {
-//     id: 2,
-//     date: '2023-04-02',
-//     title: '메리 크리스마스🎅🏽',
-//     content: '🎄🎄🎄',
-//     score: 0.5,
-//   },
-//   {
-//     id: 3,
-//     date: '2023-04-10',
-//     title: '해피 뉴이어',
-//     content: '행복한 2023년',
-//     score: 0.1,
-//   },
-//   {
-//     id: 4,
-//     date: '2023-04-13',
-//     title: '야호',
-//     content: '날씨 좋다~~!',
-//     score: 1,
-//   },
-// ];
+import { getDiaryByDate, getDiaryByUser } from '../../api/diary';
 
 export default function DiaryList() {
-  const diaryData = useSelector(
-    (state: RootState) => state.diaryReducer.diaryList
-  );
+  const [diaryList, setDiaryList] = useState<any | undefined>();
 
-  // To Do : 데이터 fetch
+  useEffect(() => {
+    getDiaryByUser().then((res) => {
+      setDiaryList(res.data.data);
+    });
+  }, []);
 
   return (
     <Container>
@@ -50,14 +22,13 @@ export default function DiaryList() {
         <ShowMoreBtn>▶️ 더 보기</ShowMoreBtn>
       </ListHeader>
       <List>
-        {diaryData.slice(0, 6).map((diary) => {
+        {diaryList?.map((diary) => {
           return (
             <DiaryCard
-              key={diary.id}
-              date={diary.date}
+              key={diary.diaryId}
+              date={diary.createdAt}
               title={diary.title}
               content={diary.content}
-              score={diary.score}
             />
           );
         })}
@@ -116,3 +87,34 @@ const ShowMoreBtn = styled.button`
     cursor: pointer;
   }
 `;
+
+// const diaryData = [
+//   {
+//     id: 1,
+//     date: '2023-04-01',
+//     title: '야호',
+//     content: '날씨 좋다~~!',
+//     score: 1,
+//   },
+//   {
+//     id: 2,
+//     date: '2023-04-02',
+//     title: '메리 크리스마스🎅🏽',
+//     content: '🎄🎄🎄',
+//     score: 0.5,
+//   },
+//   {
+//     id: 3,
+//     date: '2023-04-10',
+//     title: '해피 뉴이어',
+//     content: '행복한 2023년',
+//     score: 0.1,
+//   },
+//   {
+//     id: 4,
+//     date: '2023-04-13',
+//     title: '야호',
+//     content: '날씨 좋다~~!',
+//     score: 1,
+//   },
+// ];

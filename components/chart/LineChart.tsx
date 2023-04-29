@@ -1,14 +1,15 @@
 import { ResponsiveLine } from '@nivo/line';
 
 import styled from 'styled-components';
+import PointSymbol from './PointSymbol';
+
+import { keyframes } from 'styled-components';
 
 const LineChart = ({ data }: any) => {
   return (
     <LineChartContainer>
       <ResponsiveLine
         data={data}
-        width={900}
-        height={500}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
         xScale={{ type: 'point' }}
         yScale={{
@@ -19,26 +20,7 @@ const LineChart = ({ data }: any) => {
           reverse: false,
         }}
         yFormat=" >-.2f"
-        axisTop={null}
-        axisRight={null}
-        axisBottom={{
-          orient: 'bottom',
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
-          legend: 'transportation',
-          legendOffset: 36,
-          legendPosition: 'middle',
-        }}
-        axisLeft={{
-          orient: 'left',
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
-          legend: 'count',
-          legendOffset: -40,
-          legendPosition: 'middle',
-        }}
+        pointSymbol={PointSymbol}
         pointSize={10}
         pointColor={{ theme: 'background' }}
         pointBorderWidth={2}
@@ -71,16 +53,47 @@ const LineChart = ({ data }: any) => {
             ],
           },
         ]}
+        lineWidth={6}
+        axisTop={null}
+        axisRight={null}
+        // axisBottom={{
+        //   orient: 'bottom',
+        //   tickSize: 5,
+        //   tickPadding: 5,
+        //   tickRotation: 0,
+        //   legend: 'transportation',
+        //   legendOffset: 36,
+        //   legendPosition: 'middle',
+        // }}
+        // axisLeft={{
+        //   orient: 'left',
+        //   tickSize: 5,
+        //   tickPadding: 5,
+        //   tickRotation: 0,
+        //   legend: 'count',
+        //   legendOffset: -40,
+        //   legendPosition: 'middle',
+        // }}
       />
     </LineChartContainer>
   );
 };
-
 export default LineChart;
+
+const boxMove = keyframes`
+0%{
+  transform : rotate(0deg)
+}50% {
+  transform : rotate(180deg)
+}100% {
+  transform : rotate(360deg)
+  }
+`;
 
 const LineChartContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: 70%;
   padding: 20px;
-  border: 4px solid green;
+  /* border: 4px solid green; */
+  animation: ${boxMove} 2s0;
 `;

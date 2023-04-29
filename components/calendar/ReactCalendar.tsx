@@ -7,53 +7,32 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
-
-// 일기 데이터
-// const diaryData = [
-//   {
-//     id: 1,
-//     date: '2023-04-01',
-//     title: '야호',
-//     content: '날씨 좋다~~!',
-//     score: 1,
-//     emotion: 'good',
-//   },
-//   {
-//     id: 2,
-//     date: '2023-04-04',
-//     title: '메리 크리스마스🎅🏽',
-//     content: '🎄🎄🎄',
-//     score: 0.5,
-//     emotion: 'soso',
-//   },
-//   {
-//     id: 3,
-//     date: '2023-04-14',
-//     title: '해피 뉴이어',
-//     content: '행복한 2023년',
-//     score: 0.1,
-//     emotion: 'bad',
-//   },
-//   {
-//     id: 4,
-//     date: '2023-04-20',
-//     title: '야호',
-//     content: '날씨 좋다~~!',
-//     score: 1,
-//     emotion: 'happy',
-//   },
-// ];
+import { getDiaryByUser } from '../../api/diary';
+import Cookies from 'js-cookie';
+import useLogin from '../../hooks/useLogin';
 
 export default function ReactCalendar() {
+  const isLogin = useLogin();
   const router = useRouter();
 
-  const diaryData = useSelector(
-    (state: RootState) => state.diaryReducer.diaryList
-  );
+  // const diaryData = useSelector(
+  //   (state: RootState) => state.diaryReducer.diaryList
+  // );
+
+  // 일기 데이터 받아오기
+  const [diaryList, setDiaryList] = useState<any | undefined>();
+
+  useEffect(() => {
+    if (isLogin) {
+      getDiaryByUser().then((res) => {
+        setDiaryList(res.data.data);
+      });
+    }
+  }, [isLogin]);
 
   const curDate = new Date(); // 오늘 날짜
-  const [value, setValue] = useState<Date>(curDate); // 클릭한 날짜
-  const activeDate = moment(value).format('YYYY-MM-DD'); // 클릭한 날짜 (년-월-일))
+  const [value, setValue] = useState<Date>(curDate); // 클릭한 날짜 (Date 객체)
+  // const activeDate = moment(value).format('YYYY-MM-DD'); // 클릭한 날짜 (년-월-일))
   const monthOfActiveDate = moment(value).format('YYYY-MM'); // 클릭한 날짜의 달(년-월) (맨 처음에는 오늘 날짜의 달))
   const [activeMonth, setActiveMonth] = useState(monthOfActiveDate); // 보여지는 달
 
@@ -63,18 +42,16 @@ export default function ReactCalendar() {
     setActiveMonth(newActiveMonth);
   };
 
-  useEffect(() => {}, [diaryData]);
-
   const handleClick = (value: any) => {
     // 클릭한 날짜 변경
     setValue(value);
 
     if (
-      diaryData.find(
-        (diary) => diary.date === moment(value).format('YYYY-MM-DD')
+      diaryList.find(
+        (diary) => diary.createdAt === moment(value).format('YYYY-MM-DD')
       )
     ) {
-      router.push('/diary/1');
+      router.push(`/diary/${moment(value).format('YYYY-MM-DD')}`);
     } else {
       router.push(
         {
@@ -94,20 +71,38 @@ export default function ReactCalendar() {
     const contents = [];
 
     // 해당 날짜(하루)의 일기 데이터
-    const tileDiary = diaryData.find(
-      (diary) => diary.date === moment(date).format('YYYY-MM-DD')
+    const tileDiaryData = diaryList?.find(
+      (diary) => diary.createdAt === moment(date).format('YYYY-MM-DD')
     );
 
+    // emotion 점수별 이모티콘
+    // const emotion = () => {
+    //   if()
+    // }
+
     // 해당 날짜(하루)의 일기 데이터가 존재하면 이모티콘 이미지 추가
-    if (tileDiary) {
+    if (tileDiaryData) {
+      // 이모티콘 분기
+      let mood;
+      if (tileDiaryData.emotion > 6) mood = 'happy';
+      if (tileDiaryData.emotion > 2 && tileDiaryData.emotion <= 6)
+        mood = 'good';
+      if (tileDiaryData.emotion > -2 && tileDiaryData.emotion <= 2)
+        mood = 'soso';
+      if (tileDiaryData.emotion > -6 && tileDiaryData.emotion <= -2)
+        mood = 'bad';
+      if (tileDiaryData.emotion >= -10 && tileDiaryData.emotion <= -6)
+        mood = 'depressed';
+
       contents.push(
         <>
           {/* <div className="dot"></div> */}
           <Image
-            src={`emotion/${tileDiary?.emotion}.svg`}
+            // src={`emotion/${tileDiaryData?.emotion}.svg`}
+            src={`emotion/${mood}.svg`}
             className="diaryImg"
-            width="28"
-            height="28"
+            width="32"
+            height="32"
             alt="today is..."
           />
         </>
@@ -253,3 +248,39 @@ const Container = styled.div`
     border-radius: 14px;
   }
 `;
+
+// 일기 데이터
+// const diaryData = [
+//   {
+//     id: 1,
+//     date: '2023-04-01',
+//     title: '야호',
+//     content: '날씨 좋다~~!',
+//     score: 1,
+//     emotion: 'good',
+//   },
+//   {
+//     id: 2,
+//     date: '2023-04-04',
+//     title: '메리 크리스마스🎅🏽',
+//     content: '🎄🎄🎄',
+//     score: 0.5,
+//     emotion: 'soso',
+//   },
+//   {
+//     id: 3,
+//     date: '2023-04-14',
+//     title: '해피 뉴이어',
+//     content: '행복한 2023년',
+//     score: 0.1,
+//     emotion: 'bad',
+//   },
+//   {
+//     id: 4,
+//     date: '2023-04-20',
+//     title: '야호',
+//     content: '날씨 좋다~~!',
+//     score: 1,
+//     emotion: 'happy',
+//   },
+// ];

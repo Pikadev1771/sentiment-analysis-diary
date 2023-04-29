@@ -5,12 +5,17 @@ import ReactCalendar from '../components/calendar/ReactCalendar';
 import styled from 'styled-components';
 import DiaryList from '../components/diaryList/DiaryList';
 
-import type { ReactElement } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import Layout from '../components/layout/Layout';
 import HeaderLayout from '../components/layout/HeaderLayout';
 import type { NextPageWithLayout } from './_app';
+import Cookies from 'js-cookie';
+import GoLogin from '../components/goLogin/GoLogin';
+import useLogin from '../hooks/useLogin';
 
 const Home: NextPageWithLayout = () => {
+  const isLogin = useLogin();
+
   return (
     <>
       <Head>
@@ -21,10 +26,7 @@ const Home: NextPageWithLayout = () => {
           <Left>
             <ReactCalendar />
           </Left>
-          <Right>
-            <DiaryList />
-            {/* <GoLogin /> */}
-          </Right>
+          <Right>{isLogin ? <DiaryList /> : <GoLogin />}</Right>
         </MainContainer>
       </div>
     </>

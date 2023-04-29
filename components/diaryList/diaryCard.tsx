@@ -1,21 +1,39 @@
-import React from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React, { useReducer } from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
 
 export default function DiaryCard({ date, title, content, score }: any) {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push(`/diary/${date}`);
+  };
+
   return (
-    <Card>
-      <DiaryTitle>{title}</DiaryTitle>
-      <Content>{content}</Content>
-      <Date>
-        <p>{date}</p>
-      </Date>
-    </Card>
+    // <Link href={`/diary/${date}`}>
+    <CardContainer onClick={handleClick}>
+      <Card>
+        <DiaryTitle>{title}</DiaryTitle>
+        <Content>{content}</Content>
+        <Date>
+          <p>{date}</p>
+        </Date>
+      </Card>
+    </CardContainer>
   );
 }
 
+const CardContainer = styled.button`
+  background-color: inherit;
+  margin: 6px;
+  border: none;
+  :hover {
+    cursor: pointer;
+  }
+`;
 const Card = styled.div`
-  width: 190px;
+  width: 180px;
   height: 170px;
   padding: 10px;
   background: ${({ theme }) => theme.color.lime};
@@ -25,7 +43,7 @@ const Card = styled.div`
   font-weight: 500;
 
   color: ${({ theme }) => theme.color.brown};
-  margin: 10px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,13 +57,14 @@ const DiaryTitle = styled.p`
 `;
 
 const Content = styled.div`
-  width: 150px;
+  width: 145px;
   height: 60px;
   background: ${({ theme }) => theme.color.cream};
   border: 2px solid ${({ theme }) => theme.color.brown};
   border-radius: 10px;
   padding: 10px;
   font-size: 14px;
+  text-align: left;
 `;
 
 const Date = styled.div`

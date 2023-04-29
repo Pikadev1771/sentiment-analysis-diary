@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
 import styles from '../../styles/DiaryForm.module.css';
@@ -21,12 +20,15 @@ import HomeButton from '../../components/button/HomeButton';
 
 import Image from 'next/image';
 import SmallButton from '../../components/button/SmallButton';
+import React, { useEffect, useState } from 'react';
 
-export async function getServerSideProps(context: any) {
-  const { date } = context.params;
-  // const diaryDataByDate = await getDiaryByDate(date);
-  const data = await getDiaryById(date);
-  return { props: { data } }; // 컴포넌트에 넘겨줄 props
+interface DiaryDataProps {
+  diaryId: number;
+  title: string;
+  content: string;
+  createdAt: string;
+  emotion: string;
+  emotionString: string;
 }
 
 type DiaryFormProps = {
@@ -36,10 +38,16 @@ type DiaryFormProps = {
   content: string;
 };
 
-const EditPage: NextPageWithLayout = ({ data }: any) => {
-  const router = useRouter();
+export async function getServerSideProps(context: any) {
+  const { date } = context.params;
+  const diaryId = context.query.id;
+  const diaryData = await getDiaryById(diaryId);
 
-  const { date } = router.query;
+  return { props: { date, diaryData } }; // 컴포넌트에 넘겨줄 props
+}
+
+const EditPage: NextPageWithLayout = ({ date, diaryData }: any) => {
+  const router = useRouter();
 
   const {
     register,
@@ -48,19 +56,14 @@ const EditPage: NextPageWithLayout = ({ data }: any) => {
     formState: { errors },
   } = useForm<DiaryFormProps>();
 
-
-
   const onSubmit: SubmitHandler<DiaryFormProps> = (editFormData) => {
-    // const formDate = watch();
-
-    const id = data.diaryId;
     const formData: any = {
       ...editFormData,
-      diaryId: data.diaryId,
+      diaryId: diaryData.diaryId,
     };
 
-    editDiary(id, formData).then(() => {
-      router.push(`/diary/${id}`);
+    editDiary(diaryData.diaryId, formData).then(() => {
+      router.push(`/diary/${date}`);
     });
   };
 
@@ -74,7 +77,7 @@ const EditPage: NextPageWithLayout = ({ data }: any) => {
                 <h3>Date: </h3>
                 <Date
                   {...register('createdAt', { required: true })}
-                  value={data.createdAt}
+                  value={diaryData?.createdAt}
                   readOnly
                 />
               </DateBox>
@@ -82,12 +85,12 @@ const EditPage: NextPageWithLayout = ({ data }: any) => {
                 <h3>Title:</h3>
                 <Title
                   {...register('title', { required: true })}
-                  defaultValue={data.title}
+                  defaultValue={diaryData?.title}
                 />
               </TitleBox>
               <DiaryContent
                 {...register('content', { required: true })}
-                defaultValue={data.content}
+                defaultValue={diaryData?.content}
               ></DiaryContent>
               <Menu>
                 <SubmitBtn type="submit" value={'Submit'} />
