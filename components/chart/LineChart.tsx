@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import PointSymbol from './PointSymbol';
 
 import { keyframes } from 'styled-components';
+import SmallButton from '../button/SmallButton';
+import Happy from '../../public/emotion/happy.svg';
 
 const lineChartTheme = {
   fontSize: 20,
@@ -17,8 +19,22 @@ const lineChartTheme = {
 };
 
 const LineChart = ({ data }: any) => {
+  const item = data[0].data;
+  console.log(item);
   const emotion = 'happy';
-  console.log('LineChart!!');
+
+  const customTooltip = ({ point }) => {
+    console.log(point);
+    return (
+      <SmallButton>
+        <Happy width="22" height="22" />
+        {/* <div>Date: {point.data.x}</div>
+        <div>Score: {point.data.y}</div> */}
+        <div>Mood: Happy</div>
+      </SmallButton>
+    );
+  };
+
   return (
     <LineChartContainer>
       <ResponsiveLine
@@ -43,12 +59,10 @@ const LineChart = ({ data }: any) => {
         useMesh={true}
         curve={'monotoneX'}
         colors={'#7d7a9a'}
-        라인
-        그래프
         lineWidth={4}
         layers={[
           'grid', // 그래프 선
-          // 'markers',
+          'markers',
           'axes', // 축 좌표
           // 'areas',
           'crosshair', // 호버 시 점선
@@ -58,10 +72,21 @@ const LineChart = ({ data }: any) => {
           'mesh', // 호버 시 나오는 창
           // 'legends', 개요
         ]}
+        markers={[
+          {
+            axis: 'y',
+            lineStyle: {
+              stroke: '#b0413e',
+              strokeWidth: 1,
+            },
+            value: 0,
+          },
+        ]}
+        tooltip={customTooltip}
         axisBottom={{
           orient: 'bottom',
-          tickSize: 0,
-          tickPadding: 20,
+          tickSize: 10,
+          tickPadding: 10,
           tickRotation: 0,
 
           // legend: 'Date',
@@ -70,8 +95,8 @@ const LineChart = ({ data }: any) => {
         }}
         axisLeft={{
           orient: 'left',
-          tickSize: 0,
-          tickPadding: 40,
+          tickSize: 10,
+          tickPadding: 20,
           tickRotation: 0,
           // legend: 'count',
           // legendOffset: -40,

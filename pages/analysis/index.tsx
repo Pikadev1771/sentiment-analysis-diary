@@ -22,7 +22,7 @@ const AnalysisPage: NextPageWithLayout = () => {
     <ChartLayout>
       <ChartBox>
         <LineChart data={lineChartData} />
-        <BubbleChart data={bubbleChartDate} />
+        <BubbleChart data={bubbleChartData} />
       </ChartBox>
     </ChartLayout>
   );
@@ -59,10 +59,96 @@ const ChartBox = styled.div`
   color: ${({ theme }) => theme.color.brown};
 `;
 
+const data = {
+  keyWords: {
+    기분: 3,
+    재밌다: 6,
+    비: 9,
+    어두움: 3,
+    하늘: 9,
+    회사: 6,
+    사이드프로젝트: 6,
+    공부: 6,
+  },
+  diaries: [
+    {
+      diaryId: 3,
+      emotion: -3,
+      createdAt: '2023-04-03',
+    },
+    {
+      diaryId: 4,
+      emotion: -3,
+      createdAt: '2023-04-05',
+    },
+    {
+      diaryId: 2,
+      emotion: -3,
+      createdAt: '2023-04-13',
+    },
+    {
+      diaryId: 8,
+      emotion: -3,
+      createdAt: '2023-04-13',
+    },
+    {
+      diaryId: 5,
+      emotion: -3,
+      createdAt: '2023-04-14',
+    },
+    {
+      diaryId: 9,
+      emotion: -3,
+      createdAt: '2023-04-14',
+    },
+    {
+      diaryId: 6,
+      emotion: -3,
+      createdAt: '2023-04-18',
+    },
+    {
+      diaryId: 17,
+      emotion: -3,
+      createdAt: '2023-04-18',
+    },
+    {
+      diaryId: 7,
+      emotion: -3,
+      createdAt: '2023-04-20',
+    },
+    {
+      diaryId: 11,
+      emotion: 5,
+      createdAt: '2023-04-20',
+    },
+    {
+      diaryId: 16,
+      emotion: -3,
+      createdAt: '2023-04-23',
+    },
+    {
+      diaryId: 13,
+      emotion: -3,
+      createdAt: '2023-04-24',
+    },
+    {
+      diaryId: 12,
+      emotion: -3,
+      createdAt: '2023-04-26',
+    },
+    {
+      diaryId: 10,
+      emotion: 3,
+      createdAt: '2023-04-27',
+    },
+  ],
+};
+
+//라인 차트
+
 const lineChartData = [
   {
-    id: 'User Name',
-    color: 'hsl(167, 70%, 50%)',
+    id: 'Line Chart',
     data: [
       {
         x: '2023-04-01',
@@ -96,55 +182,100 @@ const lineChartData = [
   },
 ];
 
-const bubbleChartDate = {
-  키워드: 'User Name',
-  color: 'hsl(266, 70%, 50%)',
+// 버블 차트
+let arr = Object.entries(data.keyWords); // [['재밌다', 6], ["하늘", 9]...]
+let bubbleArr = [];
+for (let i = 0; i < arr.length; i++) {
+  let obj = {};
+  obj['키워드'] = arr[i][0];
+  obj['횟수'] = arr[i][1];
+  bubbleArr.push(obj);
+}
+
+const bubbleChartData = {
   children: [
     {
-      키워드: '일기',
-      color: 'hsl(95, 70%, 50%)',
-      children: [
-        {
-          키워드: '산책',
-          color: 'hsl(192, 70%, 50%)',
-          횟수: 5,
-        },
-        {
-          키워드: '치킨',
-          color: 'hsl(206, 70%, 50%)',
-          횟수: 7,
-        },
-        {
-          키워드: '날씨',
-          color: 'hsl(169, 70%, 50%)',
-          횟수: 1,
-        },
-        {
-          키워드: '고양이',
-          color: 'hsl(142, 70%, 50%)',
-          횟수: 10,
-        },
-        {
-          키워드: '영화',
-          color: 'hsl(347, 70%, 50%)',
-          횟수: 1,
-        },
-        {
-          키워드: '자전거',
-          color: 'hsl(347, 70%, 50%)',
-          횟수: 2,
-        },
-        {
-          키워드: '회사',
-          color: 'hsl(347, 70%, 50%)',
-          횟수: 5,
-        },
-        {
-          키워드: '코딩',
-          color: 'hsl(347, 70%, 50%)',
-          횟수: 1,
-        },
-      ],
+      키워드: '',
+      children: bubbleArr,
     },
   ],
 };
+
+// const lineChartData = [
+//   {
+//     id: 'User Name',
+//     color: 'hsl(167, 70%, 50%)',
+//     data: [
+//       {
+//         x: '2023-04-01',
+//         y: 8,
+//       },
+//       {
+//         x: '04-02',
+//         y: -2,
+//       },
+//       {
+//         x: '04-03',
+//         y: -7,
+//       },
+//       {
+//         x: '04-04',
+//         y: 0,
+//       },
+//       {
+//         x: '04-05',
+//         y: 6,
+//       },
+//       {
+//         x: '04-06',
+//         y: -1,
+//       },
+//       {
+//         x: '04-07',
+//         y: 9,
+//       },
+//     ],
+//   },
+// ];
+
+// const bubbleChartData = {
+//   children: [
+//     {
+//       키워드: '',
+//       children: [
+//         {
+//           키워드: '산책',
+//           횟수: 5,
+//         },
+//         {
+//           키워드: '치킨',
+//           횟수: 7,
+//         },
+//         {
+//           키워드: '날씨',
+//           횟수: 1,
+//         },
+//         {
+//           키워드: '고양이',
+//           횟수: 10,
+//         },
+//         {
+//           키워드: '영화',
+//           횟수: 1,
+//         },
+//         {
+//           키워드: '자전거',
+//           횟수: 2,
+//         },
+//         {
+//           키워드: '회사',
+//           횟수: 5,
+//         },
+//         {
+//           키워드: '코딩',
+//           횟수: 1,
+//         },
+//       ],
+//     },
+//   ],
+// };
