@@ -11,7 +11,6 @@ export default function DiaryCard({ date, title, content, score }: any) {
   };
 
   return (
-    // <Link href={`/diary/${date}`}>
     <CardContainer onClick={handleClick}>
       <Card>
         <DiaryTitle>{title}</DiaryTitle>

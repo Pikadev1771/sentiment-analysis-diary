@@ -36,7 +36,7 @@ export default function Header() {
                 새 일기 쓰기
               </SmallButton>
               <ProfileBtn>
-                {nickName ? nickName[0].toUpperCase() : `P`}
+                {nickName ? nickName[0].toUpperCase() : `🦄`}
               </ProfileBtn>
             </>
           ) : (

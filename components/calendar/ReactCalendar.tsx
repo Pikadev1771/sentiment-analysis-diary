@@ -75,11 +75,6 @@ export default function ReactCalendar() {
       (diary) => diary.createdAt === moment(date).format('YYYY-MM-DD')
     );
 
-    // emotion 점수별 이모티콘
-    // const emotion = () => {
-    //   if()
-    // }
-
     // 해당 날짜(하루)의 일기 데이터가 존재하면 이모티콘 이미지 추가
     if (tileDiaryData) {
       // 이모티콘 분기

@@ -60,11 +60,13 @@ const LoginPage: NextPageWithLayout = () => {
   // 로그인 요청
   const onSubmit: SubmitHandler<LoginFormProps> = (form) => {
     requestLogin(form).then((res) => {
+      console.log(res);
       res?.headers?.authorization &&
         Cookies.set('access_token', res.headers.authorization, {
           expires: 0.079,
         });
       Cookies.set('refresh_token', res.headers.refresh, { expires: 20 });
+      Cookies.set('nickName', res.data.nickName);
       router.push('/');
     });
   };

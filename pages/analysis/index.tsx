@@ -4,18 +4,25 @@ import type { ReactElement } from 'react';
 import Layout from '../../components/layout/Layout';
 import HeaderLayout from '../../components/layout/HeaderLayout';
 import type { NextPageWithLayout } from '../_app';
-
 import dynamic from 'next/dynamic';
 
 const LineChart = dynamic(() => import('../../components/chart/LineChart'), {
   ssr: false,
 });
 
+const BubbleChart = dynamic(
+  () => import('../../components/chart/BubbleChart'),
+  {
+    ssr: false,
+  }
+);
+
 const AnalysisPage: NextPageWithLayout = () => {
   return (
     <ChartLayout>
       <ChartBox>
-        <LineChart data={data} />
+        <LineChart data={lineChartData} />
+        <BubbleChart data={bubbleChartDate} />
       </ChartBox>
     </ChartLayout>
   );
@@ -41,7 +48,7 @@ const ChartLayout = styled.div`
 
 const ChartBox = styled.div`
   width: 1000px;
-  height: 900px;
+  height: 1200px;
   padding: 30px;
   background: ${({ theme }) => theme.color.cream};
   border: 4px solid ${({ theme }) => theme.color.brown};
@@ -52,59 +59,92 @@ const ChartBox = styled.div`
   color: ${({ theme }) => theme.color.brown};
 `;
 
-const data = [
+const lineChartData = [
   {
-    id: 'norway',
+    id: 'User Name',
     color: 'hsl(167, 70%, 50%)',
     data: [
       {
-        x: 'plane',
-        y: 207,
+        x: '2023-04-01',
+        y: 8,
       },
       {
-        x: 'helicopter',
-        y: 127,
+        x: '04-02',
+        y: -2,
       },
       {
-        x: 'boat',
-        y: 88,
+        x: '04-03',
+        y: -7,
       },
       {
-        x: 'train',
-        y: 220,
+        x: '04-04',
+        y: 0,
       },
       {
-        x: 'subway',
-        y: 264,
+        x: '04-05',
+        y: 6,
       },
       {
-        x: 'bus',
-        y: 192,
+        x: '04-06',
+        y: -1,
       },
       {
-        x: 'car',
-        y: 258,
-      },
-      {
-        x: 'moto',
-        y: 107,
-      },
-      {
-        x: 'bicycle',
-        y: 140,
-      },
-      {
-        x: 'horse',
-        y: 100,
-      },
-      {
-        x: 'skateboard',
-        y: 1,
-      },
-      {
-        x: 'others',
-        y: 204,
+        x: '04-07',
+        y: 9,
       },
     ],
   },
 ];
+
+const bubbleChartDate = {
+  키워드: 'User Name',
+  color: 'hsl(266, 70%, 50%)',
+  children: [
+    {
+      키워드: '일기',
+      color: 'hsl(95, 70%, 50%)',
+      children: [
+        {
+          키워드: '산책',
+          color: 'hsl(192, 70%, 50%)',
+          횟수: 5,
+        },
+        {
+          키워드: '치킨',
+          color: 'hsl(206, 70%, 50%)',
+          횟수: 7,
+        },
+        {
+          키워드: '날씨',
+          color: 'hsl(169, 70%, 50%)',
+          횟수: 1,
+        },
+        {
+          키워드: '고양이',
+          color: 'hsl(142, 70%, 50%)',
+          횟수: 10,
+        },
+        {
+          키워드: '영화',
+          color: 'hsl(347, 70%, 50%)',
+          횟수: 1,
+        },
+        {
+          키워드: '자전거',
+          color: 'hsl(347, 70%, 50%)',
+          횟수: 2,
+        },
+        {
+          키워드: '회사',
+          color: 'hsl(347, 70%, 50%)',
+          횟수: 5,
+        },
+        {
+          키워드: '코딩',
+          color: 'hsl(347, 70%, 50%)',
+          횟수: 1,
+        },
+      ],
+    },
+  ],
+};
