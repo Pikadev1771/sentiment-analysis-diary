@@ -33,7 +33,7 @@ const LineChart = ({ data }: any) => {
     if (point.data.y > 2 && point.data.y <= 6) mood = 'Good';
     if (point.data.y > -2 && point.data.y <= 2) mood = 'Soso';
     if (point.data.y > -6 && point.data.y <= -2) mood = 'Bad';
-    if (point.data.yn >= -10 && point.data.y <= -6) mood = 'Depressed';
+    if (point.data.y >= -10 && point.data.y <= -6) mood = 'Depressed';
 
     return (
       <SmallButton>

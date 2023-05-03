@@ -83,6 +83,8 @@ const AnalysisPage: NextPageWithLayout = () => {
     ],
   };
 
+  console.log(bubbleChartData);
+
   // 라인 차트
   let lineArr = diaries?.map((el) => {
     let newEl = { x: undefined, y: undefined };

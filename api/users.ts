@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const REQUEST_URL =
   'http://ec2-43-200-210-186.ap-northeast-2.compute.amazonaws.com:8080';
@@ -31,4 +32,23 @@ export const requestLogin = (form: LogInFormProps) => {
 // 이메일 중복체크
 export const checkEmailDuplication = (emailForm: EmailFormProps) => {
   return axios.post(`${REQUEST_URL}/api/members/check`, emailForm);
+};
+
+// 로그아웃
+export const requestLogout = () => {
+  return axios.delete(`${REQUEST_URL}/api/deleteRefreshToken`, {
+    headers: {
+      Authorization: Cookies.get('access_token'),
+      Refresh: Cookies.get('refresh_token'),
+    },
+  });
+};
+
+// 토큰 재발급
+export const requestReissueToken = () => {
+  return axios.get(`${REQUEST_URL}/api/deleteRefreshToken`, {
+    headers: {
+      Refresh: Cookies.get('refresh_token'),
+    },
+  });
 };

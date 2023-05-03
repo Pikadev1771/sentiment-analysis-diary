@@ -5,9 +5,12 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import SmallButton from '../button/SmallButton';
 import { getDiaryByDate, getDiaryByUser } from '../../api/diary';
+import Cookies from 'js-cookie';
 
 export default function DiaryList() {
   const [diaryList, setDiaryList] = useState<any | undefined>();
+
+  const nickName = Cookies.get('nickName');
 
   useEffect(() => {
     getDiaryByUser().then((res) => {
@@ -18,7 +21,9 @@ export default function DiaryList() {
   return (
     <Container>
       <ListHeader>
-        <Title>2023년 4월</Title>
+        <Title>
+          <span>{nickName}</span>'s Sentiment Diary
+        </Title>
         <ShowMoreBtn>▶️ 더 보기</ShowMoreBtn>
       </ListHeader>
       <List>
@@ -57,9 +62,19 @@ const ListHeader = styled.div`
 const Title = styled.span`
   margin: 10px;
   padding-left: 10px;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 600;
   color: ${({ theme }) => theme.color.brown};
+
+  span {
+    /* color: ${({ theme }) => theme.color.lime};
+    background-color: ${({ theme }) => theme.color.brown};
+    padding: 6px 10px;
+    border-radius: 10px;
+    margin-right: 4px; */
+    /* text-decoration: underline;
+    text-decoration-style: wavy; */
+  }
 `;
 
 const List = styled.div`

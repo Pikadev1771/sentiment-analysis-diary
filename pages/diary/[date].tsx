@@ -19,6 +19,7 @@ import SmallButton from '../../components/button/SmallButton';
 
 export async function getServerSideProps(context: any) {
   const { date } = context.params;
+
   return { props: { date } };
 }
 
@@ -33,8 +34,10 @@ interface DiaryDataProps {
 const DiaryPage: NextPageWithLayout = ({ date }: any) => {
   const router = useRouter();
 
-  const [diaryData, setDiaryData] = useState<DiaryDataProps | undefined>();
+  const [diaryData, setDiaryData] = useState<DiaryDataProps | undefined>(); // 일기 데이터
 
+
+  
   useEffect(() => {
     getDiaryByDate(date).then((res) => {
       setDiaryData(res.data);
@@ -227,6 +230,13 @@ const DiaryContent = styled.textarea`
   padding: 10px 15px;
   font-size: 18px;
   color: ${({ theme }) => theme.color.brown};
+  background-color: inherit;
+  font-weight: 600;
+  /* text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-color: ${({ theme }) => theme.color.brown};
+  text-decoration-style: dashed; */
+  /* font-style: oblique; */
   resize: none;
   outline: none;
 `;

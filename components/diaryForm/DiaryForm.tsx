@@ -173,7 +173,7 @@ const DiaryTextarea = styled.textarea`
   border: 4px solid ${({ theme }) => theme.color.brown};
   margin-top: 10px;
   padding: 10px 15px;
-
+  font-size: 18px;
   color: ${({ theme }) => theme.color.brown};
   resize: none;
   outline: none;
