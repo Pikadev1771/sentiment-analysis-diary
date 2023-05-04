@@ -3,7 +3,7 @@ import Head from 'next/head';
 import ReactCalendar from '../components/calendar/ReactCalendar';
 
 import styled from 'styled-components';
-import DiaryList from '../components/diaryList/DiaryList';
+import DiaryList from '../components/diaryList/List';
 
 import { ReactElement, useEffect, useState } from 'react';
 import Layout from '../components/layout/Layout';
