@@ -13,7 +13,7 @@ const BubbleChartTheme = {
   },
 };
 
-const BubbleChart = ({ data }) => (
+const BubbleChart = ({ data }: any) => (
   <BubbleChartContainer>
     <ResponsiveCirclePacking
       theme={BubbleChartTheme}

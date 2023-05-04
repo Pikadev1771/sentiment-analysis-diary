@@ -11,19 +11,9 @@ import { useRouter } from 'next/router';
 const HeaderLayout = (props: { children: ReactNode }) => {
   const router = useRouter();
 
-  const handleLogOut = () => {
-    requestLogout().then(() => {
-      Cookies.remove('access_token', { path: '' });
-      Cookies.remove('refresh_token', { path: '' });
-      Cookies.remove('nickName', { path: '' });
-      router.push('/');
-      window.location.reload();
-    });
-  };
-
   return (
     <>
-      <Header handleLogOut={handleLogOut} />
+      <Header />
       {props.children}
     </>
   );

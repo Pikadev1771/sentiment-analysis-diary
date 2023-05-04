@@ -30,7 +30,6 @@ export default function ReactCalendar() {
     }
   }, [isLogin]);
 
-
   const curDate = new Date(); // 오늘 날짜
   const [value, setValue] = useState<Date>(curDate); // 클릭한 날짜 (Date 객체)
   // const activeDate = moment(value).format('YYYY-MM-DD'); // 클릭한 날짜 (년-월-일))
@@ -49,7 +48,8 @@ export default function ReactCalendar() {
 
     if (
       diaryList.find(
-        (diary) => diary.createdAt === moment(value).format('YYYY-MM-DD')
+        (diary: { createdAt: string }) =>
+          diary.createdAt === moment(value).format('YYYY-MM-DD')
       )
     ) {
       router.push(`/diary/${moment(value).format('YYYY-MM-DD')}`);
@@ -73,7 +73,8 @@ export default function ReactCalendar() {
 
     // 해당 날짜(하루)의 일기 데이터
     const tileDiaryData = diaryList?.find(
-      (diary) => diary.createdAt === moment(date).format('YYYY-MM-DD')
+      (diary: { createdAt: string }) =>
+        diary.createdAt === moment(date).format('YYYY-MM-DD')
     );
 
     // 해당 날짜(하루)의 일기 데이터가 존재하면 이모티콘 이미지 추가
@@ -92,9 +93,7 @@ export default function ReactCalendar() {
 
       contents.push(
         <>
-          {/* <div className="dot"></div> */}
           <Image
-            // src={`emotion/${tileDiaryData?.emotion}.svg`}
             src={`emotion/${mood}.svg`}
             className="diaryImg"
             width="32"

@@ -36,12 +36,15 @@ export const checkEmailDuplication = (emailForm: EmailFormProps) => {
 
 // 로그아웃
 export const requestLogout = () => {
-  return axios.delete(`${REQUEST_URL}/api/deleteRefreshToken`, {
-    headers: {
-      Authorization: Cookies.get('access_token'),
-      Refresh: Cookies.get('refresh_token'),
-    },
-  });
+  console.log(Cookies.get('refresh_token'));
+  return axios.delete(
+    `http://ec2-43-200-210-186.ap-northeast-2.compute.amazonaws.com:8080/api/deleteRefreshToken`,
+    {
+      headers: {
+        Refresh: Cookies.get('refresh_token'),
+      },
+    }
+  );
 };
 
 // 토큰 재발급
