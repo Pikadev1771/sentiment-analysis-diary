@@ -4,7 +4,7 @@ import React, { useReducer } from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
 
-export default function DiaryCard({ date, title, content, score }: any) {
+export default function DiaryCard({ date, title, content }: any) {
   const router = useRouter();
   const handleClick = () => {
     router.push(`/diary/${date}`);
