@@ -36,18 +36,26 @@ const LoginPage: NextPageWithLayout = () => {
     setShowPassword((prev) => !prev);
   };
 
-  // Enter 시 로그인
-  const handleKeyPress = (e: { type: string; code: string }) => {
+  // Email input 엔터 시 비번 보이기 방지
+  const handleEmailKeyPress = (e: {
+    type: string;
+    code: string;
+    preventDefault: () => void;
+  }) => {
     if (e.type === 'keypress' && e.code === 'Enter') {
-      handleSubmit(onSubmit)();
-      setShowPassword((prev) => !prev);
+      e.preventDefault();
     }
   };
 
-  // Email input 엔터 시 비번 보이기 방지
-  const handleEmailKeyPress = (e: { type: string; code: string }) => {
+  // Enter 시 로그인
+  const handleKeyPress = (e: {
+    type: string;
+    code: string;
+    preventDefault: () => void;
+  }) => {
     if (e.type === 'keypress' && e.code === 'Enter') {
-      setShowPassword((prev) => !prev);
+      e.preventDefault();
+      handleSubmit(onSubmit)();
     }
   };
 
