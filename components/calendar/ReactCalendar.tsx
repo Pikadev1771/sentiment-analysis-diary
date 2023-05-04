@@ -42,27 +42,31 @@ export default function ReactCalendar() {
     setActiveMonth(newActiveMonth);
   };
 
-  const handleClick = (value: any) => {
+  const handleClick = (value: any, event: any) => {
     // 클릭한 날짜 변경
     setValue(value);
 
-    if (
-      diaryList.find(
-        (diary: { createdAt: string }) =>
-          diary.createdAt === moment(value).format('YYYY-MM-DD')
-      )
-    ) {
-      router.push(`/diary/${moment(value).format('YYYY-MM-DD')}`);
+    if (!isLogin) {
+      event.preventDefault();
     } else {
-      router.push(
-        {
-          pathname: '/addnew',
-          query: {
-            date: moment(value).format('YYYY-MM-DD'),
+      if (
+        diaryList.find(
+          (diary: { createdAt: string }) =>
+            diary.createdAt === moment(value).format('YYYY-MM-DD')
+        )
+      ) {
+        router.push(`/diary/${moment(value).format('YYYY-MM-DD')}`);
+      } else {
+        router.push(
+          {
+            pathname: '/addnew',
+            query: {
+              date: moment(value).format('YYYY-MM-DD'),
+            },
           },
-        },
-        '/addnew' // query 숨김(as)
-      );
+          '/addnew' // query 숨김(as)
+        );
+      }
     }
   };
 
