@@ -10,6 +10,7 @@ import Good from '../../public/emotion/good.svg';
 import Soso from '../../public/emotion/Soso.svg';
 import Bad from '../../public/emotion/Bad.svg';
 import Depressed from '../../public/emotion/Depressed.svg';
+import { useRouter } from 'next/router';
 
 const lineChartTheme = {
   fontSize: 20,
@@ -23,9 +24,7 @@ const lineChartTheme = {
 };
 
 const LineChart = ({ data }: any) => {
-  const dataAndEmotionArr = data[0].data;
-
-  const emotion = 'happy';
+  const router = useRouter();
 
   const customTooltip = ({ point }: any) => {
     let mood;
@@ -49,6 +48,11 @@ const LineChart = ({ data }: any) => {
     );
   };
 
+  const handleClick = (point) => {
+    console.log(point);
+    router.push(`/diary/${point.data.x}`);
+  };
+
   return (
     <LineChartContainer>
       <ResponsiveLine
@@ -64,6 +68,7 @@ const LineChart = ({ data }: any) => {
           reverse: false,
         }}
         yFormat=" >-.2f"
+        onClick={handleClick}
         // pointSymbol={PointSymbol}
         pointSize={16}
         pointColor={'#FDFBE8'}

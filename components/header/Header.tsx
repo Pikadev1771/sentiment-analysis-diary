@@ -9,8 +9,9 @@ import useLogin from '../../hooks/useLogin';
 import { useEffect, useState } from 'react';
 import { requestLogout } from '../../api/users';
 import { useReissueToken } from '../../hooks/useReissueToken';
+import axios from 'axios';
 
-export default function Header({ handleLogOut }) {
+export default function Header() {
   const nickName = Cookies.get('nickName');
   const isLogin = useLogin();
   const router = useRouter();
@@ -18,6 +19,28 @@ export default function Header({ handleLogOut }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModalHandler = () => {
     setIsModalOpen(!isModalOpen);
+  };
+
+  const handleLogOut = () => {
+    // requestLogout()
+    //   .then(() => {
+    //     Cookies.remove('access_token', { path: '' });
+    //     Cookies.remove('refresh_token', { path: '' });
+    //     Cookies.remove('nickName', { path: '' });
+    //     router.push('/');
+    //     window.location.reload();
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+
+    console.log('로그아웃!');
+    setIsModalOpen(false);
+    Cookies.remove('access_token', { path: '' });
+    Cookies.remove('refresh_token', { path: '' });
+    Cookies.remove('nickName', { path: '' });
+    router.push('/');
+    // window.location.reload();
   };
 
   return (
@@ -29,14 +52,6 @@ export default function Header({ handleLogOut }) {
         <Menu>
           {isLogin ? (
             <>
-              <AnalysisButton onClick={() => router.push('/analysis')}>
-                <Image
-                  src="/darkmode/moon_cream.svg"
-                  width="36"
-                  height="36"
-                  alt="dark mode"
-                />
-              </AnalysisButton>
               <AnalysisButton onClick={() => router.push('/analysis')}>
                 <Image
                   src="/analysis.svg"
