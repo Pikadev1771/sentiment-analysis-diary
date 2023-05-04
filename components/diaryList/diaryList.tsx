@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import DiaryCard from './DiaryCard';
+import DiaryCard from '../diaryList/DiaryCard';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
