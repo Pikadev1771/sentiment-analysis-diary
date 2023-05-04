@@ -59,7 +59,7 @@ const AnalysisPage: NextPageWithLayout = () => {
       setKeywords(res.data.keyWords);
       setDiaries(res.data.diaries);
     });
-  }, []);
+  }, [day, month, year]);
 
   // 버블 차트
   let bubbleArr = [];

@@ -22,21 +22,28 @@ export default function DiaryList() {
     <Container>
       <ListHeader>
         <Title>
-          <span>{nickName}</span>'s Sentiment Diary
+          <span>{nickName}</span>`s Sentiment Diary
         </Title>
         <ShowMoreBtn>▶️ 더 보기</ShowMoreBtn>
       </ListHeader>
       <List>
-        {diaryList?.map((diary) => {
-          return (
-            <DiaryCard
-              key={diary.diaryId}
-              date={diary.createdAt}
-              title={diary.title}
-              content={diary.content}
-            />
-          );
-        })}
+        {diaryList?.map(
+          (diary: {
+            diaryId: any;
+            createdAt: any;
+            title: any;
+            content: any;
+          }) => {
+            return (
+              <DiaryCard
+                key={diary.diaryId}
+                date={diary.createdAt}
+                title={diary.title}
+                content={diary.content}
+              />
+            );
+          }
+        )}
       </List>
     </Container>
   );

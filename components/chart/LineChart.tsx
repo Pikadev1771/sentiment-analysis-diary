@@ -48,7 +48,7 @@ const LineChart = ({ data }: any) => {
     );
   };
 
-  const handleClick = (point) => {
+  const handleClick = (point: any) => {
     console.log(point);
     router.push(`/diary/${point.data.x}`);
   };
@@ -58,39 +58,37 @@ const LineChart = ({ data }: any) => {
       <ResponsiveLine
         data={data}
         theme={lineChartTheme}
+        onClick={handleClick}
         margin={{ top: 50, right: 60, bottom: 50, left: 60 }}
+        layers={[
+          'grid', // 그래프 선
+          'markers',
+          'axes', // 축 좌표
+          'crosshair', // 호버 시 점선
+          'lines', // 차트 선
+          'points', // 포인트
+          'mesh', // 호버 시 나오는 창
+        ]}
         xScale={{ type: 'point' }}
         yScale={{
           type: 'linear',
-          min: '-10',
-          max: '10',
+          min: -10,
+          max: 10,
           stacked: true,
           reverse: false,
         }}
         yFormat=" >-.2f"
-        onClick={handleClick}
+        useMesh={true}
+        curve={'monotoneX'}
+        colors={'#7d7a9a'}
+        lineWidth={4}
         // pointSymbol={PointSymbol}
         pointSize={16}
         pointColor={'#FDFBE8'}
         pointBorderWidth={4}
         pointBorderColor={{ from: 'serieColor' }}
         pointLabelYOffset={-12}
-        useMesh={true}
-        curve={'monotoneX'}
-        colors={'#7d7a9a'}
-        lineWidth={4}
-        layers={[
-          'grid', // 그래프 선
-          'markers',
-          'axes', // 축 좌표
-          // 'areas',
-          'crosshair', // 호버 시 점선
-          'lines', // 차트 선
-          'points', // 포인트
-          // 'slices',
-          'mesh', // 호버 시 나오는 창
-          // 'legends', 개요
-        ]}
+        tooltip={customTooltip}
         markers={[
           // 0점 축
           {
@@ -102,53 +100,16 @@ const LineChart = ({ data }: any) => {
             value: 0,
           },
         ]}
-        tooltip={customTooltip}
         axisBottom={{
-          orient: 'bottom',
           tickSize: 10,
           tickPadding: 10,
           tickRotation: 0,
-
-          // legend: 'Date',
-          // legendOffset: 40,
-          // legendPosition: 'middle',
         }}
         axisLeft={{
-          orient: 'left',
           tickSize: 10,
           tickPadding: 20,
           tickRotation: 0,
-          // legend: 'count',
-          // legendOffset: -40,
-          // legendPosition: 'middle',
         }}
-
-        // legends={[
-        //   {
-        //     anchor: 'bottom-right',
-        //     direction: 'column',
-        //     justify: false,
-        //     translateX: 100,
-        //     translateY: 0,
-        //     itemsSpacing: 0,
-        //     itemDirection: 'left-to-right',
-        //     itemWidth: 80,
-        //     itemHeight: 20,
-        //     itemOpacity: 0.75,
-        //     symbolSize: 12,
-        //     symbolShape: 'circle',
-        //     symbolBorderColor: 'rgba(0, 0, 0, .5)',
-        //     effects: [
-        //       {
-        //         on: 'hover',
-        //         style: {
-        //           itemBackground: 'rgba(0, 0, 0, .03)',
-        //           itemOpacity: 1,
-        //         },
-        //       },
-        //     ],
-        //   },
-        // ]}
       />
     </LineChartContainer>
   );
@@ -168,15 +129,5 @@ const LineChartContainer = styled.div`
   width: 100%;
   height: 35%;
   padding: 20px;
-  /* border: 4px solid green; */
   animation: ${boxFade} 2s 0s;
 `;
-
-//  peach: '#FFD0AB',
-//     pink: '#FFD9DF',
-//     brown: '#625151',
-//     lime: '#DEEC85',
-//     cream: '#FDFBE8',
-//     blue: '#17A1FA',
-//     red: '#E73B3B',
-//     lightBrown: '#79685f',
