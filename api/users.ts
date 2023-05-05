@@ -36,7 +36,6 @@ export const checkEmailDuplication = (emailForm: EmailFormProps) => {
 
 // 로그아웃
 export const requestLogout = () => {
-  console.log(Cookies.get('refresh_token'));
   return axios.delete(
     `http://ec2-43-200-210-186.ap-northeast-2.compute.amazonaws.com:8080/api/deleteRefreshToken`,
     {

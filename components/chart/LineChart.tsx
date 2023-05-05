@@ -49,7 +49,6 @@ const LineChart = ({ data }: any) => {
   };
 
   const handleClick = (point: any) => {
-    console.log(point);
     router.push(`/diary/${point.data.x}`);
   };
 

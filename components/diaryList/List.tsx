@@ -18,8 +18,6 @@ export default function DiaryList() {
     });
   }, []);
 
-  console.log(diaryList);
-
   return (
     <Container>
       <ListHeader>

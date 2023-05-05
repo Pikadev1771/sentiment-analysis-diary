@@ -34,7 +34,6 @@ export default function Header() {
     //     console.log(error);
     //   });
 
-    console.log('로그아웃!');
     setIsModalOpen(false);
     Cookies.remove('access_token', { path: '' });
     Cookies.remove('refresh_token', { path: '' });

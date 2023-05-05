@@ -12,6 +12,7 @@ type DiaryProps = {
 
 // 일기 생성
 export const createDiary = (form: DiaryProps) => {
+  console.log('✅✅✅✅✅ createDiary 실행!!');
   return axios.post(`${REQUEST_URL}/api/diary`, form, {
     headers: {
       Authorization: Cookies.get('access_token'),
