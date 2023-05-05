@@ -53,17 +53,33 @@ const DiaryTitle = styled.p`
   text-align: center;
   margin: 10px;
   font-size: 18px;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-word;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 1; // 원하는 라인수
+  -webkit-box-orient: vertical;
 `;
 
 const Content = styled.div`
   width: 145px;
-  height: 60px;
+  height: 54px;
   background: ${({ theme }) => theme.color.cream};
   border: 2px solid ${({ theme }) => theme.color.brown};
   border-radius: 10px;
-  padding: 10px;
+  padding: 9px;
   font-size: 14px;
   text-align: left;
+  line-height: 1.4;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-word;
 `;
 
 const Date = styled.div`
