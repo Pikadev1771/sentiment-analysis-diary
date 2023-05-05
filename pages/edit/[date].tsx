@@ -21,6 +21,7 @@ import HomeButton from '../../components/button/HomeButton';
 import Image from 'next/image';
 import SmallButton from '../../components/button/SmallButton';
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 
 interface DiaryDataProps {
   diaryId: number;
@@ -68,38 +69,44 @@ const EditPage: NextPageWithLayout = ({ date, diaryData }: any) => {
   };
 
   return (
-    <DiaryLayout>
-      <DiaryBox>
-        <Form onSubmit={handleSubmit(onSubmit)}>
-          <ContentAndAnalysis>
-            <Content>
-              <DateBox>
-                <h3>Date: </h3>
-                <Date
-                  {...register('createdAt', { required: true })}
-                  value={diaryData?.createdAt}
-                  readOnly
-                />
-              </DateBox>
-              <TitleBox>
-                <h3>Title:</h3>
-                <Title
-                  {...register('title', { required: true })}
-                  defaultValue={diaryData?.title}
-                />
-              </TitleBox>
-              <DiaryContent
-                {...register('content', { required: true })}
-                defaultValue={diaryData?.content}
-              ></DiaryContent>
-              <Menu>
-                <SubmitBtn type="submit" value={'Submit'} />
-              </Menu>
-            </Content>
-          </ContentAndAnalysis>
-        </Form>
-      </DiaryBox>
-    </DiaryLayout>
+    <>
+      <Head>
+        <title>Edit - Sentiment Analysis Diary</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <DiaryLayout>
+        <DiaryBox>
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <ContentAndAnalysis>
+              <Content>
+                <DateBox>
+                  <h3>Date: </h3>
+                  <Date
+                    {...register('createdAt', { required: true })}
+                    value={diaryData?.createdAt}
+                    readOnly
+                  />
+                </DateBox>
+                <TitleBox>
+                  <h3>Title:</h3>
+                  <Title
+                    {...register('title', { required: true })}
+                    defaultValue={diaryData?.title}
+                  />
+                </TitleBox>
+                <DiaryContent
+                  {...register('content', { required: true })}
+                  defaultValue={diaryData?.content}
+                ></DiaryContent>
+                <Menu>
+                  <SubmitBtn type="submit" value={'Submit'} />
+                </Menu>
+              </Content>
+            </ContentAndAnalysis>
+          </Form>
+        </DiaryBox>
+      </DiaryLayout>
+    </>
   );
 };
 

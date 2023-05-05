@@ -11,6 +11,7 @@ import type { ReactElement } from 'react';
 import Layout from '../../components/layout/Layout';
 import type { NextPageWithLayout } from '../_app';
 import HomeButton from '../../components/button/HomeButton';
+import Head from 'next/head';
 
 type LoginFormProps = {
   email: string;
@@ -36,18 +37,26 @@ const LoginPage: NextPageWithLayout = () => {
     setShowPassword((prev) => !prev);
   };
 
-  // Enter 시 로그인
-  const handleKeyPress = (e: { type: string; code: string }) => {
+  // Email input 엔터 시 비번 보이기 방지
+  const handleEmailKeyPress = (e: {
+    type: string;
+    code: string;
+    preventDefault: () => void;
+  }) => {
     if (e.type === 'keypress' && e.code === 'Enter') {
-      handleSubmit(onSubmit)();
-      setShowPassword((prev) => !prev);
+      e.preventDefault();
     }
   };
 
-  // Email input 엔터 시 비번 보이기 방지
-  const handleEmailKeyPress = (e: { type: string; code: string }) => {
+  // Enter 시 로그인
+  const handleKeyPress = (e: {
+    type: string;
+    code: string;
+    preventDefault: () => void;
+  }) => {
     if (e.type === 'keypress' && e.code === 'Enter') {
-      setShowPassword((prev) => !prev);
+      e.preventDefault();
+      handleSubmit(onSubmit)();
     }
   };
 
@@ -76,88 +85,94 @@ const LoginPage: NextPageWithLayout = () => {
   };
 
   return (
-    <LoginLayout>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <HomeButton />
-        <InputSet>
-          <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            placeholder="이메일을 입력해주세요"
-            onKeyPress={handleEmailKeyPress}
-            {...register('email', {
-              required: true,
-              pattern: emailRegex,
-            })}
-          />
-          {errors?.email?.type === 'required' && (
-            <HelpMessage>이메일을 입력해주세요</HelpMessage>
-          )}
-
-          {errors?.email?.type === 'pattern' && (
-            <HelpMessage>이메일 양식에 맞게 입력해주세요</HelpMessage>
-          )}
-        </InputSet>
-        <InputSet>
-          <Label htmlFor="pw">Password</Label>
-          <InputContainer>
+    <>
+      <Head>
+        <title>Log In - Sentiment Analysis Diary</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <LoginLayout>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <HomeButton />
+          <InputSet>
+            <Label htmlFor="email">Email</Label>
             <Input
-              id="pw"
-              type={showPassword ? 'text' : 'password'}
-              placeholder="비밀번호를 입력해주세요"
-              onKeyPress={handleKeyPress}
-              {...register('pw', {
+              id="email"
+              placeholder="이메일을 입력해주세요"
+              onKeyPress={handleEmailKeyPress}
+              {...register('email', {
                 required: true,
-                pattern: passwordRegex,
+                pattern: emailRegex,
               })}
             />
-            <EyeBtn onClick={handleShowPassword}>
-              {showPassword ? (
-                <Image
-                  src="password/closedeye.svg"
-                  width="24"
-                  height="24"
-                  alt="not show password"
-                />
-              ) : (
-                <Image
-                  src="password/eye.svg"
-                  width="24"
-                  height="24"
-                  alt="show password"
-                />
-              )}
-            </EyeBtn>
-          </InputContainer>
-          {errors?.pw?.type === 'required' && (
-            <HelpMessage>비밀번호를 입력해주세요</HelpMessage>
-          )}
+            {errors?.email?.type === 'required' && (
+              <HelpMessage>이메일을 입력해주세요</HelpMessage>
+            )}
 
-          {errors?.pw?.type === 'pattern' && (
-            <HelpMessage>
-              소문자, 숫자, 특수문자를 각 하나 포함한 8자리 이상이여야 합니다.
-            </HelpMessage>
-          )}
-        </InputSet>
-        <ButtonContainer>
-          <LogInBtn type="submit" value={'Log In'} />
-          <GoogleLoginBtn onClick={() => handleGoogleLogin()}>
-            <Image
-              alt="google login"
-              src="/login/googleLogin.png"
-              layout="fill"
-              objectFit="contain"
-            />
-          </GoogleLoginBtn>
-          <LinkContainer>
-            아직 회원이 아니신가요?
-            <LinkBtn color={'#FDFBE8'} onClick={() => router.push('/signup')}>
-              Sign Up
-            </LinkBtn>
-          </LinkContainer>
-        </ButtonContainer>
-      </Form>
-    </LoginLayout>
+            {errors?.email?.type === 'pattern' && (
+              <HelpMessage>이메일 양식에 맞게 입력해주세요</HelpMessage>
+            )}
+          </InputSet>
+          <InputSet>
+            <Label htmlFor="pw">Password</Label>
+            <InputContainer>
+              <Input
+                id="pw"
+                type={showPassword ? 'text' : 'password'}
+                placeholder="비밀번호를 입력해주세요"
+                onKeyPress={handleKeyPress}
+                {...register('pw', {
+                  required: true,
+                  pattern: passwordRegex,
+                })}
+              />
+              <EyeBtn onClick={handleShowPassword}>
+                {showPassword ? (
+                  <Image
+                    src="password/closedeye.svg"
+                    width="24"
+                    height="24"
+                    alt="not show password"
+                  />
+                ) : (
+                  <Image
+                    src="password/eye.svg"
+                    width="24"
+                    height="24"
+                    alt="show password"
+                  />
+                )}
+              </EyeBtn>
+            </InputContainer>
+            {errors?.pw?.type === 'required' && (
+              <HelpMessage>비밀번호를 입력해주세요</HelpMessage>
+            )}
+
+            {errors?.pw?.type === 'pattern' && (
+              <HelpMessage>
+                소문자, 숫자, 특수문자를 각 하나 포함한 8자리 이상이여야 합니다.
+              </HelpMessage>
+            )}
+          </InputSet>
+          <ButtonContainer>
+            <LogInBtn type="submit" value={'Log In'} />
+            <GoogleLoginBtn onClick={() => handleGoogleLogin()}>
+              <Image
+                alt="google login"
+                src="/login/googleLogin.png"
+                layout="fill"
+                objectFit="contain"
+              />
+            </GoogleLoginBtn>
+            <LinkContainer>
+              아직 회원이 아니신가요?
+              <LinkBtn color={'#FDFBE8'} onClick={() => router.push('/signup')}>
+                Sign Up
+              </LinkBtn>
+            </LinkContainer>
+          </ButtonContainer>
+        </Form>
+      </LoginLayout>
+    </>
   );
 };
 

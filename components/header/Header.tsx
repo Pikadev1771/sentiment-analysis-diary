@@ -40,7 +40,7 @@ export default function Header() {
     Cookies.remove('refresh_token', { path: '' });
     Cookies.remove('nickName', { path: '' });
     router.push('/');
-    // window.location.reload();
+    window.location.reload();
   };
 
   return (

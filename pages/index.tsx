@@ -19,7 +19,8 @@ const Home: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>sentiment Analysis Diary</title>
+        <title>홈 - Sentiment Analysis Diary</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
         <MainContainer>

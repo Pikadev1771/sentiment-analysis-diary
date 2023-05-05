@@ -13,7 +13,8 @@ const AddNew: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Sentiment Analysis Diary</title>
+        <title>New - Sentiment Analysis Diary</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
         <MainContainer>
