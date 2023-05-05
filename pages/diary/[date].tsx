@@ -16,6 +16,7 @@ import HomeButton from '../../components/button/HomeButton';
 
 import Image from 'next/image';
 import SmallButton from '../../components/button/SmallButton';
+import Head from 'next/head';
 
 export async function getServerSideProps(context: any) {
   const { date } = context.params;
@@ -36,8 +37,6 @@ const DiaryPage: NextPageWithLayout = ({ date }: any) => {
 
   const [diaryData, setDiaryData] = useState<DiaryDataProps | undefined>(); // 일기 데이터
 
-
-  
   useEffect(() => {
     getDiaryByDate(date).then((res) => {
       setDiaryData(res.data);
@@ -61,53 +60,59 @@ const DiaryPage: NextPageWithLayout = ({ date }: any) => {
   }
 
   return (
-    <DiaryLayout>
-      <DiaryBox>
-        <ContentAndAnalysis>
-          <Content>
-            <DateBox>
-              <h3>Date: </h3>
-              <Date value={diaryData?.createdAt} readOnly />
-            </DateBox>
-            <TitleBox>
-              <h3>Title:</h3>
-              <Title value={diaryData?.title} readOnly />
-            </TitleBox>
-            <DiaryContent value={diaryData?.content} readOnly></DiaryContent>
-            <Menu>
-              <SmallButton
-                onClick={() => {
-                  router.push(
-                    {
-                      pathname: `/edit/${date}`,
-                      query: {
-                        id: diaryData?.diaryId,
+    <>
+      <Head>
+        <title>Diary - Sentiment Analysis Diary</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <DiaryLayout>
+        <DiaryBox>
+          <ContentAndAnalysis>
+            <Content>
+              <DateBox>
+                <h3>Date: </h3>
+                <Date value={diaryData?.createdAt} readOnly />
+              </DateBox>
+              <TitleBox>
+                <h3>Title:</h3>
+                <Title value={diaryData?.title} readOnly />
+              </TitleBox>
+              <DiaryContent value={diaryData?.content} readOnly></DiaryContent>
+              <Menu>
+                <SmallButton
+                  onClick={() => {
+                    router.push(
+                      {
+                        pathname: `/edit/${date}`,
+                        query: {
+                          id: diaryData?.diaryId,
+                        },
                       },
-                    },
-                    `/edit/${date}`
-                  );
-                }}
-              >
-                Edit
-              </SmallButton>
-              <SmallButton onClick={() => handleDelete(diaryData?.diaryId)}>
-                Delete
-              </SmallButton>
-            </Menu>
-          </Content>
-          <Analysis>
-            <Image
-              src={`/emotion/${mood || 'Soso'}.svg`}
-              width="65"
-              height="65"
-              alt="mood"
-            />
-            <p>Mood: {mood || 'Soso'}</p>
-            <p>Score: {diaryData?.emotion}</p>
-          </Analysis>
-        </ContentAndAnalysis>
-      </DiaryBox>
-    </DiaryLayout>
+                      `/edit/${date}`
+                    );
+                  }}
+                >
+                  Edit
+                </SmallButton>
+                <SmallButton onClick={() => handleDelete(diaryData?.diaryId)}>
+                  Delete
+                </SmallButton>
+              </Menu>
+            </Content>
+            <Analysis>
+              <Image
+                src={`/emotion/${mood || 'Soso'}.svg`}
+                width="65"
+                height="65"
+                alt="mood"
+              />
+              <p>Mood: {mood || 'Soso'}</p>
+              <p>Score: {diaryData?.emotion}</p>
+            </Analysis>
+          </ContentAndAnalysis>
+        </DiaryBox>
+      </DiaryLayout>
+    </>
   );
 };
 

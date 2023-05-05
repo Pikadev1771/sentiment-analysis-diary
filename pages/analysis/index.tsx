@@ -10,6 +10,7 @@ import { getDiaryByTerm } from '../../api/analysis';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 import moment from 'moment';
+import Head from 'next/head';
 
 const LineChart = dynamic(() => import('../../components/chart/LineChart'), {
   ssr: false,
@@ -101,33 +102,39 @@ const AnalysisPage: NextPageWithLayout = () => {
   ];
 
   return (
-    <ChartLayout>
-      <ChartBox>
-        <ChartTitle>기간별 감정 분석</ChartTitle>
-        <Form onSubmit={handleSubmit(onSubmit)}>
-          <Input
-            {...register('startDate', { required: true })}
-            id={'startDate'}
-            type="date"
-            defaultValue={`${moment(new Date(year, month - 1, day)).format(
-              'YYYY-MM-DD'
-            )}`}
-          />{' '}
-          부터
-          <Input
-            {...register('endDate', { required: true })}
-            id={'endDate'}
-            type="date"
-            defaultValue={`${moment(new Date()).format('YYYY-MM-DD')}`}
-          />{' '}
-          까지
-          <Input type="submit" value={'검색'} />
-        </Form>
-        <LineChart data={lineChartData} />
-        <ChartTitle>키워드 분석</ChartTitle>
-        <BubbleChart data={bubbleChartData} />
-      </ChartBox>
-    </ChartLayout>
+    <>
+      <Head>
+        <title>Analysis - Sentiment Analysis Diary</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <ChartLayout>
+        <ChartBox>
+          <ChartTitle>기간별 감정 분석</ChartTitle>
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              {...register('startDate', { required: true })}
+              id={'startDate'}
+              type="date"
+              defaultValue={`${moment(new Date(year, month - 1, day)).format(
+                'YYYY-MM-DD'
+              )}`}
+            />{' '}
+            부터
+            <Input
+              {...register('endDate', { required: true })}
+              id={'endDate'}
+              type="date"
+              defaultValue={`${moment(new Date()).format('YYYY-MM-DD')}`}
+            />{' '}
+            까지
+            <Input type="submit" value={'검색'} />
+          </Form>
+          <LineChart data={lineChartData} />
+          <ChartTitle>키워드 분석</ChartTitle>
+          <BubbleChart data={bubbleChartData} />
+        </ChartBox>
+      </ChartLayout>
+    </>
   );
 };
 

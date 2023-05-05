@@ -25,7 +25,6 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-
         <main className={jetBrains_Mono.className}>
           {getLayout(<Component {...pageProps} />)}
         </main>
