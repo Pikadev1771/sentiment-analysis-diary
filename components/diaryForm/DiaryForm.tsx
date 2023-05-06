@@ -14,7 +14,7 @@ import moment from 'moment';
 import { useRouter } from 'next/router';
 import { createDiary } from '../../api/diary';
 
-// import useOnce from '../../hooks/useOnce';
+import useOnce from '../../hooks/useOnce';
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -31,12 +31,9 @@ type DiaryFormProps = {
 export default function DiaryForm() {
   const router = useRouter();
 
-  // if (router.query.title) {
-  //   router.push('/');
-  // }
-
   const { date } = router.query; // 달력에서 선택한 날짜 ("YYYY-MM-DD")
 
+  console.log(router.query);
   const {
     register,
     handleSubmit,
@@ -50,34 +47,34 @@ export default function DiaryForm() {
       createdAt: date,
     };
 
-    console.log('🌈🌈🌈🌈🌈 onSubmit 실행');
-
     createDiary(formData)
       .then((res) => {
-        router.push('/');
+        // router.push(`/`);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  // let isRan = false;
-  // const submitOnce = (func: {
-  //   (e?: React.BaseSyntheticEvent<object, any, any> | undefined): Promise<void>;
-  //   (): any;
-  // }) => {
-  //   if (isRan) return;
-  //   isRan = true;
-  //   return func();
-  // };
+  function once(func: {
+    (e?: React.BaseSyntheticEvent<object, any, any> | undefined): Promise<void>;
+    apply?: any;
+  }) {
+    let isRan = false;
+    let result: any;
+    return function () {
+      if (isRan) return result;
+      result = func();
+      isRan = true;
+      console.log('🚑🚑🚑isRan >>>', isRan);
+      return result;
+    };
+  }
 
-  // const myHandleSubmit = () => {
-  //   handleSubmit(onSubmit)();
-  // };
+  const sendRequestOnce = once(handleSubmit(onSubmit));
 
   return (
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={() => sendRequestOnce()}>
       <DateAndTitleContainer>
         <h3>Date: </h3>
         <DiaryInput

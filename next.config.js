@@ -12,6 +12,21 @@ const nextConfig = {
     });
     return config;
   },
+  async redirects() {
+    return [
+      {
+        source: '/addnew',
+        has: [
+          {
+            type: 'query',
+            key: 'title',
+          },
+        ],
+        permanent: false,
+        destination: '/',
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
