@@ -13,8 +13,7 @@ import moment from 'moment';
 
 import { useRouter } from 'next/router';
 import { createDiary } from '../../api/diary';
-
-import useOnce from '../../hooks/useOnce';
+import once from '../../hooks/once';
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -56,23 +55,8 @@ export default function DiaryForm() {
       });
   };
 
-  function once(func: {
-    (e?: React.BaseSyntheticEvent<object, any, any> | undefined): Promise<void>;
-  }) {
-    let isRan = false;
-    let result: any;
-    return function () {
-      if (isRan) return result;
-      result = func();
-      isRan = true;
-      return result;
-    };
-  }
-
-  const sendRequestOnce = once(handleSubmit(onSubmit));
-
   return (
-    <Form onSubmit={() => sendRequestOnce()}>
+    <Form onSubmit={() => once(handleSubmit(onSubmit))()}>
       <DateAndTitleContainer>
         <h3>Date: </h3>
         <DiaryInput
