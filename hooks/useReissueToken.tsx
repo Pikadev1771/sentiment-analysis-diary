@@ -1,18 +1,16 @@
-import axios from 'axios';
 import Cookies from 'js-cookie';
-import { useRouter } from 'next/router';
+
 import { requestReissueToken } from '../api/users';
 
 // access token 재발급 hook
 export const useReissueToken = () => {
-  const router = useRouter();
   const accessToken = Cookies.get('access_token');
   const refreshToken = Cookies.get('refresh_token');
 
   // 모두 만료 시 : 로그인 페이지로 이동
-  if (accessToken === undefined && refreshToken === undefined) {
-    router.push('/login');
-  }
+  // if (accessToken === undefined && refreshToken === undefined) {
+  //   router.push('/login');
+  // }
   // 엑세스 토큰 만료, 리프레쉬 토큰 O
   if (accessToken === undefined && refreshToken) {
     requestReissueToken() // 헤더에 리프레쉬 토큰을 담아 api/reissue로 GET req

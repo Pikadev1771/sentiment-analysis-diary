@@ -12,8 +12,8 @@ import Cookies from 'js-cookie';
 import useLogin from '../../hooks/useLogin';
 
 export default function ReactCalendar() {
-  const isLogin = useLogin();
   const router = useRouter();
+  const isLogin = useLogin();
 
   // const diaryData = useSelector(
   //   (state: RootState) => state.diaryReducer.diaryList

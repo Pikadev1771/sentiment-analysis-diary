@@ -2,13 +2,14 @@ import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
 
 export default function useLogin() {
+  // useReissueToken();
   const [isLogin, setIsLogin] = useState<Boolean>(false);
 
   const accessToken = Cookies.get('access_token');
   const refreshToken = Cookies.get('refresh_token');
 
   useEffect(() => {
-    if (refreshToken) {
+    if (accessToken) {
       setIsLogin(true);
     } else {
       setIsLogin(false);

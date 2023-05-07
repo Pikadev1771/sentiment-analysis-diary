@@ -58,7 +58,6 @@ export default function DiaryForm() {
 
   function once(func: {
     (e?: React.BaseSyntheticEvent<object, any, any> | undefined): Promise<void>;
-    apply?: any;
   }) {
     let isRan = false;
     let result: any;
@@ -66,7 +65,6 @@ export default function DiaryForm() {
       if (isRan) return result;
       result = func();
       isRan = true;
-      console.log('🚑🚑🚑isRan >>>', isRan);
       return result;
     };
   }
@@ -80,7 +78,6 @@ export default function DiaryForm() {
         <DiaryInput
           {...register('createdAt', { required: true })}
           id={'diaryDate'}
-          // value={`${moment(date).format('YYYY년 MM월 DD일')}`}
           value={router.query.date}
           readOnly
         />
