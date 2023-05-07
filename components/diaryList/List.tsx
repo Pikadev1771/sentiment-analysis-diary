@@ -14,7 +14,7 @@ export default function DiaryList() {
 
   useEffect(() => {
     getDiaryByUser().then((res) => {
-      setDiaryList(res.data.data);
+      setDiaryList(res.data.data.slice(0, 6));
     });
   }, []);
 
@@ -24,7 +24,7 @@ export default function DiaryList() {
         <Title>
           <span>{nickName}</span>`s Sentiment Diary
         </Title>
-        <ShowMoreBtn>▶️ 더 보기</ShowMoreBtn>
+        {/* <ShowMoreBtn>▶️ 더 보기</ShowMoreBtn> */}
       </ListHeader>
       <List>
         {diaryList?.map(

@@ -8,7 +8,6 @@ import Cookies from 'js-cookie';
 import useLogin from '../../hooks/useLogin';
 import { useEffect, useState } from 'react';
 import { requestLogout } from '../../api/users';
-import { useReissueToken } from '../../hooks/useReissueToken';
 import axios from 'axios';
 
 export default function Header() {
@@ -22,19 +21,6 @@ export default function Header() {
   };
 
   const handleLogOut = () => {
-    // requestLogout()
-    //   .then(() => {
-    //     Cookies.remove('access_token', { path: '' });
-    //     Cookies.remove('refresh_token', { path: '' });
-    //     Cookies.remove('nickName', { path: '' });
-    //     router.push('/');
-    //     window.location.reload();
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-
-    console.log('로그아웃!');
     setIsModalOpen(false);
     Cookies.remove('access_token', { path: '' });
     Cookies.remove('refresh_token', { path: '' });
