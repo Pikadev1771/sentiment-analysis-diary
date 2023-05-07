@@ -48,7 +48,7 @@ export default function DiaryForm() {
 
     createDiary(formData)
       .then((res) => {
-        // router.push(`/`);
+        router.push(`/`);
       })
       .catch((err) => {
         console.log(err);
