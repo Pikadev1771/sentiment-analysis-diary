@@ -12,8 +12,7 @@ import type { NextPageWithLayout } from './_app';
 import Cookies from 'js-cookie';
 import GoLogin from '../components/goLogin/GoLogin';
 import useLogin from '../hooks/useLogin';
-import SmallButton from '../components/button/SmallButton';
-import once from '../hooks/once';
+
 
 const Home: NextPageWithLayout = () => {
   const isLogin = useLogin();
