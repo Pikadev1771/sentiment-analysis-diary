@@ -1,10 +1,10 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-// const REQUEST_URL =
-//   'http://ec2-43-200-210-186.ap-northeast-2.compute.amazonaws.com:8080';
+const REQUEST_URL =
+  'http://ec2-43-200-210-186.ap-northeast-2.compute.amazonaws.com:8080';
 
-const REQUEST_URL = 'https://sentiment-diary.store';
+// const REQUEST_URL = 'https://sentiment-diary.store';
 
 type SignUpFormProps = {
   email: string;
