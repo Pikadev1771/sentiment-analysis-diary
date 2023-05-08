@@ -88,7 +88,7 @@ type DiaryProps = {
 };
 
 // 일기 생성
-export const createDiary = (form: DiaryProps) =>
+export const createDiary = async (form: DiaryProps) =>
   axiosInstance.post('/api/diary', form);
 
 // 날짜별 일기 데이터 가져오기 (Client Side)

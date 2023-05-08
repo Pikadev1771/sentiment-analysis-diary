@@ -57,7 +57,7 @@ export default function DiaryForm() {
   };
 
   return (
-    <Form onSubmit={() => once(handleSubmit(onSubmit))()}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <DateAndTitleContainer>
         <h3>Date: </h3>
         <DiaryInput
