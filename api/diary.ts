@@ -13,8 +13,6 @@ type DiaryProps = {
 };
 
 // 일기 생성
-// export const createDiary = (form: DiaryProps) =>
-//   axiosInstance.post('/api/diary', form);
 
 export const createDiary = (form: DiaryProps) => {
   return axios.post(`${REQUEST_URL}/api/diary`, form, {
@@ -27,11 +25,7 @@ export const createDiary = (form: DiaryProps) => {
 
 // id별 일기 데이터 가져오기 (Server Side / token 필요 X)
 export const getDiaryById = async (id: number | string) => {
-  const res = await axios.get(`${REQUEST_URL}/api/diary/${id}`, {
-    headers: {
-      withCredentials: true,
-    },
-  });
+  const res = await axios.get(`${REQUEST_URL}/api/diary/${id}`);
 
   return res.data;
 };
