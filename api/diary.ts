@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import Cookies from 'js-cookie';
 
 // const REQUEST_URL =
@@ -13,8 +13,10 @@ type DiaryProps = {
 };
 
 // 일기 생성
+// export const createDiary = (form: DiaryProps) =>
+//   axiosInstance.post('/api/diary', form);
+
 export const createDiary = (form: DiaryProps) => {
-  console.log('✅✅✅✅✅ createDiary 실행!!');
   return axios.post(`${REQUEST_URL}/api/diary`, form, {
     headers: {
       Authorization: Cookies.get('access_token'),
@@ -25,7 +27,11 @@ export const createDiary = (form: DiaryProps) => {
 
 // id별 일기 데이터 가져오기 (Server Side / token 필요 X)
 export const getDiaryById = async (id: number | string) => {
-  const res = await axios.get(`${REQUEST_URL}/api/diary/${id}`);
+  const res = await axios.get(`${REQUEST_URL}/api/diary/${id}`, {
+    headers: {
+      withCredentials: true,
+    },
+  });
 
   return res.data;
 };

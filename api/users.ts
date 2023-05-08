@@ -28,7 +28,11 @@ export const requestSignup = (form: SignUpFormProps) => {
 
 // 로그인
 export const requestLogin = (form: LogInFormProps) => {
-  return axios.post(`${REQUEST_URL}/auth/login`, form);
+  return axios.post(`${REQUEST_URL}/auth/login`, form, {
+    headers: {
+      withCredentials: true,
+    },
+  });
 };
 
 // 이메일 중복체크
@@ -47,7 +51,7 @@ export const requestLogout = () => {
 
 // 토큰 재발급
 export const requestReissueToken = () => {
-  return axios.get(`${REQUEST_URL}/api/deleteRefreshToken`, {
+  return axios.get(`${REQUEST_URL}/api/reissue`, {
     headers: {
       Refresh: Cookies.get('refresh_token'),
     },
