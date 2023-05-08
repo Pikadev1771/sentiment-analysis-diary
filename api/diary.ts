@@ -6,69 +6,6 @@ import Cookies from 'js-cookie';
 
 const REQUEST_URL = 'https://sentiment-diary.store';
 
-// const config: AxiosRequestConfig = { baseURL: REQUEST_URL };
-// const axiosInstance = axios.create(config);
-
-// // 요청마다 헤더에 access_token 넣어 보냄
-// axiosInstance.interceptors.request.use((config) => {
-//   const access_token = Cookies.get('access_token');
-
-//   if (access_token) {
-//     config.headers.Authorization = access_token;
-//   }
-
-//   return config;
-// });
-
-// // access_token 재발급 요청
-// const reIssueToken = async () => {
-//   await axios
-//     .get(`${REQUEST_URL}/api/reissue`, {
-//       headers: {
-//         Refresh: Cookies.get('refresh_token'),
-//       },
-//     })
-//     .then((res) => {
-//       // 받아온 엑세스 토큰 쿠키에 저장
-//       res.headers.authorization &&
-//         Cookies.set('access_token', res.headers.authorization, {
-//           expires: 0.079,
-//         });
-//       // 리프레시 토큰 만료 예상시 리프레시 토큰도 같이 응답으로 오므로 쿠키에 저장
-//       res.headers.refresh &&
-//         Cookies.set('refresh_token', res.headers.refresh, { expires: 20 });
-//     });
-
-//   return Cookies.get('access_token');
-// };
-
-// // 응답 시
-// axiosInstance.interceptors.response.use(
-//   // 정상 응답 처리
-//   (response) => {
-//     return response;
-//   },
-//   // 오류 발생시
-//   async (error) => {
-//     const {
-//       config,
-//       response: { status },
-//     } = error;
-
-//     if (status === 401) {
-//       const new_access_token = await reIssueToken(); // 재발급 받은 access_token (쿠키에도 저장됨)
-
-//       if (new_access_token) {
-//         config.headers.Authorization = new_access_token;
-//       }
-
-//       // 원래의 요청으로 다시 요청
-//       return axiosInstance(config);
-//     }
-//     return Promise.reject(error);
-//   }
-// );
-
 type DiaryProps = {
   title: string;
   content: string;
