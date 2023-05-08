@@ -1,11 +1,14 @@
 export default function once(func: any) {
   let isRan = false;
+  let result: any;
 
-  function run() {
+  async function run() {
     console.log('isRan >>>', isRan);
-    if (isRan) return;
+    if (isRan) return result;
     isRan = true;
-    func();
+    result = await func();
+    console.log('result >>>', result);
+    return result;
   }
 
   return run;

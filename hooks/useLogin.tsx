@@ -9,7 +9,7 @@ export default function useLogin() {
   const refreshToken = Cookies.get('refresh_token');
 
   useEffect(() => {
-    if (accessToken) {
+    if (refreshToken) {
       setIsLogin(true);
     } else {
       setIsLogin(false);

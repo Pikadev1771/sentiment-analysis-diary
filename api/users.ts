@@ -37,19 +37,10 @@ export const checkEmailDuplication = (emailForm: EmailFormProps) => {
 };
 
 // 로그아웃
-export const requestLogout = () => {
-  return axios.delete(`${REQUEST_URL}/api/deleteRefreshToken`, {
-    headers: {
-      Refresh: Cookies.get('refresh_token'),
-    },
-  });
-};
-
-// 토큰 재발급
-export const requestReissueToken = () => {
-  return axios.get(`${REQUEST_URL}/api/reissue`, {
-    headers: {
-      Refresh: Cookies.get('refresh_token'),
-    },
-  });
-};
+// export const requestLogout = () => {
+//   return axios.delete(`${REQUEST_URL}/api/deleteRefreshToken`, {
+//     headers: {
+//       Refresh: Cookies.get('refresh_token'),
+//     },
+//   });
+// };

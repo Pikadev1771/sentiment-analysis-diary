@@ -6,7 +6,7 @@ import Layout from '../../components/layout/Layout';
 import HeaderLayout from '../../components/layout/HeaderLayout';
 import type { NextPageWithLayout } from '../_app';
 import dynamic from 'next/dynamic';
-import { getDiaryByTerm } from '../../api/analysis';
+import { getDiaryByTerm } from '../../api/diary';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 import moment from 'moment';

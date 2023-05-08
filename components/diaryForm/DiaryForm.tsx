@@ -48,7 +48,8 @@ export default function DiaryForm() {
 
     createDiary(formData)
       .then((res) => {
-        router.push(`/`);
+        console.log(res);
+        // router.push(`/`);
       })
       .catch((err) => {
         console.log(err);
@@ -56,7 +57,7 @@ export default function DiaryForm() {
   };
 
   return (
-    <Form onSubmit={() => once(handleSubmit(onSubmit))()}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <DateAndTitleContainer>
         <h3>Date: </h3>
         <DiaryInput
