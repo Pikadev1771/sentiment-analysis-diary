@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import { requestLogout } from '../../api/users';
+
 import Header from '../header/Header';
 import { ReactElement, ReactNode } from 'react';
 import { useRouter } from 'next/router';
