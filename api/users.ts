@@ -28,11 +28,7 @@ export const requestSignup = (form: SignUpFormProps) => {
 
 // 로그인
 export const requestLogin = (form: LogInFormProps) => {
-  return axios.post(`${REQUEST_URL}/auth/login`, form, {
-    headers: {
-      withCredentials: true,
-    },
-  });
+  return axios.post(`${REQUEST_URL}/auth/login`, form);
 };
 
 // 이메일 중복체크
