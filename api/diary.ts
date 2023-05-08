@@ -2,10 +2,10 @@ import axios, { AxiosRequestConfig } from 'axios';
 import Cookies from 'js-cookie';
 import router from 'next/router';
 
-// const REQUEST_URL =
-//   'http://ec2-43-200-210-186.ap-northeast-2.compute.amazonaws.com:8080';
+const REQUEST_URL =
+  'http://ec2-43-200-210-186.ap-northeast-2.compute.amazonaws.com:8080';
 
-const REQUEST_URL = 'https://sentiment-diary.store';
+// const REQUEST_URL = 'https://sentiment-diary.store';
 
 const config: AxiosRequestConfig = { baseURL: REQUEST_URL };
 const axiosInstance = axios.create(config);
@@ -13,6 +13,8 @@ const axiosInstance = axios.create(config);
 // [요청 설정] 모든 요청의 헤더에 토큰 넣어 보내기
 axiosInstance.interceptors.request.use((config) => {
   if (!config.headers) return config;
+
+  // config.adapter = ['xhr', 'http', 'https'];
 
   const access_token = Cookies.get('access_token');
   const refresh_token = Cookies.get('refresh_token');
@@ -60,13 +62,14 @@ axiosInstance.interceptors.response.use(
   },
   // 에러 처리
   async (err) => {
-    const {
-      config,
-      response: { status },
-    } = err;
+    const { config, response } = err;
 
     // 토큰 자동 재발급 필요 외 다른 에러
-    if (config.url === `/api/reissue` || status !== 402 || config.sent) {
+    if (
+      config.url === `/api/reissue` ||
+      response?.status !== 402 ||
+      config.sent
+    ) {
       return Promise.reject(err);
     }
 
