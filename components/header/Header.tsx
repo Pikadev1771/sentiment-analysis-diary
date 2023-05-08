@@ -7,7 +7,7 @@ import moment from 'moment';
 import Cookies from 'js-cookie';
 import useLogin from '../../hooks/useLogin';
 import { useEffect, useState } from 'react';
-import { requestLogout } from '../../api/users';
+
 import axios from 'axios';
 
 export default function Header() {
