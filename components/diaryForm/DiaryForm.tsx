@@ -28,6 +28,7 @@ type DiaryFormProps = {
 };
 
 export default function DiaryForm() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const router = useRouter();
 
   const { date } = router.query; // 달력에서 선택한 날짜 ("YYYY-MM-DD")
@@ -45,13 +46,16 @@ export default function DiaryForm() {
       ...data,
       createdAt: date,
     };
+    if (isSubmitted) return;
+
+    setIsSubmitted(true);
 
     createDiary(formData)
       .then((res) => {
-        console.log(res);
-        // router.push(`/`);
+        router.push(`/`);
       })
       .catch((err) => {
+        setIsSubmitted(false);
         console.log(err);
       });
   };

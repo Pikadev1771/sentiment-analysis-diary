@@ -28,6 +28,7 @@
     "js-cookie": "^3.0.1",
     "moment": "^2.29.4",
     "next": "13.2.4",
+    "open-graph": "^0.2.6",
     "prop-types": "^15.8.1",
     "react": "18.2.0",
     "react-calendar": "^4.1.0",
