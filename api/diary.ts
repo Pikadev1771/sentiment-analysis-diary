@@ -14,8 +14,6 @@ const axiosInstance = axios.create(config);
 axiosInstance.interceptors.request.use((config) => {
   if (!config.headers) return config;
 
-  config.adapter = ['xhr', 'http', 'https'];
-
   const access_token = Cookies.get('access_token');
   const refresh_token = Cookies.get('refresh_token');
 
