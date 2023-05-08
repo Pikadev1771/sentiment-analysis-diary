@@ -1,10 +1,10 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-const REQUEST_URL =
-  'http://ec2-43-200-210-186.ap-northeast-2.compute.amazonaws.com:8080';
+// const REQUEST_URL =
+//   'http://ec2-43-200-210-186.ap-northeast-2.compute.amazonaws.com:8080';
 
-// const REQUEST_URL = 'https://sentiment-diary.store';
+const REQUEST_URL = 'https://sentiment-diary.store';
 
 type SignUpFormProps = {
   email: string;
@@ -28,7 +28,11 @@ export const requestSignup = (form: SignUpFormProps) => {
 
 // 로그인
 export const requestLogin = (form: LogInFormProps) => {
-  return axios.post(`${REQUEST_URL}/auth/login`, form);
+  return axios.post(`${REQUEST_URL}/auth/login`, form, {
+    headers: {
+      withCredentials: true,
+    },
+  });
 };
 
 // 이메일 중복체크
@@ -47,7 +51,7 @@ export const requestLogout = () => {
 
 // 토큰 재발급
 export const requestReissueToken = () => {
-  return axios.get(`${REQUEST_URL}/api/deleteRefreshToken`, {
+  return axios.get(`${REQUEST_URL}/api/reissue`, {
     headers: {
       Refresh: Cookies.get('refresh_token'),
     },
