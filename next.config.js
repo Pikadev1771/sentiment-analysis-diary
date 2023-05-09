@@ -16,7 +16,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'https://sentiment-diary.store/:path*',
+        destination: 'https://sentiment-diary.store/api/:path*',
       },
     ];
   },
