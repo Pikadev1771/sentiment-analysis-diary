@@ -12,29 +12,6 @@ const nextConfig = {
     });
     return config;
   },
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: 'https://sentiment-diary.store/api/:path*',
-      },
-    ];
-  },
-  async redirects() {
-    return [
-      {
-        source: '/addnew',
-        has: [
-          {
-            type: 'query',
-            key: 'title',
-          },
-        ],
-        permanent: false,
-        destination: '/',
-      },
-    ];
-  },
 };
 
 module.exports = nextConfig;
