@@ -204,7 +204,7 @@ const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 40rem;
+  width: 650px;
   height: 780px;
   margin: 0 auto;
   border: 3px solid ${({ theme }) => theme.color.brown};
@@ -226,7 +226,7 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-  width: 25rem;
+  width: 450px;
   height: 70px;
   padding: 16px;
   background: ${({ theme }) => theme.color.cream};
@@ -283,7 +283,7 @@ const LoginErrorMessage = styled.p`
 `;
 
 const LogInBtn = styled.input`
-  width: 25rem;
+  width: 450px;
   height: 70px;
   padding: 10px 0;
   margin: 10px;
