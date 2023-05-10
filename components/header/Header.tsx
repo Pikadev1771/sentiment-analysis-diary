@@ -33,7 +33,12 @@ export default function Header() {
     <div>
       <HeaderContainer>
         <Link href={'/'}>
-          <Image src="/logo/logo_01.svg" width="200" height="60" alt="HOME" />
+          <Image
+            src="/logo/logo_inherit.svg"
+            width="220"
+            height="80"
+            alt="HOME"
+          />
         </Link>
         <Menu>
           {isLogin ? (
