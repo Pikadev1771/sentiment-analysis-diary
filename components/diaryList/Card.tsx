@@ -23,7 +23,9 @@ export default function DiaryCard({ date, title, content }: any) {
     <CardContainer className={roboto_mono.className} onClick={handleClick}>
       <Card>
         <DiaryTitle>{title}</DiaryTitle>
-        <Content>{content}</Content>
+        <ContentContainer>
+          <Content>{content}</Content>
+        </ContentContainer>
         <Date>
           <p>{date}</p>
         </Date>
@@ -72,29 +74,31 @@ const DiaryTitle = styled.p`
   -webkit-box-orient: vertical;
 `;
 
-const Content = styled.div`
+const ContentContainer = styled.div`
   width: 145px;
-  height: 54px;
+  height: 60px;
   background: ${({ theme }) => theme.color.cream};
   border: 2px solid ${({ theme }) => theme.color.brown};
   border-radius: 10px;
-  padding: 9px;
+  padding: 8px;
+
   font-size: 14px;
   text-align: left;
   line-height: 1.4;
-
-  overflow: hidden;
-  text-overflow: ellipsis;
+`;
+const Content = styled.div`
   display: -webkit-box;
-  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  word-break: break-word;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 `;
 
 const Date = styled.div`
   width: 100%;
   text-align: right;
   p {
-    margin: 10px 20px;
+    margin: 10px;
+    font-size: 13px;
+    font-weight: 600;
   }
 `;
