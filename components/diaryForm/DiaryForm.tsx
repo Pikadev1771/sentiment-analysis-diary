@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
 
-
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { useRouter } from 'next/router';
@@ -20,7 +19,6 @@ export default function DiaryForm() {
 
   const { date } = router.query; // 달력에서 선택한 날짜 ("YYYY-MM-DD")
 
-  console.log(router.query);
   const {
     register,
     handleSubmit,
@@ -43,7 +41,6 @@ export default function DiaryForm() {
       })
       .catch((err) => {
         setIsSubmitted(false);
-        console.log(err);
       });
   };
 
