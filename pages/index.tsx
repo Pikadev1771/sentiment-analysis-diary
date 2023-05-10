@@ -13,7 +13,6 @@ import Cookies from 'js-cookie';
 import GoLogin from '../components/goLogin/GoLogin';
 import useLogin from '../hooks/useLogin';
 
-
 const Home: NextPageWithLayout = () => {
   const isLogin = useLogin();
 
@@ -39,6 +38,10 @@ const MainContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+
+  @media screen and (max-width: 672px) {
+    flex-direction: column;
+  }
 `;
 
 const Left = styled.div`

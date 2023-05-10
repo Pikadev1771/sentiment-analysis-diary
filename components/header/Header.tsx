@@ -93,7 +93,7 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   height: 100px;
   background-color: ${({ theme }) => theme.color.lightBrown};
   color: ${({ theme }) => theme.color.cream};
