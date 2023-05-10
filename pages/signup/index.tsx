@@ -268,7 +268,7 @@ const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 40rem;
+  width: 650px;
   height: 1050px;
   margin: 120px auto;
   border: 3px solid ${({ theme }) => theme.color.brown};
@@ -289,7 +289,7 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-  width: 25rem;
+  width: 450px;
   height: 70px;
   padding: 16px;
   margin-bottom: 14px;
@@ -335,7 +335,7 @@ const DuplicationCheckMessage = styled.span`
 `;
 
 const DuplicationCheckBtn = styled.button`
-  width: 10rem;
+  width: 140px;
   height: 30px;
   margin-left: 8px;
   border: 2px solid ${({ theme }) => theme.color.brown};
@@ -383,7 +383,7 @@ const ButtonContainer = styled.div`
 `;
 
 const LogInBtn = styled.input`
-  width: 25rem;
+  width: 450px;
   height: 70px;
   padding: 10px 0;
   margin: 10px;

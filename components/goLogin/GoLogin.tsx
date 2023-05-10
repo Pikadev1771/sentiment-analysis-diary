@@ -35,12 +35,17 @@ const Box = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 450px;
+  min-width: 70%;
   height: 500px;
   margin: 120px auto;
   border: 3px solid ${({ theme }) => theme.color.brown};
   border-radius: 20px;
   background-color: ${({ theme }) => theme.color.lime};
+  padding: 30px;
+
+  @media screen and (max-width: 672px) {
+    width: 90%;
+  }
 `;
 
 const Title = styled.div`
@@ -72,6 +77,10 @@ const LogInBtn = styled.button`
   :hover {
     cursor: pointer;
   }
+
+  @media screen and (max-width: 672px) {
+    width: 90%;
+  }
 `;
 
 const GoToLogin = styled.div`
@@ -79,6 +88,7 @@ const GoToLogin = styled.div`
   color: ${({ theme }) => theme.color.brown};
   font-size: 16px;
   margin: 20px auto;
+  text-align: center;
 `;
 
 const LinkBtn = styled.button`

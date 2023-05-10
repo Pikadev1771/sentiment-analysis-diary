@@ -149,6 +149,10 @@ const Container = styled.div`
   width: 70%;
   margin: 0 auto;
 
+  @media screen and (max-width: 672px) {
+    width: 90%;
+  }
+
   .react-calendar {
     width: 100%;
     height: 520px;
