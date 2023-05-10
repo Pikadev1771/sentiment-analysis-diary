@@ -4,6 +4,8 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
 * {
   box-sizing: border-box; 
+    padding: 0;
+    margin: 0;
   /* font-family: 'Noto Sans', sans-serif; */
   font-family: monospace, sans-serif, 'Roboto Mono', 'JetBrains_Mono', -apple-system, BlinkMacSystemFont, Segoe UI, 
 
@@ -25,7 +27,7 @@ html,
     margin: 0;
   }
 
-      @media only screen and (max-width: 768px) {
+      /* @media only screen and (max-width: 768px) {
         body {
           font-size: 12px;
         }
@@ -35,7 +37,7 @@ html,
         body {
           font-size: 10px;
         }
-      }
+      } */
     `;
 
 export default GlobalStyle;
