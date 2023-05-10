@@ -23,6 +23,7 @@ import SmallButton from '../../components/button/SmallButton';
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { Roboto_Mono } from 'next/font/google';
+import Loading from '../../components/loading';
 
 const roboto_mono = Roboto_Mono({
   subsets: ['latin'],
@@ -56,6 +57,8 @@ export async function getServerSideProps(context: any) {
 }
 
 const EditPage: NextPageWithLayout = ({ date, diaryData }: any) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
 
   const {
@@ -66,6 +69,8 @@ const EditPage: NextPageWithLayout = ({ date, diaryData }: any) => {
   } = useForm<DiaryFormProps>();
 
   const onSubmit: SubmitHandler<DiaryFormProps> = (editFormData) => {
+    setIsLoading(true);
+
     const formData: any = {
       ...editFormData,
       diaryId: diaryData.diaryId,
@@ -116,6 +121,11 @@ const EditPage: NextPageWithLayout = ({ date, diaryData }: any) => {
             </ContentAndAnalysis>
           </Form>
         </DiaryBox>
+        {isLoading && (
+          <ModalBackdrop>
+            <Loading />
+          </ModalBackdrop>
+        )}
       </DiaryLayout>
     </>
   );
@@ -268,4 +278,18 @@ const SubmitBtn = styled.input`
   :hover {
     cursor: pointer;
   }
+`;
+
+const ModalBackdrop = styled.div`
+  background-color: rgba(0, 0, 0, 0.5);
+
+  position: fixed; // 화면 전체
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
