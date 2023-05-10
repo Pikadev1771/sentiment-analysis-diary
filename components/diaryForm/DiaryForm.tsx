@@ -6,6 +6,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { useRouter } from 'next/router';
 import { createDiary } from '../../api/diary';
+import Loading from '../loading';
 
 type DiaryFormProps = {
   createdAt: string;
@@ -14,6 +15,7 @@ type DiaryFormProps = {
 };
 
 export default function DiaryForm() {
+  const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const router = useRouter();
 
@@ -27,13 +29,14 @@ export default function DiaryForm() {
   } = useForm<DiaryFormProps>();
 
   const onSubmit: SubmitHandler<DiaryFormProps> = (data) => {
+    if (isSubmitted) return;
+    setIsLoading(true);
+    setIsSubmitted(true);
+
     const formData: any = {
       ...data,
       createdAt: date,
     };
-    if (isSubmitted) return;
-
-    setIsSubmitted(true);
 
     createDiary(formData)
       .then((res) => {
@@ -45,34 +48,38 @@ export default function DiaryForm() {
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <DateAndTitleContainer>
-        <h3>Date: </h3>
-        <DiaryInput
-          {...register('createdAt', { required: true })}
-          id={'diaryDate'}
-          value={router.query.date}
-          readOnly
+    <>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <DateAndTitleContainer>
+          <h3>Date: </h3>
+          <DiaryInput
+            {...register('createdAt', { required: true })}
+            id={'diaryDate'}
+            value={router.query.date}
+            readOnly
+          />
+        </DateAndTitleContainer>
+        <DateAndTitleContainer>
+          <h3>Title:</h3>
+          <DiaryInput
+            {...register('title', { required: true })}
+            id={'diaryTitle'}
+          />
+        </DateAndTitleContainer>
+        {errors.title && <p>제목을 작성해 주세요.</p>}
+        <DiaryTextarea
+          {...register('content', { required: true })}
+          id={'diaryContent'}
         />
-      </DateAndTitleContainer>
-      <DateAndTitleContainer>
-        <h3>Title:</h3>
-        <DiaryInput
-          {...register('title', { required: true })}
-          id={'diaryTitle'}
-        />
-      </DateAndTitleContainer>
-
-      {errors.title && <p>제목을 작성해 주세요.</p>}
-      <DiaryTextarea
-        {...register('content', { required: true })}
-        id={'diaryContent'}
-      />
-
-      {errors.content && <p>일기를 작성해 주세요.</p>}
-
-      <DiaryInput type="submit" value={'SUBMIT'} />
-    </Form>
+        {errors.content && <p>일기를 작성해 주세요.</p>}
+        <DiaryInput type="submit" value={'SUBMIT'} />
+      </Form>
+      {isLoading && (
+        <ModalBackdrop>
+          <Loading />
+        </ModalBackdrop>
+      )}
+    </>
   );
 }
 
@@ -170,4 +177,18 @@ const DiaryTextarea = styled.textarea`
   color: ${({ theme }) => theme.color.brown};
   resize: none;
   outline: none;
+`;
+
+const ModalBackdrop = styled.div`
+  background-color: rgba(0, 0, 0, 0.5);
+
+  position: fixed; // 화면 전체
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

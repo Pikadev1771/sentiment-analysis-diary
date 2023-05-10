@@ -45,6 +45,7 @@ const CardContainer = styled.button`
 const Card = styled.div`
   width: 180px;
   height: 170px;
+  margin: 4px;
   padding: 10px;
   background: ${({ theme }) => theme.color.lime};
   border: 4px solid ${({ theme }) => theme.color.brown};
