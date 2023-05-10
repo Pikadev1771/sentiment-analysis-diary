@@ -11,6 +11,14 @@ import { getDiaryByTerm } from '../../api/diary';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import moment from 'moment';
 import Head from 'next/head';
+import { Roboto_Mono } from 'next/font/google';
+
+const roboto_mono = Roboto_Mono({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  variable: '--roboto_mono',
+  fallback: ['Noto_Sans'],
+});
 
 const LineChart = dynamic(() => import('../../components/chart/LineChart'), {
   ssr: false,
@@ -85,10 +93,10 @@ const AnalysisPage: NextPageWithLayout = () => {
   };
 
   // 라인 차트
-  let lineArr = diaries?.map((el) => {
+  let lineArr = diaries?.map((el: any) => {
     let newEl = { x: undefined, y: undefined };
-    newEl['x'] = el['createdAt'];
-    newEl['y'] = el['emotion'];
+    newEl.x = el['createdAt'];
+    newEl.y = el['emotion'];
     return newEl;
   });
 
@@ -106,11 +114,12 @@ const AnalysisPage: NextPageWithLayout = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ChartLayout>
-        <ChartBox>
+        <ChartBox className={roboto_mono.className}>
           <ChartTitle>기간별 감정 분석</ChartTitle>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Input
               {...register('startDate', { required: true })}
+              className={roboto_mono.className}
               id={'startDate'}
               type="date"
               defaultValue={`${moment(new Date(year, month - 1, day)).format(
@@ -120,6 +129,7 @@ const AnalysisPage: NextPageWithLayout = () => {
             부터
             <Input
               {...register('endDate', { required: true })}
+              className={roboto_mono.className}
               id={'endDate'}
               type="date"
               defaultValue={`${moment(new Date()).format('YYYY-MM-DD')}`}

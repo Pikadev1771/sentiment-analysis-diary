@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
 import styles from '../../styles/DiaryForm.module.css';
-import { Roboto } from 'next/font/google';
+import { Roboto, Roboto_Mono } from 'next/font/google';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { useRouter } from 'next/router';
@@ -17,6 +17,13 @@ import HomeButton from '../../components/button/HomeButton';
 import Image from 'next/image';
 import SmallButton from '../../components/button/SmallButton';
 import Head from 'next/head';
+
+const roboto_mono = Roboto_Mono({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  variable: '--roboto_mono',
+  fallback: ['Noto_Sans'],
+});
 
 export async function getServerSideProps(context: any) {
   const { date } = context.params;
@@ -71,13 +78,25 @@ const DiaryPage: NextPageWithLayout = ({ date }: any) => {
             <Content>
               <DateBox>
                 <h3>Date: </h3>
-                <Date value={diaryData?.createdAt} readOnly />
+                <Date
+                  className={roboto_mono.className}
+                  value={diaryData?.createdAt}
+                  readOnly
+                />
               </DateBox>
               <TitleBox>
                 <h3>Title:</h3>
-                <Title value={diaryData?.title} readOnly />
+                <Title
+                  className={roboto_mono.className}
+                  value={diaryData?.title}
+                  readOnly
+                />
               </TitleBox>
-              <DiaryContent value={diaryData?.content} readOnly></DiaryContent>
+              <DiaryContent
+                className={roboto_mono.className}
+                value={diaryData?.content}
+                readOnly
+              ></DiaryContent>
               <Menu>
                 <SmallButton
                   onClick={() => {
@@ -162,6 +181,7 @@ const Content = styled.div`
 `;
 
 const Analysis = styled.div`
+  width: 220px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -179,6 +199,7 @@ const Analysis = styled.div`
 const DateBox = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 4px;
 `;
 
 const Date = styled.input`
@@ -232,16 +253,11 @@ const DiaryContent = styled.textarea`
   border-radius: 10px;
   border: 4px solid ${({ theme }) => theme.color.brown};
   margin-top: 10px;
-  padding: 10px 15px;
+  padding: 15px;
   font-size: 18px;
   color: ${({ theme }) => theme.color.brown};
   background-color: inherit;
-  font-weight: 600;
-  /* text-decoration: underline;
-  text-underline-offset: 5px;
-  text-decoration-color: ${({ theme }) => theme.color.brown};
-  text-decoration-style: dashed; */
-  /* font-style: oblique; */
+
   resize: none;
   outline: none;
 `;

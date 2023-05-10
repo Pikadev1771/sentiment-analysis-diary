@@ -1,8 +1,17 @@
+import { Roboto_Mono, Noto_Sans_KR } from 'next/font/google';
+
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useReducer } from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
+
+const roboto_mono = Roboto_Mono({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  variable: '--roboto_mono',
+  fallback: ['Roboto', 'Noto_Sans'],
+});
 
 export default function DiaryCard({ date, title, content }: any) {
   const router = useRouter();
@@ -11,7 +20,7 @@ export default function DiaryCard({ date, title, content }: any) {
   };
 
   return (
-    <CardContainer onClick={handleClick}>
+    <CardContainer className={roboto_mono.className} onClick={handleClick}>
       <Card>
         <DiaryTitle>{title}</DiaryTitle>
         <Content>{content}</Content>

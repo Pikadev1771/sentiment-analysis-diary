@@ -4,6 +4,8 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
 * {
   box-sizing: border-box; 
+  /* font-family: 'Noto Sans', sans-serif; */
+  font-family: monospace, sans-serif, 'Roboto Mono', 'JetBrains_Mono', -apple-system, BlinkMacSystemFont, Segoe UI, 
 
 }
 
@@ -15,9 +17,9 @@ html,
     letter-spacing: -1px;
     font-size: 15px;
     background-color: #BBB2B2;
-    /* font-family:  Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
-      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
+  
   }
+
 
   p {
     margin: 0;

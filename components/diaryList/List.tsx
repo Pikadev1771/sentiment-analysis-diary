@@ -6,6 +6,13 @@ import { RootState } from '@/redux/store';
 import SmallButton from '../button/SmallButton';
 import { getDiaryByDate, getDiaryByUser } from '../../api/diary';
 import Cookies from 'js-cookie';
+import { JetBrains_Mono, Roboto } from 'next/font/google';
+
+const jetBrains_Mono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '700', '200', '600', '800'],
+  fallback: ['Robot_Mono'],
+});
 
 export default function DiaryList() {
   const [diaryList, setDiaryList] = useState<any | undefined>();
@@ -21,7 +28,7 @@ export default function DiaryList() {
   return (
     <Container>
       <ListHeader>
-        <Title>
+        <Title className={jetBrains_Mono.className}>
           <span>{nickName}</span>`s Sentiment Diary
         </Title>
         {/* <ShowMoreBtn>▶️ 더 보기</ShowMoreBtn> */}
