@@ -32,7 +32,9 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <meta property="og:image" content="/logo/logo_brown.png" />
+        </Head>
         <body>
           <Main />
           <NextScript />
