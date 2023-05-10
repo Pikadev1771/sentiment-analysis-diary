@@ -19,6 +19,8 @@ type LoginFormProps = {
 };
 
 const LoginPage: NextPageWithLayout = () => {
+  const [loginErrorMessage, setLoginErrorMessage] = useState<string>();
+
   const router = useRouter();
 
   // react-hook-form
@@ -68,15 +70,21 @@ const LoginPage: NextPageWithLayout = () => {
 
   // 로그인 요청
   const onSubmit: SubmitHandler<LoginFormProps> = (form) => {
-    requestLogin(form).then((res) => {
-      res?.headers?.authorization &&
-        Cookies.set('access_token', res.headers.authorization, {
-          expires: 0.079,
-        });
-      Cookies.set('refresh_token', res.headers.refresh, { expires: 20 });
-      Cookies.set('nickName', res.data.nickName);
-      router.push('/');
-    });
+    requestLogin(form)
+      .then((res) => {
+        res?.headers?.authorization &&
+          Cookies.set('access_token', res.headers.authorization, {
+            expires: 0.079,
+          });
+        Cookies.set('refresh_token', res.headers.refresh, { expires: 20 });
+        Cookies.set('nickName', res.data.nickName);
+        router.push('/');
+      })
+      .catch((error: any) => {
+        if (error?.response?.status === 401) {
+          setLoginErrorMessage('정확하지 않은 이메일 또는 패스워드입니다');
+        }
+      });
   };
 
   // 구글 로그인 이동
@@ -154,6 +162,7 @@ const LoginPage: NextPageWithLayout = () => {
             )}
           </InputSet>
           <ButtonContainer>
+            <LoginErrorMessage>{loginErrorMessage}</LoginErrorMessage>
             <LogInBtn type="submit" value={'Log In'} />
             <GoogleLoginBtn onClick={() => handleGoogleLogin()}>
               <Image
@@ -263,7 +272,14 @@ const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 10px;
+`;
+
+const LoginErrorMessage = styled.p`
+  color: ${({ theme }) => theme.color.red};
+  margin: 6px 0;
+  font-weight: 400;
+  font-size: 16px;
 `;
 
 const LogInBtn = styled.input`
