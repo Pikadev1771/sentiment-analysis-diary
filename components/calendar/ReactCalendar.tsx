@@ -146,11 +146,11 @@ export default function ReactCalendar() {
 }
 
 const Container = styled.div`
-  width: 70%;
+  max-width: 35vw;
   margin: 0 auto;
 
   @media screen and (max-width: 672px) {
-    width: 90%;
+    max-width: 70vw;
   }
 
   .react-calendar {
