@@ -85,20 +85,20 @@ export default function ReactCalendar() {
     if (tileDiaryData) {
       // 이모티콘 분기
       let mood;
-      if (tileDiaryData.emotion > 6) mood = 'happy';
+      if (tileDiaryData.emotion > 6) mood = 'Happy';
       if (tileDiaryData.emotion > 2 && tileDiaryData.emotion <= 6)
-        mood = 'good';
+        mood = 'Good';
       if (tileDiaryData.emotion > -2 && tileDiaryData.emotion <= 2)
-        mood = 'soso';
+        mood = 'Soso';
       if (tileDiaryData.emotion > -6 && tileDiaryData.emotion <= -2)
-        mood = 'bad';
+        mood = 'Bad';
       if (tileDiaryData.emotion >= -10 && tileDiaryData.emotion <= -6)
-        mood = 'depressed';
+        mood = 'Depressed';
 
       contents.push(
         <>
           <Image
-            src={`emotion/${mood}.svg`}
+            src={`emotion/${mood?.toLowerCase()}.svg`}
             className="diaryImg"
             width="32"
             height="32"
@@ -247,39 +247,3 @@ const Container = styled.div`
     border-radius: 14px;
   }
 `;
-
-// 일기 데이터
-// const diaryData = [
-//   {
-//     id: 1,
-//     date: '2023-04-01',
-//     title: '야호',
-//     content: '날씨 좋다~~!',
-//     score: 1,
-//     emotion: 'good',
-//   },
-//   {
-//     id: 2,
-//     date: '2023-04-04',
-//     title: '메리 크리스마스🎅🏽',
-//     content: '🎄🎄🎄',
-//     score: 0.5,
-//     emotion: 'soso',
-//   },
-//   {
-//     id: 3,
-//     date: '2023-04-14',
-//     title: '해피 뉴이어',
-//     content: '행복한 2023년',
-//     score: 0.1,
-//     emotion: 'bad',
-//   },
-//   {
-//     id: 4,
-//     date: '2023-04-20',
-//     title: '야호',
-//     content: '날씨 좋다~~!',
-//     score: 1,
-//     emotion: 'happy',
-//   },
-// ];

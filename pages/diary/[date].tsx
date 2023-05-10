@@ -101,7 +101,7 @@ const DiaryPage: NextPageWithLayout = ({ date }: any) => {
             </Content>
             <Analysis>
               <Image
-                src={`/emotion/${mood || 'Soso'}.svg`}
+                src={`/emotion/${mood?.toLowerCase() || 'soso'}.svg`}
                 width="65"
                 height="65"
                 alt="mood"

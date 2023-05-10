@@ -12,7 +12,7 @@ const axiosInstance = axios.create(config);
 
 // [요청 설정] 모든 요청의 헤더에 토큰 넣어 보내기
 axiosInstance.interceptors.request.use((config) => {
-  if (!config.headers) return config;
+  // if (!config.headers) return config;
 
   const access_token = Cookies.get('access_token');
   const refresh_token = Cookies.get('refresh_token');
@@ -59,8 +59,8 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   // 에러 처리
-  async (err) => {
-    const { config, response } = err;
+  async (error) => {
+    const { config, response } = error;
 
     // 토큰 자동 재발급 필요 외 다른 에러
     if (
@@ -68,7 +68,7 @@ axiosInstance.interceptors.response.use(
       response?.status !== 402 ||
       config.sent
     ) {
-      return Promise.reject(err);
+      return Promise.reject(error);
     }
 
     config.sent = true;
