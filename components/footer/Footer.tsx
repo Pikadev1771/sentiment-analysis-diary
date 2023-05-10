@@ -18,7 +18,7 @@ const FooterContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 100vw;
   height: 100px;
   background-color: ${({ theme }) => theme.color.lightBrown};
   z-index: '10';
