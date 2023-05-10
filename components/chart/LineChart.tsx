@@ -5,11 +5,11 @@ import PointSymbol from './PointSymbol';
 
 import { keyframes } from 'styled-components';
 import SmallButton from '../button/SmallButton';
-import Happy from '../../public/emotion/Happy.svg';
-import Good from '../../public/emotion/Good.svg';
-import Soso from '../../public/emotion/Soso.svg';
-import Bad from '../../public/emotion/Bad.svg';
-import Depressed from '../../public/emotion/Depressed.svg';
+import Happy from '../../public/emotion/happy.svg';
+import Good from '../../public/emotion/good.svg';
+import Soso from '../../public/emotion/soso.svg';
+import Bad from '../../public/emotion/bad.svg';
+import Depressed from '../../public/emotion/depressed.svg';
 import { useRouter } from 'next/router';
 
 const lineChartTheme = {

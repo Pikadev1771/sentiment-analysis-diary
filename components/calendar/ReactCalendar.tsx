@@ -98,7 +98,7 @@ export default function ReactCalendar() {
       contents.push(
         <>
           <Image
-            src={`emotion/${mood}.svg`}
+            src={`emotion/${mood?.toLowerCase()}.svg`}
             className="diaryImg"
             width="32"
             height="32"
@@ -247,4 +247,3 @@ const Container = styled.div`
     border-radius: 14px;
   }
 `;
-
