@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { css } from 'styled-components';
 import styles from '../../styles/DiaryForm.module.css';
-import { Roboto } from 'next/font/google';
+
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { useRouter } from 'next/router';
@@ -22,6 +22,14 @@ import Image from 'next/image';
 import SmallButton from '../../components/button/SmallButton';
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
+import { Roboto_Mono } from 'next/font/google';
+
+const roboto_mono = Roboto_Mono({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  variable: '--roboto_mono',
+  fallback: ['Noto_Sans'],
+});
 
 interface DiaryDataProps {
   diaryId: number;
@@ -83,6 +91,7 @@ const EditPage: NextPageWithLayout = ({ date, diaryData }: any) => {
                   <h3>Date: </h3>
                   <Date
                     {...register('createdAt', { required: true })}
+                    className={roboto_mono.className}
                     value={diaryData?.createdAt}
                     readOnly
                   />
@@ -91,11 +100,13 @@ const EditPage: NextPageWithLayout = ({ date, diaryData }: any) => {
                   <h3>Title:</h3>
                   <Title
                     {...register('title', { required: true })}
+                    className={roboto_mono.className}
                     defaultValue={diaryData?.title}
                   />
                 </TitleBox>
                 <DiaryContent
                   {...register('content', { required: true })}
+                  className={roboto_mono.className}
                   defaultValue={diaryData?.content}
                 ></DiaryContent>
                 <Menu>
@@ -175,6 +186,7 @@ const Analysis = styled.div`
 const DateBox = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 4px;
 `;
 
 const Date = styled.input`
@@ -228,7 +240,7 @@ const DiaryContent = styled.textarea`
   border-radius: 10px;
   border: 4px solid ${({ theme }) => theme.color.brown};
   margin-top: 10px;
-  padding: 10px 15px;
+  padding: 15px;
   font-size: 18px;
   color: ${({ theme }) => theme.color.brown};
   resize: none;

@@ -1,25 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
-import styles from '../../styles/DiaryForm.module.css';
-import { Roboto } from 'next/font/google';
-import { useForm, SubmitHandler } from 'react-hook-form';
 
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { create_diary } from '@/redux/diarySlice';
-import { RootState } from '@/redux/store';
-import moment from 'moment';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { useRouter } from 'next/router';
 import { createDiary } from '../../api/diary';
-import once from '../../hooks/once';
-
-const roboto = Roboto({
-  subsets: ['latin'],
-  weight: ['100', '300', '400', '500', '700', '900'],
-  variable: '--roboto',
-});
 
 type DiaryFormProps = {
   createdAt: string;
@@ -33,7 +19,6 @@ export default function DiaryForm() {
 
   const { date } = router.query; // 달력에서 선택한 날짜 ("YYYY-MM-DD")
 
-  console.log(router.query);
   const {
     register,
     handleSubmit,
@@ -56,7 +41,6 @@ export default function DiaryForm() {
       })
       .catch((err) => {
         setIsSubmitted(false);
-        console.log(err);
       });
   };
 
