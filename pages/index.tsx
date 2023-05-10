@@ -37,7 +37,6 @@ const Home: NextPageWithLayout = () => {
 const MainContainer = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
 
   @media screen and (max-width: 672px) {
     flex-direction: column;
@@ -46,7 +45,7 @@ const MainContainer = styled.div`
 `;
 
 const Left = styled.div`
-  width: 50%;
+  width: 45vw;
   height: 90vh;
   display: flex;
   justify-content: center;
@@ -54,8 +53,8 @@ const Left = styled.div`
 `;
 
 const Right = styled(Left)`
-  width: 50%;
-  justify-content: left;
+  justify-content: center;
+  width: 45vw;
 `;
 
 Home.getLayout = function getLayout(page: ReactElement) {

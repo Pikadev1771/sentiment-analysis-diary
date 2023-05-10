@@ -35,7 +35,7 @@ const Box = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 70%;
+  min-width: 35vw;
   height: 500px;
   margin: 120px auto;
   border: 3px solid ${({ theme }) => theme.color.brown};
@@ -44,7 +44,7 @@ const Box = styled.div`
   padding: 30px;
 
   @media screen and (max-width: 672px) {
-    width: 90%;
+    width: 100vw;
   }
 `;
 
