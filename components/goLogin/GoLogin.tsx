@@ -35,7 +35,7 @@ const Box = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 35vw;
+  width: 90%;
   height: 500px;
   margin: 120px auto;
   border: 3px solid ${({ theme }) => theme.color.brown};

@@ -164,14 +164,14 @@ const LoginPage: NextPageWithLayout = () => {
           <ButtonContainer>
             <LoginErrorMessage>{loginErrorMessage}</LoginErrorMessage>
             <LogInBtn type="submit" value={'Log In'} />
-            <GoogleLoginBtn onClick={() => handleGoogleLogin()}>
+            {/* <GoogleLoginBtn onClick={() => handleGoogleLogin()}>
               <Image
                 alt="google login"
                 src="/login/googleLogin.png"
                 layout="fill"
                 objectFit="contain"
               />
-            </GoogleLoginBtn>
+            </GoogleLoginBtn> */}
             <LinkContainer>
               아직 회원이 아니신가요?
               <LinkBtn color={'#FDFBE8'} onClick={() => router.push('/signup')}>
@@ -217,6 +217,8 @@ const InputSet = styled.div`
   flex-direction: column;
   color: ${({ theme }) => theme.color.brown};
   margin-bottom: 10px;
+
+  width: 70%;
 `;
 
 const Label = styled.label`
@@ -259,7 +261,7 @@ const EyeBtn = styled.button`
   border: none;
   position: absolute;
   top: 16px;
-  right: 28px;
+  right: 20px;
   border-radius: 50%;
 
   :hover {
