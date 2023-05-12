@@ -281,6 +281,7 @@ const InputSet = styled.div`
   flex-direction: column;
   color: ${({ theme }) => theme.color.brown};
   margin-bottom: 20px;
+  width: 70%;
 `;
 const Label = styled.label`
   font-weight: 400;
@@ -367,7 +368,7 @@ const EyeBtn = styled.button`
   border: none;
   position: absolute;
   top: 16px;
-  right: 28px;
+  right: 20px;
   border-radius: 50%;
 
   :hover {
