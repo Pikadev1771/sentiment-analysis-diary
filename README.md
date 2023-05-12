@@ -1,5 +1,5 @@
 <div align="center">
- <img src="/public/logo/MOTD.png">
+ <img src="/public/logo/MOTD_cream.png">
 <h2>MOTD - Mood Of The Day</h2>
 </div>
 <h2>
@@ -15,16 +15,15 @@
 <br>
 <summary><strong>로그인</strong></summary>
 <br>
-![로그인](https://github.com/Pikadev1771/sentiment-analysis-diary/assets/111509842/47878614-65bf-4192-899a-09cb3d4d24dd)
-<br>
+<img width="100%" src="https://user-images.githubusercontent.com/111509842/238053545-47878614-65bf-4192-899a-09cb3d4d24dd.gif" />
 <br>
 다이어리 생성
 <br>
-![다이어리 생성](https://github.com/Pikadev1771/sentiment-analysis-diary/assets/111509842/0e856494-ff8d-4ef7-bbcc-5568a4b76f8d)
+<img width="100%" src="https://user-images.githubusercontent.com/111509842/238053820-0e856494-ff8d-4ef7-bbcc-5568a4b76f8d.gif" />
 <br>
 <br>
 기간별 감정 분석 차트, 키워드 분석
 <br>
-![기간별 감정 분석 차트, 키워드 분석](https://github.com/Pikadev1771/sentiment-analysis-diary/assets/111509842/f3772b92-4ade-4436-8e8d-88082af88f0e)
+<img width="100%" src="https://user-images.githubusercontent.com/111509842/238053906-f3772b92-4ade-4436-8e8d-88082af88f0e.gif" />
 <br>
 </details>
