@@ -29,7 +29,7 @@ export default function DiaryList() {
     <Container>
       <ListHeader>
         <Title className={jetBrains_Mono.className}>
-          <span>{nickName}</span>`s Sentiment Diary
+          <span>{nickName}</span>`s Diary
         </Title>
         {/* <ShowMoreBtn>▶️ 더 보기</ShowMoreBtn> */}
       </ListHeader>

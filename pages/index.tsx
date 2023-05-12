@@ -48,7 +48,7 @@ const Left = styled.div`
   width: 45vw;
   max-width: 900px;
   height: 90vh;
-  padding: 0 100px;
+  padding: 0 60px;
   display: flex;
   justify-content: center;
   align-items: center;

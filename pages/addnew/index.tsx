@@ -33,22 +33,24 @@ const AddNew: NextPageWithLayout = () => {
 const MainContainer = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
+
+  @media screen and (max-width: 672px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const Left = styled.div`
-  width: 50vw;
-  min-width: 450px;
-  max-width: 800px;
+  width: 45vw;
+  max-width: 900px;
   height: 90vh;
+  padding: 0 60px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const Right = styled(Left)`
-  justify-content: left;
-`;
+const Right = styled(Left)``;
 
 AddNew.getLayout = function getLayout(page: ReactElement) {
   return (

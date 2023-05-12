@@ -43,7 +43,7 @@ const CardContainer = styled.button`
   }
 `;
 const Card = styled.div`
-  width: 180px;
+  width: 210px;
   height: 170px;
   margin: 4px;
   padding: 10px;
@@ -76,14 +76,14 @@ const DiaryTitle = styled.p`
 `;
 
 const ContentContainer = styled.div`
-  width: 145px;
+  width: 165px;
   height: 60px;
   background: ${({ theme }) => theme.color.cream};
   border: 2px solid ${({ theme }) => theme.color.brown};
   border-radius: 10px;
   padding: 8px;
 
-  font-size: 14px;
+  font-size: 16px;
   text-align: left;
   line-height: 1.4;
 `;
@@ -98,8 +98,8 @@ const Date = styled.div`
   width: 100%;
   text-align: right;
   p {
-    margin: 10px;
-    font-size: 13px;
+    margin: 10px 18px;
+    font-size: 16px;
     font-weight: 600;
   }
 `;
