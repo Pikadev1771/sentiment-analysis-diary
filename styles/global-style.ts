@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: border-box; 
     padding: 0;
     margin: 0;
-  font-family: monospace, sans-serif, 'Roboto Mono', 'JetBrains_Mono', -apple-system, BlinkMacSystemFont, Segoe UI, 
+  font-family: 'Nanum Gothic Coding', monospace, sans-serif, 'Roboto Mono', 'JetBrains_Mono', -apple-system, BlinkMacSystemFont, Segoe UI, 
 
 }
 
