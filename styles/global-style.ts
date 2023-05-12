@@ -6,7 +6,6 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: border-box; 
     padding: 0;
     margin: 0;
-  /* font-family: 'Noto Sans', sans-serif; */
   font-family: monospace, sans-serif, 'Roboto Mono', 'JetBrains_Mono', -apple-system, BlinkMacSystemFont, Segoe UI, 
 
 }

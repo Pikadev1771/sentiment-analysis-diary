@@ -95,7 +95,7 @@ const AnalysisPage: NextPageWithLayout = () => {
   // 라인 차트
   let lineArr = diaries?.map((el: any) => {
     let newEl = { x: undefined, y: undefined };
-    newEl.x = el['createdAt'].slice(5);
+    newEl.x = el['createdAt'];
     newEl.y = el['emotion'];
     return newEl;
   });
