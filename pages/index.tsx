@@ -46,16 +46,15 @@ const MainContainer = styled.div`
 
 const Left = styled.div`
   width: 45vw;
+  max-width: 900px;
   height: 90vh;
+  padding: 0 100px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const Right = styled(Left)`
-  justify-content: center;
-  width: 45vw;
-`;
+const Right = styled(Left)``;
 
 Home.getLayout = function getLayout(page: ReactElement) {
   return (

@@ -57,10 +57,10 @@ export default function DiaryList() {
 }
 
 const Container = styled.div`
-  min-width: 35vw;
+  max-width: 700px;
   height: 520px;
   display: flex;
-  justify-content: left;
+  justify-content: center;
   align-items: center;
   align-content: center;
   flex-wrap: wrap;

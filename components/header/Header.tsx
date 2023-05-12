@@ -9,6 +9,31 @@ import useLogin from '../../hooks/useLogin';
 import { useEffect, useState } from 'react';
 
 import axios from 'axios';
+import {
+  Nanum_Gothic_Coding,
+  Noto_Sans_KR,
+  Roboto_Mono,
+} from 'next/font/google';
+
+const roboto_mono = Roboto_Mono({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  variable: '--roboto_mono',
+  fallback: ['Noto_Sans'],
+});
+
+const nanum_gothic_coding = Nanum_Gothic_Coding({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '-- nanum_gothic_coding',
+  fallback: ['Noto_Sans'],
+});
+
+const noto_sans_kr = Noto_Sans_KR({
+  weight: ['100', '300', '400', '700', '900'],
+  subsets: ['latin'],
+  preload: false,
+});
 
 export default function Header() {
   const nickName = Cookies.get('nickName');
