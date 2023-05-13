@@ -272,7 +272,7 @@ const Form = styled.form`
   height: 1050px;
   margin: 120px auto;
   border: 3px solid ${({ theme }) => theme.color.brown};
-  border-radius: 20px;
+  /* border-radius: 20px; */
   background-color: ${({ theme }) => theme.color.lime};
 `;
 

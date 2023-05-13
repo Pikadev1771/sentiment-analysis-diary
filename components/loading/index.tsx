@@ -26,7 +26,7 @@ const LoadingIndicator = styled.div`
   width: 400px;
   height: 400px;
 
-  border: 2px solid ${({ theme }) => theme.color.brown};
+  border: 4px solid ${({ theme }) => theme.color.brown};
   border-radius: 50%;
   margin: 0 auto;
 
