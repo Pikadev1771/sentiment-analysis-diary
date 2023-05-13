@@ -33,7 +33,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <meta property="og:image" content="/logo/logo_brown.png" />
+          <meta property="og:image" content="/logo/SAND.png" />
         </Head>
         <body>
           <Main />
