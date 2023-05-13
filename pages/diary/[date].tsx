@@ -115,8 +115,8 @@ const DiaryPage: NextPageWithLayout = ({ date }: any) => {
               <ImageContainer>
                 <Image
                   src={`/emotion/${mood?.toLowerCase() || 'soso'}.svg`}
-                  width="65"
-                  height="65"
+                  width="60"
+                  height="60"
                   alt="mood"
                 />
               </ImageContainer>
@@ -196,6 +196,34 @@ const Analysis = styled.div`
 
 const ImageContainer = styled.div`
   margin: 8px;
+
+  /* position: relative;
+  animation: fadeInTop 1s;
+
+  @keyframes fadeInTop {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, -100%, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translateZ(0);
+    }
+  } */
+
+  animation: bounce_frames 0.5s;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier(0.5, 0.05, 1, 0.5);
+  animation-iteration-count: 3;
+
+  @keyframes bounce_frames {
+    from {
+      transform: translate3d(0, -60px, 0);
+    }
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
 `;
 
 const DateBox = styled.div`
