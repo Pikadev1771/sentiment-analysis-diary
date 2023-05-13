@@ -1,6 +1,6 @@
 <div align="center">
- <img src="/public/logo/MOTD_cream.png">
-<h2>MOTD - Mood Of The Day</h2>
+ <img src="/public/logo/SAND.png">
+<h2>SAND - Sentiment Analysis Diary</h2>
 <h3>
 <a href="https://sentiment-analysis-diary.vercel.app/">배포 링크</a>
 </h3>
