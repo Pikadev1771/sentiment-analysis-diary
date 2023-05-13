@@ -96,13 +96,14 @@ const Form = styled.form`
   width: 85%;
   height: 620px;
   padding: 45px;
-  background: ${({ theme }) => theme.color.cream};
-  border: 3px solid ${({ theme }) => theme.color.brown};
-  box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.brown};
+
+  background: ${({ theme }) => theme.color.lime};
+  border: 3px solid ${({ theme }) => theme.color.lightBrown};
   /* border-radius: 24px; */
+  box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.lightBrown};
   font-weight: 500;
   font-size: 18px;
-  color: ${({ theme }) => theme.color.brown};
+  color: ${({ theme }) => theme.color.lightBrown};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -130,48 +131,36 @@ const DiaryInput = styled.input`
   box-sizing: border-box;
   width: 100%;
 
-  border-radius: 10px;
-  border: 2px solid ${({ theme }) => theme.color.brown};
-  padding: 10px 15px;
-  font-size: 16px;
-  color: ${({ theme }) => theme.color.brown};
+  height: 65px;
+  text-align: center;
   outline: none;
+  padding: 10px;
+  background: ${({ theme }) => theme.color.cream};
+  border: 4px solid ${({ theme }) => theme.color.lightBrown};
+  box-shadow: 4px 4px 0px 0px ${({ theme }) => theme.color.lightBrown};
+  border-radius: 14px;
+  font-weight: 500;
+  font-size: 18px;
+  color: ${({ theme }) => theme.color.lightBrown};
 
-  ${(props) =>
-    props.id === 'diaryDate' &&
-    css`
-      height: 65px;
+  :focus {
+    outline: none;
+  }
 
-      background: ${({ theme }) => theme.color.pink};
-      font-size: 20px;
-      font-weight: 600;
-      text-align: center;
-    `}
+  ${(props) => props.id === 'diaryDate' && css``}
 
-  ${(props) =>
-    props.id === 'diaryTitle' &&
-    css`
-      height: 65px;
-
-      background: ${({ theme }) => theme.color.lime};
-      font-size: 20px;
-      font-weight: 600;
-      text-align: center;
-    `}
+  ${(props) => props.id === 'diaryTitle' && css``}
 
   ${(props) =>
     props.type === 'submit' &&
     css`
       background: ${({ theme }) => theme.color.pink};
       color: ${({ theme }) => theme.color.brown};
-      border: wpx solid ${({ theme }) => theme.color.brown};
-      height: 65px;
+      border: 4px solid ${({ theme }) => theme.color.brown};
       text-transform: uppercase;
-      padding: 20px;
-      font-size: 16px;
-      font-weight: 400;
-      letter-spacing: 10px;
+
       font-weight: 600;
+      box-shadow: none;
 
       :hover {
         cursor: pointer;
@@ -184,14 +173,26 @@ const DiaryTextarea = styled.textarea`
   box-sizing: border-box;
   width: 100%;
   height: 250px;
-  border-radius: 10px;
-  border: 2px solid ${({ theme }) => theme.color.brown};
   margin-top: 10px;
-  padding: 10px 15px;
-  font-size: 18px;
-  color: ${({ theme }) => theme.color.brown};
+
+  line-height: 1.4;
   resize: none;
   outline: none;
+
+  outline: none;
+
+  padding: 20px;
+  background: ${({ theme }) => theme.color.white};
+  border: 4px solid ${({ theme }) => theme.color.lightBrown};
+  box-shadow: 4px 4px 0px 0px ${({ theme }) => theme.color.lightBrown};
+  border-radius: 14px;
+  font-weight: 400;
+  font-size: 18px;
+  color: ${({ theme }) => theme.color.lightBrown};
+
+  :focus {
+    outline: none;
+  }
 `;
 
 const ModalBackdrop = styled.div`
