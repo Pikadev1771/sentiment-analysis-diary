@@ -6,7 +6,8 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: border-box; 
     padding: 0;
     margin: 0;
-  font-family: 'Nanum Gothic Coding', monospace, sans-serif, 'Roboto Mono', 'JetBrains_Mono', -apple-system, BlinkMacSystemFont, Segoe UI, 
+  font-family: 'Open Sans', sans-serif, 'Roboto Serif', 'Noto Serif', 'DM Serif Display', serif; 
+ 
 
 }
 
@@ -17,7 +18,7 @@ html,
     height: 100%;
     letter-spacing: -1px;
     font-size: 15px;
-    background-color: #BBB2B2;
+    background-color: #EFEEE3;
   
   }
 

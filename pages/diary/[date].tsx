@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
 import styles from '../../styles/DiaryForm.module.css';
-import { Roboto, Roboto_Mono } from 'next/font/google';
+
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { useRouter } from 'next/router';
@@ -17,13 +17,6 @@ import HomeButton from '../../components/button/HomeButton';
 import Image from 'next/image';
 import SmallButton from '../../components/button/SmallButton';
 import Head from 'next/head';
-
-const roboto_mono = Roboto_Mono({
-  subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700'],
-  variable: '--roboto_mono',
-  fallback: ['Noto_Sans'],
-});
 
 export async function getServerSideProps(context: any) {
   const { date } = context.params;
@@ -78,25 +71,13 @@ const DiaryPage: NextPageWithLayout = ({ date }: any) => {
             <Content>
               <DateBox>
                 <h3>Date: </h3>
-                <Date
-                  className={roboto_mono.className}
-                  value={diaryData?.createdAt}
-                  readOnly
-                />
+                <Date value={diaryData?.createdAt} readOnly />
               </DateBox>
               <TitleBox>
                 <h3>Title:</h3>
-                <Title
-                  className={roboto_mono.className}
-                  value={diaryData?.title}
-                  readOnly
-                />
+                <Title value={diaryData?.title} readOnly />
               </TitleBox>
-              <DiaryContent
-                className={roboto_mono.className}
-                value={diaryData?.content}
-                readOnly
-              ></DiaryContent>
+              <DiaryContent value={diaryData?.content} readOnly></DiaryContent>
               <Menu>
                 <SmallButton
                   onClick={() => {

@@ -22,15 +22,8 @@ import Image from 'next/image';
 import SmallButton from '../../components/button/SmallButton';
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
-import { Roboto_Mono } from 'next/font/google';
-import Loading from '../../components/loading';
 
-const roboto_mono = Roboto_Mono({
-  subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700'],
-  variable: '--roboto_mono',
-  fallback: ['Noto_Sans'],
-});
+import Loading from '../../components/loading';
 
 interface DiaryDataProps {
   diaryId: number;
@@ -96,7 +89,6 @@ const EditPage: NextPageWithLayout = ({ date, diaryData }: any) => {
                   <h3>Date: </h3>
                   <Date
                     {...register('createdAt', { required: true })}
-                    className={roboto_mono.className}
                     value={diaryData?.createdAt}
                     readOnly
                   />
@@ -105,13 +97,11 @@ const EditPage: NextPageWithLayout = ({ date, diaryData }: any) => {
                   <h3>Title:</h3>
                   <Title
                     {...register('title', { required: true })}
-                    className={roboto_mono.className}
                     defaultValue={diaryData?.title}
                   />
                 </TitleBox>
                 <DiaryContent
                   {...register('content', { required: true })}
-                  className={roboto_mono.className}
                   defaultValue={diaryData?.content}
                 ></DiaryContent>
                 <Menu>
