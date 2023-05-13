@@ -13,13 +13,6 @@ import moment from 'moment';
 import Head from 'next/head';
 import { Roboto_Mono } from 'next/font/google';
 
-const roboto_mono = Roboto_Mono({
-  subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700'],
-  variable: '--roboto_mono',
-  fallback: ['Noto_Sans'],
-});
-
 const LineChart = dynamic(() => import('../../components/chart/LineChart'), {
   ssr: false,
 });
@@ -35,6 +28,13 @@ type DateFormProps = {
   startDate: string;
   endDate: string;
 };
+
+const roboto_mono = Roboto_Mono({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  variable: '--roboto_mono',
+  fallback: ['Open_Sans'],
+});
 
 const AnalysisPage: NextPageWithLayout = () => {
   const {
@@ -114,7 +114,7 @@ const AnalysisPage: NextPageWithLayout = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ChartLayout>
-        <ChartBox className={roboto_mono.className}>
+        <ChartBox>
           <ChartTitle>기간별 감정 분석</ChartTitle>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Input
@@ -161,7 +161,7 @@ const ChartLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 120px auto;
+  margin: 100px auto;
 `;
 
 const ChartBox = styled.div`
@@ -169,8 +169,8 @@ const ChartBox = styled.div`
   height: 1400px;
   padding: 20px 40px;
   background: ${({ theme }) => theme.color.cream};
-  border: 4px solid ${({ theme }) => theme.color.brown};
-  border-radius: 24px;
+  border: 3px solid ${({ theme }) => theme.color.brown};
+  /* border-radius: 24px; */
   box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.brown};
   font-weight: 500;
   font-size: 18px;
@@ -187,7 +187,7 @@ const ChartTitle = styled.p`
 
 const Form = styled.form`
   text-align: center;
-  border: 4px solid ${({ theme }) => theme.color.brown};
+  border: 3px solid ${({ theme }) => theme.color.brown};
   padding: 15px 0;
   margin: 40px 40px 0 40px;
   font-size: 18px;
@@ -200,7 +200,7 @@ const Input = styled.input`
   width: 250px;
   height: 50px;
   border-radius: 10px;
-  border: 2px solid ${({ theme }) => theme.color.brown};
+  border: 3px solid ${({ theme }) => theme.color.brown};
   padding: 10px 15px;
   font-size: 18px;
   color: ${({ theme }) => theme.color.brown};
@@ -218,7 +218,7 @@ const Input = styled.input`
       width: 90px;
       background: ${({ theme }) => theme.color.pink};
       color: ${({ theme }) => theme.color.brown};
-      border: 4px solid ${({ theme }) => theme.color.brown};
+      border: 3px solid ${({ theme }) => theme.color.brown};
       text-transform: uppercase;
       font-weight: 400;
       font-weight: 600;

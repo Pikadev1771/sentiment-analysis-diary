@@ -112,13 +112,18 @@ export default function ReactCalendar() {
 
   const leftArrow = (
     <>
-      <Image src="calendar/left.svg" width="18" height="18" alt="previous" />
+      <Image
+        src="calendar/left_cream.svg"
+        width="18"
+        height="18"
+        alt="previous"
+      />
     </>
   );
 
   const rightArrow = (
     <>
-      <Image src="calendar/right.svg" width="18" height="18" alt="next" />
+      <Image src="calendar/right_cream.svg" width="18" height="18" alt="next" />
     </>
   );
 
@@ -157,9 +162,9 @@ const Container = styled.div`
     width: 100%;
     height: 520px;
     background: ${({ theme }) => theme.color.cream};
-    border: 4px solid ${({ theme }) => theme.color.brown};
+    border: 3px solid ${({ theme }) => theme.color.brown};
     box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.brown};
-    border-radius: 24px;
+    /* border-radius: 24px; */
     font-weight: 500;
     font-size: 18px;
     color: ${({ theme }) => theme.color.brown};
@@ -181,27 +186,27 @@ const Container = styled.div`
 
   // 상단 내비게이션(년, 월)
   .react-calendar__navigation {
-    background: ${({ theme }) => theme.color.pink};
-    border-bottom: 4px solid ${({ theme }) => theme.color.brown};
+    background: ${({ theme }) => theme.color.hotPink};
+    border-bottom: 3px solid ${({ theme }) => theme.color.brown};
     height: 90px;
-    border-radius: 20px 20px 0 0;
+    /* border-radius: 20px 20px 0 0; */
 
     span {
       font-size: 24px;
       font-weight: 600;
-      color: ${({ theme }) => theme.color.brown};
+      color: ${({ theme }) => theme.color.cream};
     }
   }
 
   .react-calendar__navigation button:disabled {
-    background-color: ${({ theme }) => theme.color.pink};
-    border-radius: 20px 20px 0 0;
+    background-color: ${({ theme }) => theme.color.hotPink};
+    /* border-radius: 20px 20px 0 0; */
   }
 
   .react-calendar__navigation button:enabled:hover,
   .react-calendar__navigation button:enabled:focus {
-    background-color: ${({ theme }) => theme.color.pink};
-    border-radius: 20px 20px 0 0;
+    background-color: ${({ theme }) => theme.color.hotPink};
+    /* border-radius: 20px 20px 0 0; */
   }
 
   // 월 달력 (내비게이션 제외)

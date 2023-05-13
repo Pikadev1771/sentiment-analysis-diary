@@ -7,12 +7,20 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { createDiary } from '../../api/diary';
 import Loading from '../loading';
+import { Roboto_Mono } from 'next/font/google';
 
 type DiaryFormProps = {
   createdAt: string;
   title: string;
   content: string;
 };
+
+const roboto_mono = Roboto_Mono({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  variable: '--roboto_mono',
+  fallback: ['Open_Sans'],
+});
 
 export default function DiaryForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -51,16 +59,17 @@ export default function DiaryForm() {
     <>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <DateAndTitleContainer>
-          <h3>Date: </h3>
+          <span>Date: </span>
           <DiaryInput
             {...register('createdAt', { required: true })}
+            className={roboto_mono.className}
             id={'diaryDate'}
             value={router.query.date}
             readOnly
           />
         </DateAndTitleContainer>
         <DateAndTitleContainer>
-          <h3>Title:</h3>
+          <span>Title:</span>
           <DiaryInput
             {...register('title', { required: true })}
             id={'diaryTitle'}
@@ -85,13 +94,12 @@ export default function DiaryForm() {
 
 const Form = styled.form`
   width: 85%;
-  border: 8px solid blue;
   height: 620px;
-  padding: 40px;
+  padding: 45px;
   background: ${({ theme }) => theme.color.cream};
-  border: 4px solid ${({ theme }) => theme.color.brown};
+  border: 3px solid ${({ theme }) => theme.color.brown};
   box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.brown};
-  border-radius: 24px;
+  /* border-radius: 24px; */
   font-weight: 500;
   font-size: 18px;
   color: ${({ theme }) => theme.color.brown};
@@ -107,7 +115,14 @@ const Form = styled.form`
 
 const DateAndTitleContainer = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
+
+  span {
+    font-size: 24px;
+    width: 80px;
+  }
 `;
 
 const DiaryInput = styled.input`
@@ -116,7 +131,7 @@ const DiaryInput = styled.input`
   width: 100%;
 
   border-radius: 10px;
-  border: 4px solid ${({ theme }) => theme.color.brown};
+  border: 2px solid ${({ theme }) => theme.color.brown};
   padding: 10px 15px;
   font-size: 16px;
   color: ${({ theme }) => theme.color.brown};
@@ -126,7 +141,7 @@ const DiaryInput = styled.input`
     props.id === 'diaryDate' &&
     css`
       height: 65px;
-      margin-left: 30px;
+
       background: ${({ theme }) => theme.color.pink};
       font-size: 20px;
       font-weight: 600;
@@ -137,7 +152,7 @@ const DiaryInput = styled.input`
     props.id === 'diaryTitle' &&
     css`
       height: 65px;
-      margin-left: 20px;
+
       background: ${({ theme }) => theme.color.lime};
       font-size: 20px;
       font-weight: 600;
@@ -149,7 +164,7 @@ const DiaryInput = styled.input`
     css`
       background: ${({ theme }) => theme.color.pink};
       color: ${({ theme }) => theme.color.brown};
-      border: 4px solid ${({ theme }) => theme.color.brown};
+      border: wpx solid ${({ theme }) => theme.color.brown};
       height: 65px;
       text-transform: uppercase;
       padding: 20px;
@@ -170,7 +185,7 @@ const DiaryTextarea = styled.textarea`
   width: 100%;
   height: 250px;
   border-radius: 10px;
-  border: 4px solid ${({ theme }) => theme.color.brown};
+  border: 2px solid ${({ theme }) => theme.color.brown};
   margin-top: 10px;
   padding: 10px 15px;
   font-size: 18px;

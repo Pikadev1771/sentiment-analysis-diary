@@ -6,13 +6,7 @@ import { RootState } from '@/redux/store';
 import SmallButton from '../button/SmallButton';
 import { getDiaryByDate, getDiaryByUser } from '../../api/diary';
 import Cookies from 'js-cookie';
-import { JetBrains_Mono, Roboto } from 'next/font/google';
-
-const jetBrains_Mono = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '700', '200', '600', '800'],
-  fallback: ['Robot_Mono'],
-});
+import Image from 'next/image';
 
 export default function DiaryList() {
   const [diaryList, setDiaryList] = useState<any | undefined>();
@@ -28,8 +22,9 @@ export default function DiaryList() {
   return (
     <Container>
       <ListHeader>
-        <Title className={jetBrains_Mono.className}>
-          <span>{nickName}</span>`s Diary
+        <Title>
+          <Image src="/diary.svg" width="24" height="24" alt="user" />
+          <span>{nickName}</span>님의 최근 일기
         </Title>
         {/* <ShowMoreBtn>▶️ 더 보기</ShowMoreBtn> */}
       </ListHeader>
@@ -75,19 +70,23 @@ const ListHeader = styled.div`
 `;
 const Title = styled.span`
   margin: 10px;
-  padding-left: 10px;
-  font-size: 22px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.color.brown};
+  font-size: 20px;
+  font-weight: 400;
+  color: ${({ theme }) => theme.color.hotPink};
+  display: flex;
+  font-style: italic;
 
   span {
+    margin-left: 4px;
+
     /* color: ${({ theme }) => theme.color.lime};
     background-color: ${({ theme }) => theme.color.brown};
     padding: 6px 10px;
     border-radius: 10px;
     margin-right: 4px; */
-    /* text-decoration: underline;
-    text-decoration-style: wavy; */
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-style: wavy;
   }
 `;
 

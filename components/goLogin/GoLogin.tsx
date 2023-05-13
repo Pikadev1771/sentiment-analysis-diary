@@ -53,6 +53,7 @@ const Title = styled.div`
   color: ${({ theme }) => theme.color.brown};
   font-size: 20px;
   font-weight: 600;
+  font-style: italic;
   line-height: 1.5;
 `;
 
@@ -67,7 +68,7 @@ const LogInBtn = styled.button`
   height: 70px;
   padding: 10px 0;
   margin: 10px;
-  border: 4px solid ${({ theme }) => theme.color.brown};
+  border: 3px solid ${({ theme }) => theme.color.brown};
   border-radius: 10px;
   color: ${({ theme }) => theme.color.brown};
   background-color: ${(props) =>

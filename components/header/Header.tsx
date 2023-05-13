@@ -9,31 +9,6 @@ import useLogin from '../../hooks/useLogin';
 import { useEffect, useState } from 'react';
 
 import axios from 'axios';
-import {
-  Nanum_Gothic_Coding,
-  Noto_Sans_KR,
-  Roboto_Mono,
-} from 'next/font/google';
-
-const roboto_mono = Roboto_Mono({
-  subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700'],
-  variable: '--roboto_mono',
-  fallback: ['Noto_Sans'],
-});
-
-const nanum_gothic_coding = Nanum_Gothic_Coding({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '-- nanum_gothic_coding',
-  fallback: ['Noto_Sans'],
-});
-
-const noto_sans_kr = Noto_Sans_KR({
-  weight: ['100', '300', '400', '700', '900'],
-  subsets: ['latin'],
-  preload: false,
-});
 
 export default function Header() {
   const nickName = Cookies.get('nickName');
@@ -57,48 +32,74 @@ export default function Header() {
   return (
     <div>
       <HeaderContainer>
-        <Link href={'/'}>
-          <Image
-            src="/logo/logo_inherit.svg"
-            width="220"
-            height="80"
-            alt="HOME"
-          />
-        </Link>
+        <Logo>
+          <Link href={'/'}>
+            <Image src="/logo/SAND.svg" width="400" height="250" alt="HOME" />
+          </Link>
+        </Logo>
         <Menu>
-          {isLogin ? (
-            <>
-              <AnalysisButton onClick={() => router.push('/analysis')}>
-                <Image
-                  src="/analysis.svg"
-                  width="36"
-                  height="36"
-                  alt="analysis"
-                />
-              </AnalysisButton>
-
-              <NewDiaryBtn
-                onClick={() =>
-                  router.push(
-                    {
-                      pathname: '/addnew',
-                      query: {
-                        date: moment(new Date()).format('YYYY-MM-DD'),
+          {
+            isLogin ? (
+              <>
+                <MenuButton onClick={() => router.push('/analysis')}>
+                  <Image
+                    src="/header/analysis.svg"
+                    width="32"
+                    height="32"
+                    alt="analysis"
+                  />
+                </MenuButton>
+                <MenuButton
+                  onClick={() =>
+                    router.push(
+                      {
+                        pathname: '/addnew',
+                        query: {
+                          date: moment(new Date()).format('YYYY-MM-DD'),
+                        },
                       },
-                    },
-                    '/addnew'
-                  )
-                }
-              >
-                새 일기 쓰기
-              </NewDiaryBtn>
-              <ProfileBtn onClick={openModalHandler}>
-                {nickName ? nickName[0].toUpperCase() : `🦄`}
-              </ProfileBtn>
-            </>
-          ) : (
-            <LoginBtn onClick={() => router.push('/login')}>로그인</LoginBtn>
-          )}
+                      '/addnew'
+                    )
+                  }
+                >
+                  <Image
+                    src="/header/new.svg"
+                    width="32"
+                    height="32"
+                    alt="new"
+                  />
+                </MenuButton>
+                <MenuButton onClick={openModalHandler}>
+                  <Image
+                    src="/header/mypage.svg"
+                    width="32"
+                    height="32"
+                    alt="user"
+                  />
+                </MenuButton>
+                {/* <NewDiaryBtn
+                  onClick={() =>
+                    router.push(
+                      {
+                        pathname: '/addnew',
+                        query: {
+                          date: moment(new Date()).format('YYYY-MM-DD'),
+                        },
+                      },
+                      '/addnew'
+                    )
+                  }
+                >
+                  새 일기 쓰기
+                </NewDiaryBtn> */}
+
+                {/* <ProfileBtn onClick={openModalHandler}>
+                  {nickName ? nickName[0].toUpperCase() : `🦄`}
+                </ProfileBtn> */}
+              </>
+            ) : null
+            // <LoginBtn onClick={() => router.push('/login')}>로그인</LoginBtn>
+          }
         </Menu>
         {isModalOpen && <ModalBackdrop onClick={openModalHandler} />}
         {isModalOpen ? (
@@ -124,21 +125,24 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 100px;
-  background-color: ${({ theme }) => theme.color.lightBrown};
+  height: 200px;
+  /* background-color: ${({ theme }) => theme.color.lightBrown}; */
   color: ${({ theme }) => theme.color.cream};
-  padding: 0 40px;
+  padding: 0 60px;
   z-index: '10';
   position: relative;
 `;
 
-const Logo = styled(SmallButton)`
-  font-size: 24px;
-  font-weight: 400;
-  color: ${({ theme }) => theme.color.cream};
-  border: none;
-  background-color: inherit;
+const Logo = styled.div`
+  padding: 20px 0;
 `;
+// const Logo = styled(SmallButton)`
+//   font-size: 24px;
+//   font-weight: 400;
+//   color: ${({ theme }) => theme.color.cream};
+//   border: none;
+//   background-color: inherit;
+// `;
 
 const Menu = styled.div`
   width: 350px;
@@ -163,11 +167,12 @@ const DarkModeBtn = styled.button`
   }
 `;
 
-const AnalysisButton = styled(SmallButton)`
-  border: none;
+const MenuButton = styled(SmallButton)`
   background-color: inherit;
-  /* border: 2px solid ${({ theme }) => theme.color.brown};
-  background-color: ${({ theme }) => theme.color.lime}; */
+  /* background-color: ${({ theme }) => theme.color.lime}; */
+  border: none;
+  border-radius: 50%;
+  margin-left: 10px;
 `;
 
 const NewDiaryBtn = styled(SmallButton)`
@@ -202,12 +207,12 @@ const ModalBackdrop = styled.div`
 const ModalBox = styled.div.attrs((props) => ({
   role: 'dialog',
 }))`
-  border: 2px solid ${({ theme }) => theme.color.brown};
-  background-color: ${({ theme }) => theme.color.cream};
+  border: 2px solid ${({ theme }) => theme.color.hotPink};
+  background-color: ${({ theme }) => theme.color.bg};
 
   width: 180px;
   height: 90px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 
   display: flex;
   flex-direction: column;
@@ -215,8 +220,8 @@ const ModalBox = styled.div.attrs((props) => ({
   align-items: center;
 
   position: absolute;
-  top: 110px;
-  right: 10px;
+  top: 130px;
+  right: 20px;
   padding: 10px 0;
 `;
 
@@ -224,5 +229,5 @@ const ModalMenu = styled.button`
   border: none;
   background-color: inherit;
   font-size: 18px;
-  color: ${({ theme }) => theme.color.brown};
+  color: ${({ theme }) => theme.color.hotPink};
 `;

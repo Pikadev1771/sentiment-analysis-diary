@@ -5,9 +5,8 @@ export default function Footer() {
     <div>
       <FooterContainer>
         <FooterText>
-          © 2023 All Rights Reserved
-          <br />
-          BE : 신우경 최지현 FE : 김형진 박경현
+          <p> © Sentimental Analysis Diary All Rights Reserved 2023 </p>
+          <p> BE : 신우경 최지현 FE : 박경현</p>
         </FooterText>
       </FooterContainer>
     </div>
@@ -19,12 +18,22 @@ const FooterContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100px;
-  background-color: ${({ theme }) => theme.color.lightBrown};
+  height: 150px;
+
   z-index: '10';
 `;
-const FooterText = styled.p`
+const FooterText = styled.div`
+  border-top: 3px solid ${({ theme }) => theme.color.lightBrown};
+  width: 90%;
+
   text-align: center;
-  color: ${({ theme }) => theme.color.cream};
-  line-height: 1.6;
+
+  padding: 40px;
+
+  p {
+    margin: 8px;
+    color: ${({ theme }) => theme.color.lightBrown};
+    font-size: 18px;
+    font-style: italic;
+  }
 `;
