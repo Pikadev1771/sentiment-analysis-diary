@@ -70,11 +70,11 @@ const DiaryPage: NextPageWithLayout = ({ date }: any) => {
           <ContentAndAnalysis>
             <Content>
               <DateBox>
-                <h3>Date: </h3>
+                <span>Date: </span>
                 <Date value={diaryData?.createdAt} readOnly />
               </DateBox>
               <TitleBox>
-                <h3>Title:</h3>
+                <span>Title:</span>
                 <Title value={diaryData?.title} readOnly />
               </TitleBox>
               <DiaryContent value={diaryData?.content} readOnly></DiaryContent>
@@ -100,12 +100,14 @@ const DiaryPage: NextPageWithLayout = ({ date }: any) => {
               </Menu>
             </Content>
             <Analysis>
-              <Image
-                src={`/emotion/${mood?.toLowerCase() || 'soso'}.svg`}
-                width="65"
-                height="65"
-                alt="mood"
-              />
+              <ImageContainer>
+                <Image
+                  src={`/emotion/${mood?.toLowerCase() || 'soso'}.svg`}
+                  width="65"
+                  height="65"
+                  alt="mood"
+                />
+              </ImageContainer>
               <p>Mood: {mood || 'Soso'}</p>
               <p>Score: {diaryData?.emotion}</p>
             </Analysis>
@@ -131,34 +133,36 @@ const DiaryLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 120px auto;
+  margin: 100px auto;
 `;
 
 const DiaryBox = styled.div`
   width: 800px;
-  height: 610px;
-  padding: 30px;
+  height: 600px;
+  padding: 50px;
   background: ${({ theme }) => theme.color.cream};
-  border: 4px solid ${({ theme }) => theme.color.brown};
+  border: 4px solid ${({ theme }) => theme.color.lightBrown};
   border-radius: 24px;
-  box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.brown};
+  box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.lightBrown};
   font-weight: 500;
   font-size: 18px;
-  color: ${({ theme }) => theme.color.brown};
+  color: ${({ theme }) => theme.color.lightBrown};
 `;
 
 const ContentAndAnalysis = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  height: 100%;
 `;
 
 const Content = styled.div`
   width: 500px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 20px;
 `;
 
 const Analysis = styled.div`
@@ -167,34 +171,46 @@ const Analysis = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 20px;
-  padding: 10px 15px;
 
+  margin-left: 50px;
   p {
-    font-size: 20px;
+    font-size: 24px;
+    font-style: italic;
+
     font-weight: 600;
-    margin-top: 10px;
+    margin-top: 6px;
   }
+`;
+
+const ImageContainer = styled.div`
+  margin: 8px;
 `;
 
 const DateBox = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 4px;
+  margin-bottom: 10px;
+
+  span {
+    font-size: 24px;
+    width: 80px;
+    font-style: italic;
+  }
 `;
 
 const Date = styled.input`
+  width: 100%;
   display: block;
   box-sizing: border-box;
-  width: 100%;
 
   border-radius: 10px;
-  border: 4px solid ${({ theme }) => theme.color.brown};
+  border: 2px solid ${({ theme }) => theme.color.lightBrown};
   padding: 10px 15px;
 
-  color: ${({ theme }) => theme.color.brown};
+  color: ${({ theme }) => theme.color.lightBrown};
   height: 65px;
-  margin-left: 30px;
+
   background: ${({ theme }) => theme.color.pink};
   font-size: 20px;
   font-weight: 600;
@@ -205,20 +221,28 @@ const Date = styled.input`
 const TitleBox = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
+
+  span {
+    font-size: 24px;
+    width: 80px;
+    font-style: italic;
+  }
 `;
 
 const Title = styled.input`
+  width: 100%;
   display: block;
   box-sizing: border-box;
-  width: 100%;
+
   border-radius: 10px;
-  border: 4px solid ${({ theme }) => theme.color.brown};
+  border: 2px solid ${({ theme }) => theme.color.lightBrown};
   padding: 10px 15px;
 
-  color: ${({ theme }) => theme.color.brown};
+  color: ${({ theme }) => theme.color.lightBrown};
 
   height: 65px;
-  margin-left: 20px;
+
   background: ${({ theme }) => theme.color.lime};
   font-size: 20px;
   font-weight: 600;
@@ -230,15 +254,16 @@ const DiaryContent = styled.textarea`
   display: block;
   box-sizing: border-box;
   width: 100%;
-  height: 300px;
+  height: 280px;
   border-radius: 10px;
-  border: 4px solid ${({ theme }) => theme.color.brown};
+  border: 2px solid ${({ theme }) => theme.color.lightBrown};
   margin-top: 10px;
   padding: 15px;
   font-size: 18px;
-  color: ${({ theme }) => theme.color.brown};
+  color: ${({ theme }) => theme.color.lightBrown};
   background-color: inherit;
 
+  line-height: 1.4;
   resize: none;
   outline: none;
 `;

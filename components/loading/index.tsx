@@ -26,7 +26,7 @@ const LoadingIndicator = styled.div`
   width: 400px;
   height: 400px;
 
-  border: 6px solid ${({ theme }) => theme.color.brown};
+  border: 2px solid ${({ theme }) => theme.color.brown};
   border-radius: 50%;
   margin: 0 auto;
 
@@ -60,6 +60,8 @@ const Emotions = styled.div`
 `;
 const LoadingMessage = styled.p`
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.4;
   color: ${({ theme }) => theme.color.brown};
 `;

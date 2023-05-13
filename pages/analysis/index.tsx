@@ -12,7 +12,6 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import moment from 'moment';
 import Head from 'next/head';
 
-
 const LineChart = dynamic(() => import('../../components/chart/LineChart'), {
   ssr: false,
 });

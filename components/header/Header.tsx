@@ -10,7 +10,6 @@ import { useEffect, useState } from 'react';
 
 import axios from 'axios';
 
-
 export default function Header() {
   const nickName = Cookies.get('nickName');
   const isLogin = useLogin();
@@ -169,10 +168,9 @@ const DarkModeBtn = styled.button`
 `;
 
 const MenuButton = styled(SmallButton)`
-  border: none;
   background-color: inherit;
-  /* border: 2px solid ${({ theme }) => theme.color.pink}; */
   /* background-color: ${({ theme }) => theme.color.lime}; */
+  border: none;
   border-radius: 50%;
   margin-left: 10px;
 `;
@@ -214,7 +212,7 @@ const ModalBox = styled.div.attrs((props) => ({
 
   width: 180px;
   height: 90px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 
   display: flex;
   flex-direction: column;
