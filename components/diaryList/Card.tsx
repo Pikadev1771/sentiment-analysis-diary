@@ -1,8 +1,16 @@
+import { Roboto_Mono } from 'next/font/google';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useReducer } from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
+
+const roboto_mono = Roboto_Mono({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  variable: '--roboto_mono',
+  fallback: ['Open_Sans'],
+});
 
 export default function DiaryCard({ date, title, content }: any) {
   const router = useRouter();
@@ -18,7 +26,7 @@ export default function DiaryCard({ date, title, content }: any) {
           <Content>{content}</Content>
         </ContentContainer>
         <Date>
-          <p>{date}</p>
+          <p className={roboto_mono.className}>{date}</p>
         </Date>
       </Card>
     </CardContainer>
@@ -90,7 +98,7 @@ const Date = styled.div`
   width: 100%;
   text-align: right;
   p {
-    margin: 10px 18px;
+    margin: 8px 18px;
     font-size: 16px;
     font-weight: 600;
   }

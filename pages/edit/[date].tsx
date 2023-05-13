@@ -24,6 +24,7 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 
 import Loading from '../../components/loading';
+import { Roboto_Mono } from 'next/font/google';
 
 interface DiaryDataProps {
   diaryId: number;
@@ -40,6 +41,13 @@ type DiaryFormProps = {
   title: string;
   content: string;
 };
+
+const roboto_mono = Roboto_Mono({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  variable: '--roboto_mono',
+  fallback: ['Open_Sans'],
+});
 
 export async function getServerSideProps(context: any) {
   const { date } = context.params;
@@ -89,6 +97,7 @@ const EditPage: NextPageWithLayout = ({ date, diaryData }: any) => {
                   <span>Date: </span>
                   <Date
                     {...register('createdAt', { required: true })}
+                    className={roboto_mono.className}
                     value={diaryData?.createdAt}
                     readOnly
                   />
