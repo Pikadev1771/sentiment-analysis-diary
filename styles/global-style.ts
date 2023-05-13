@@ -18,7 +18,7 @@ html,
     height: 100%;
     letter-spacing: -1px;
     font-size: 15px;
-    background-color: #EFEEE3;
+    background-color: #e8e7dc;
   
   }
 

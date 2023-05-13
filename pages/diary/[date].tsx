@@ -153,8 +153,8 @@ const DiaryBox = styled.div`
   height: 600px;
   padding: 50px;
   background: ${({ theme }) => theme.color.cream};
-  border: 4px solid ${({ theme }) => theme.color.lightBrown};
-  border-radius: 24px;
+  border: 3px solid ${({ theme }) => theme.color.lightBrown};
+  /* border-radius: 24px; */
   box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.lightBrown};
   font-weight: 500;
   font-size: 18px;
@@ -217,7 +217,8 @@ const Date = styled.input`
   box-sizing: border-box;
 
   border-radius: 10px;
-  border: 2px solid ${({ theme }) => theme.color.lightBrown};
+  border: 3px solid ${({ theme }) => theme.color.lightBrown};
+  background: ${({ theme }) => theme.color.pink};
   padding: 10px 15px;
 
   color: ${({ theme }) => theme.color.lightBrown};
@@ -248,7 +249,7 @@ const Title = styled.input`
   box-sizing: border-box;
 
   border-radius: 10px;
-  border: 2px solid ${({ theme }) => theme.color.lightBrown};
+  border: 3px solid ${({ theme }) => theme.color.lightBrown};
   padding: 10px 15px;
 
   color: ${({ theme }) => theme.color.lightBrown};
@@ -268,12 +269,12 @@ const DiaryContent = styled.textarea`
   width: 100%;
   height: 280px;
   border-radius: 10px;
-  border: 2px solid ${({ theme }) => theme.color.lightBrown};
+  border: 3px solid ${({ theme }) => theme.color.lightBrown};
   margin-top: 10px;
   padding: 15px;
   font-size: 18px;
   color: ${({ theme }) => theme.color.lightBrown};
-  background-color: inherit;
+  background-color: ${({ theme }) => theme.color.cream};
 
   line-height: 1.4;
   resize: none;

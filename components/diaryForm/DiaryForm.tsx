@@ -7,12 +7,20 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { createDiary } from '../../api/diary';
 import Loading from '../loading';
+import { Roboto_Mono } from 'next/font/google';
 
 type DiaryFormProps = {
   createdAt: string;
   title: string;
   content: string;
 };
+
+const roboto_mono = Roboto_Mono({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  variable: '--roboto_mono',
+  fallback: ['Open_Sans'],
+});
 
 export default function DiaryForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -54,6 +62,7 @@ export default function DiaryForm() {
           <span>Date: </span>
           <DiaryInput
             {...register('createdAt', { required: true })}
+            className={roboto_mono.className}
             id={'diaryDate'}
             value={router.query.date}
             readOnly
@@ -88,7 +97,7 @@ const Form = styled.form`
   height: 620px;
   padding: 45px;
   background: ${({ theme }) => theme.color.cream};
-  border: 2px solid ${({ theme }) => theme.color.brown};
+  border: 3px solid ${({ theme }) => theme.color.brown};
   box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.brown};
   /* border-radius: 24px; */
   font-weight: 500;
@@ -121,7 +130,7 @@ const DiaryInput = styled.input`
   box-sizing: border-box;
   width: 100%;
 
-  /* border-radius: 10px; */
+  border-radius: 10px;
   border: 2px solid ${({ theme }) => theme.color.brown};
   padding: 10px 15px;
   font-size: 16px;
@@ -175,7 +184,7 @@ const DiaryTextarea = styled.textarea`
   box-sizing: border-box;
   width: 100%;
   height: 250px;
-  /* border-radius: 10px; */
+  border-radius: 10px;
   border: 2px solid ${({ theme }) => theme.color.brown};
   margin-top: 10px;
   padding: 10px 15px;

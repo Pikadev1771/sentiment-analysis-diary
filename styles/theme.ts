@@ -12,6 +12,6 @@ export const theme: DefaultTheme = {
     blue: '#17A1FA',
     red: '#E73B3B',
     lightBrown: '#79685f',
-    bg: '#EFEEE3',
+    bg: '#e8e7dc',
   },
 };

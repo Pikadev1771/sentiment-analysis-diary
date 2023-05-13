@@ -162,7 +162,7 @@ const Container = styled.div`
     width: 100%;
     height: 520px;
     background: ${({ theme }) => theme.color.cream};
-    border: 2px solid ${({ theme }) => theme.color.brown};
+    border: 3px solid ${({ theme }) => theme.color.brown};
     box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.brown};
     /* border-radius: 24px; */
     font-weight: 500;
@@ -187,7 +187,7 @@ const Container = styled.div`
   // 상단 내비게이션(년, 월)
   .react-calendar__navigation {
     background: ${({ theme }) => theme.color.hotPink};
-    border-bottom: 2px solid ${({ theme }) => theme.color.brown};
+    border-bottom: 3px solid ${({ theme }) => theme.color.brown};
     height: 90px;
     /* border-radius: 20px 20px 0 0; */
 
