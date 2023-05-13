@@ -114,7 +114,7 @@ const EditPage: NextPageWithLayout = ({ date, diaryData }: any) => {
                   defaultValue={diaryData?.content}
                 ></DiaryContent>
                 <Menu>
-                  <SubmitBtn type="submit" value={'Submit'} />
+                  <SubmitBtn>SUBMIT</SubmitBtn>
                 </Menu>
               </Content>
             </ContentAndAnalysis>
@@ -149,10 +149,10 @@ const DiaryLayout = styled.div`
 `;
 
 const DiaryBox = styled.div`
-  width: 800px;
-  height: 610px;
-  padding: 50px;
-  background: ${({ theme }) => theme.color.cream};
+  width: 1000px;
+  height: 700px;
+  padding: 90px;
+  background: ${({ theme }) => theme.color.lime};
   border: 3px solid ${({ theme }) => theme.color.lightBrown};
   /* border-radius: 24px; */
   box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.lightBrown};
@@ -209,19 +209,21 @@ const Date = styled.input`
   width: 100%;
   display: block;
   box-sizing: border-box;
-
-  border-radius: 10px;
-  border: 3px solid ${({ theme }) => theme.color.lightBrown};
-  padding: 10px 15px;
-
-  color: ${({ theme }) => theme.color.lightBrown};
   height: 65px;
-
-  background: ${({ theme }) => theme.color.pink};
-  font-size: 20px;
-  font-weight: 600;
   text-align: center;
   outline: none;
+  padding: 10px;
+  background: ${({ theme }) => theme.color.cream};
+  border: 4px solid ${({ theme }) => theme.color.lightBrown};
+  box-shadow: 4px 4px 0px 0px ${({ theme }) => theme.color.lightBrown};
+  border-radius: 14px;
+  font-weight: 500;
+  font-size: 18px;
+  color: ${({ theme }) => theme.color.lightBrown};
+
+  :focus {
+    outline: none;
+  }
 `;
 
 const TitleBox = styled.div`
@@ -241,19 +243,23 @@ const Title = styled.input`
   display: block;
   box-sizing: border-box;
 
-  border-radius: 10px;
-  border: 3px solid ${({ theme }) => theme.color.lightBrown};
-  padding: 10px 15px;
-
-  color: ${({ theme }) => theme.color.lightBrown};
-
   height: 65px;
 
-  background: ${({ theme }) => theme.color.lime};
-  font-size: 20px;
-  font-weight: 600;
   text-align: center;
   outline: none;
+
+  padding: 10px;
+  background: ${({ theme }) => theme.color.cream};
+  border: 4px solid ${({ theme }) => theme.color.lightBrown};
+  box-shadow: 4px 4px 0px 0px ${({ theme }) => theme.color.lightBrown};
+  border-radius: 14px;
+  font-weight: 500;
+  font-size: 18px;
+  color: ${({ theme }) => theme.color.lightBrown};
+
+  :focus {
+    outline: none;
+  }
 `;
 
 const DiaryContent = styled.textarea`
@@ -261,17 +267,27 @@ const DiaryContent = styled.textarea`
   box-sizing: border-box;
   width: 100%;
   height: 280px;
-  border-radius: 10px;
-  border: 3px solid ${({ theme }) => theme.color.lightBrown};
+
   margin-top: 10px;
-  padding: 15px;
-  font-size: 18px;
-  color: ${({ theme }) => theme.color.lightBrown};
-  background-color: white;
 
   line-height: 1.4;
   resize: none;
   outline: none;
+
+  outline: none;
+
+  padding: 20px;
+  background: ${({ theme }) => theme.color.white};
+  border: 4px solid ${({ theme }) => theme.color.lightBrown};
+  box-shadow: 4px 4px 0px 0px ${({ theme }) => theme.color.lightBrown};
+  border-radius: 14px;
+  font-weight: 400;
+  font-size: 18px;
+  color: ${({ theme }) => theme.color.lightBrown};
+
+  :focus {
+    outline: none;
+  }
 `;
 
 const Menu = styled.div`
@@ -283,18 +299,13 @@ const Menu = styled.div`
   margin-top: 10px;
 `;
 
-const SubmitBtn = styled.input`
-  padding: 10px;
-  border: 2px solid ${({ theme }) => theme.color.lightBrown};
-  border-radius: 10px;
-  color: ${({ theme }) => theme.color.lightBrown};
-  background-color: ${({ theme }) => theme.color.cream};
-  font-size: 16px;
+const SubmitBtn = styled(SmallButton)`
+  background: ${({ theme }) => theme.color.pink};
+  color: ${({ theme }) => theme.color.brown};
+  border: 2px solid ${({ theme }) => theme.color.brown};
+  text-transform: uppercase;
+
   font-weight: 600;
-  margin-left: 8px;
-  :hover {
-    cursor: pointer;
-  }
 `;
 
 const ModalBackdrop = styled.div`

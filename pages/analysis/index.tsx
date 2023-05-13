@@ -220,7 +220,7 @@ const Input = styled.input`
       color: ${({ theme }) => theme.color.brown};
       border: 3px solid ${({ theme }) => theme.color.brown};
       text-transform: uppercase;
-      font-weight: 400;
+
       font-weight: 600;
     `}
 

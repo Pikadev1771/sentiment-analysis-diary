@@ -91,7 +91,7 @@ const DiaryPage: NextPageWithLayout = ({ date }: any) => {
               </TitleBox>
               <DiaryContent value={diaryData?.content} readOnly></DiaryContent>
               <Menu>
-                <SmallButton
+                <MenuBtn
                   onClick={() => {
                     router.push(
                       {
@@ -105,10 +105,10 @@ const DiaryPage: NextPageWithLayout = ({ date }: any) => {
                   }}
                 >
                   Edit
-                </SmallButton>
-                <SmallButton onClick={() => handleDelete(diaryData?.diaryId)}>
+                </MenuBtn>
+                <MenuBtn onClick={() => handleDelete(diaryData?.diaryId)}>
                   Delete
-                </SmallButton>
+                </MenuBtn>
               </Menu>
             </Content>
             <Analysis>
@@ -149,10 +149,10 @@ const DiaryLayout = styled.div`
 `;
 
 const DiaryBox = styled.div`
-  width: 800px;
-  height: 600px;
-  padding: 50px;
-  background: ${({ theme }) => theme.color.cream};
+  width: 1000px;
+  height: 700px;
+  padding: 90px;
+  background: ${({ theme }) => theme.color.lime};
   border: 3px solid ${({ theme }) => theme.color.lightBrown};
   /* border-radius: 24px; */
   box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.lightBrown};
@@ -179,10 +179,19 @@ const Content = styled.div`
 
 const Analysis = styled.div`
   width: 220px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 4px solid ${({ theme }) => theme.color.lightBrown};
+  background: ${({ theme }) => theme.color.cream};
+
+  box-shadow: 4px 4px 0px 0px ${({ theme }) => theme.color.lightBrown};
+  border-radius: 14px;
+  font-weight: 500;
+  font-size: 18px;
+  color: ${({ theme }) => theme.color.lightBrown};
 
   margin-left: 50px;
   p {
@@ -197,7 +206,7 @@ const Analysis = styled.div`
 const ImageContainer = styled.div`
   margin: 8px;
 
-  /* position: relative;
+  position: relative;
   animation: fadeInTop 1s;
 
   @keyframes fadeInTop {
@@ -209,12 +218,12 @@ const ImageContainer = styled.div`
       opacity: 1;
       transform: translateZ(0);
     }
-  } */
+  }
 
-  animation: bounce_frames 0.5s;
+  /* animation: bounce_frames 0.5s;
   animation-direction: alternate;
   animation-timing-function: cubic-bezier(0.5, 0.05, 1, 0.5);
-  animation-iteration-count: 3;
+  animation-iteration-count: 5;
 
   @keyframes bounce_frames {
     from {
@@ -223,7 +232,7 @@ const ImageContainer = styled.div`
     to {
       transform: translate3d(0, 0, 0);
     }
-  }
+  } */
 `;
 
 const DateBox = styled.div`
@@ -243,20 +252,21 @@ const Date = styled.input`
   width: 100%;
   display: block;
   box-sizing: border-box;
-
-  border-radius: 10px;
-  border: 3px solid ${({ theme }) => theme.color.lightBrown};
-  background: ${({ theme }) => theme.color.pink};
-  padding: 10px 15px;
-
-  color: ${({ theme }) => theme.color.lightBrown};
   height: 65px;
-
-  background: ${({ theme }) => theme.color.pink};
-  font-size: 20px;
-  font-weight: 600;
   text-align: center;
   outline: none;
+  padding: 10px;
+  background: ${({ theme }) => theme.color.cream};
+  border: 4px solid ${({ theme }) => theme.color.lightBrown};
+  box-shadow: 4px 4px 0px 0px ${({ theme }) => theme.color.lightBrown};
+  border-radius: 14px;
+  font-weight: 500;
+  font-size: 18px;
+  color: ${({ theme }) => theme.color.lightBrown};
+
+  :focus {
+    outline: none;
+  }
 `;
 
 const TitleBox = styled.div`
@@ -276,19 +286,23 @@ const Title = styled.input`
   display: block;
   box-sizing: border-box;
 
-  border-radius: 10px;
-  border: 3px solid ${({ theme }) => theme.color.lightBrown};
-  padding: 10px 15px;
-
-  color: ${({ theme }) => theme.color.lightBrown};
-
   height: 65px;
 
-  background: ${({ theme }) => theme.color.lime};
-  font-size: 20px;
-  font-weight: 600;
   text-align: center;
   outline: none;
+
+  padding: 10px;
+  background: ${({ theme }) => theme.color.cream};
+  border: 4px solid ${({ theme }) => theme.color.lightBrown};
+  box-shadow: 4px 4px 0px 0px ${({ theme }) => theme.color.lightBrown};
+  border-radius: 14px;
+  font-weight: 500;
+  font-size: 18px;
+  color: ${({ theme }) => theme.color.lightBrown};
+
+  :focus {
+    outline: none;
+  }
 `;
 
 const DiaryContent = styled.textarea`
@@ -296,17 +310,27 @@ const DiaryContent = styled.textarea`
   box-sizing: border-box;
   width: 100%;
   height: 280px;
-  border-radius: 10px;
-  border: 3px solid ${({ theme }) => theme.color.lightBrown};
+
   margin-top: 10px;
-  padding: 15px;
-  font-size: 18px;
-  color: ${({ theme }) => theme.color.lightBrown};
-  background-color: ${({ theme }) => theme.color.cream};
 
   line-height: 1.4;
   resize: none;
   outline: none;
+
+  outline: none;
+
+  padding: 20px;
+  background: ${({ theme }) => theme.color.cream};
+  border: 4px solid ${({ theme }) => theme.color.lightBrown};
+  box-shadow: 4px 4px 0px 0px ${({ theme }) => theme.color.lightBrown};
+  border-radius: 14px;
+  font-weight: 400;
+  font-size: 18px;
+  color: ${({ theme }) => theme.color.lightBrown};
+
+  :focus {
+    outline: none;
+  }
 `;
 
 const Menu = styled.div`
@@ -316,4 +340,13 @@ const Menu = styled.div`
   justify-content: flex-end;
   align-items: center;
   margin-top: 10px;
+`;
+
+const MenuBtn = styled(SmallButton)`
+  background: ${({ theme }) => theme.color.pink};
+  color: ${({ theme }) => theme.color.brown};
+  border: 2px solid ${({ theme }) => theme.color.brown};
+  text-transform: uppercase;
+
+  font-weight: 600;
 `;
