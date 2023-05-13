@@ -9,17 +9,17 @@
 
 ## 사용 예시
 
-### 로그인
+### 회원 가입 및 로그인
 
-<img width="100%" src="https://user-images.githubusercontent.com/111509842/238053545-47878614-65bf-4192-899a-09cb3d4d24dd.gif" />
+<img width="100%" src="https://user-images.githubusercontent.com/111509842/238153964-02c52bb7-ccb6-4ea6-8165-bcba82be2047.gif" />
 <br>
 
-### 다이어리 생성
+### 다이어리 생성 및 수정, 로딩
 
-<img width="100%" src="https://user-images.githubusercontent.com/111509842/238053820-0e856494-ff8d-4ef7-bbcc-5568a4b76f8d.gif" />
+<img width="100%" src="https://user-images.githubusercontent.com/111509842/238153968-15397490-bf9b-4907-9167-d2f20d53ee2e.gif" />
 <br>
 
 ### 기간별 감정 분석 차트, 키워드 분석
 
-<img width="100%" src="https://user-images.githubusercontent.com/111509842/238053906-f3772b92-4ade-4436-8e8d-88082af88f0e.gif" />
+<img width="100%" src="https://user-images.githubusercontent.com/111509842/238153971-b64c6eb4-4a58-4099-8042-cbbee61b8988.gif" />
 <br>
