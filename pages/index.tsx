@@ -39,8 +39,10 @@ const MainContainer = styled.div`
   justify-content: center;
 
   @media screen and (max-width: 672px) {
+    width: 100%;
     flex-direction: column;
     align-items: center;
+    padding: 80px 0;
   }
 `;
 
@@ -52,6 +54,11 @@ const Left = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 672px) {
+    width: 100vw;
+    height: 100%;
+  }
 `;
 
 const Right = styled(Left)``;

@@ -59,6 +59,11 @@ const Container = styled.div`
   align-items: center;
   align-content: center;
   flex-wrap: wrap;
+
+  @media screen and (max-width: 672px) {
+    height: 100%;
+    flex-direction: column;
+  }
 `;
 
 const ListHeader = styled.div`
@@ -67,6 +72,11 @@ const ListHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 8px 0 8px;
+
+  @media screen and (max-width: 672px) {
+    justify-content: center;
+    margin: 40px 0 15px 0;
+  }
 `;
 const Title = styled.span`
   margin: 10px;
@@ -97,6 +107,10 @@ const List = styled.div`
   align-content: center;
   /* align-content: flex-start; */
   flex-wrap: wrap;
+
+  @media screen and (max-width: 672px) {
+    justify-content: center;
+  }
 `;
 
 const ShowMoreBtn = styled.button`
