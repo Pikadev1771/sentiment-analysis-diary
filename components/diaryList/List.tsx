@@ -108,6 +108,10 @@ const List = styled.div`
   /* align-content: flex-start; */
   flex-wrap: wrap;
 
+  @media screen and (max-width: 1100px) {
+    justify-content: center;
+  }
+
   @media screen and (max-width: 672px) {
     justify-content: center;
   }

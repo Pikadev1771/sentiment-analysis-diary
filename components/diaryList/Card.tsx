@@ -58,6 +58,13 @@ const Card = styled.div`
   justify-content: center;
   align-items: center;
 
+  @media screen and (max-width: 1250px) {
+    width: 100%;
+    height: 60px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   @media screen and (max-width: 672px) {
     width: 80vw;
     height: 140px;
@@ -78,6 +85,12 @@ const DiaryTitle = styled.p`
   -webkit-line-clamp: 1; // 원하는 라인수
   -webkit-box-orient: vertical;
 
+  @media screen and (max-width: 1250px) {
+    font-size: 14px;
+    width: 70px;
+    text-align: left;
+  }
+
   @media screen and (max-width: 672px) {
     font-size: 14px;
   }
@@ -90,6 +103,12 @@ const ContentContainer = styled.div`
   border: 2px solid ${({ theme }) => theme.color.brown};
   border-radius: 4px;
   padding: 10px;
+
+  @media screen and (max-width: 1250px) {
+    width: 140px;
+    height: 40px;
+    text-align: left;
+  }
 
   @media screen and (max-width: 672px) {
     width: 85%;
@@ -108,6 +127,11 @@ const Content = styled.div`
   text-align: left;
   line-height: 1.4;
 
+  @media screen and (max-width: 1250px) {
+    font-size: 12px;
+    -webkit-line-clamp: 1;
+  }
+
   @media screen and (max-width: 672px) {
     font-size: 12px;
   }
@@ -116,10 +140,22 @@ const Content = styled.div`
 const Date = styled.div`
   width: 100%;
   text-align: right;
+  @media screen and (max-width: 1250px) {
+    width: 40%;
+
+    text-align: center;
+  }
+
   p {
     margin: 8px 18px;
     font-size: 16px;
     font-weight: 600;
+
+    @media screen and (max-width: 1250px) {
+      font-size: 12px;
+      text-align: center;
+      margin: 0;
+    }
 
     @media screen and (max-width: 672px) {
       font-size: 11px;
