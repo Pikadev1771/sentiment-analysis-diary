@@ -5,7 +5,7 @@ export default function Footer() {
     <div>
       <FooterContainer>
         <FooterText>
-          <p> © Sentimental Analysis Diary All Rights Reserved 2023 </p>
+          <p> © Sentiment Analysis Diary All Rights Reserved 2023 </p>
           <p> BE : 신우경 최지현 FE : 박경현</p>
         </FooterText>
       </FooterContainer>
