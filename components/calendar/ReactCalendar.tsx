@@ -170,8 +170,8 @@ const Container = styled.div`
     color: ${({ theme }) => theme.color.brown};
 
     @media screen and (max-width: 672px) {
-      width: 85vw;
-      height: 60vh;
+      width: 80vw;
+      height: 100%;
       font-size: 10px;
     }
 
@@ -224,6 +224,10 @@ const Container = styled.div`
       color: ${({ theme }) => theme.color.brown};
       font-size: 16px;
       font-weight: 500;
+
+      @media screen and (max-width: 672px) {
+        font-size: 13px;
+      }
     }
   }
 
@@ -233,6 +237,10 @@ const Container = styled.div`
       // 텍스트
       font-size: 18px;
       font-weight: 900;
+
+      @media screen and (max-width: 672px) {
+        font-size: 13px;
+      }
     }
   }
 

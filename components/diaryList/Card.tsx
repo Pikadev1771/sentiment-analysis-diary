@@ -60,7 +60,7 @@ const Card = styled.div`
 
   @media screen and (max-width: 672px) {
     width: 80vw;
-    height: 130px;
+    height: 140px;
     padding: 4px;
   }
 `;

@@ -39,7 +39,7 @@ export default function Header() {
         </Logo>
         <LogoMobile>
           <Link href={'/'}>
-            <Image src="/logo/SAND.svg" width="300" height="200" alt="HOME" />
+            <Image src="/logo/SAND.svg" width="300" height="180" alt="HOME" />
           </Link>
         </LogoMobile>
         <Menu>
@@ -138,7 +138,7 @@ const HeaderContainer = styled.div`
   position: relative;
 
   @media screen and (max-width: 672px) {
-    height: 240px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -165,7 +165,7 @@ const LogoMobile = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+
     /* border: 4px solid red; */
   }
 `;
@@ -175,6 +175,10 @@ const Menu = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (max-width: 672px) {
+    height: 100%;
+  }
 `;
 
 const LoginBtn = styled(SmallButton)`
@@ -253,7 +257,7 @@ const ModalBox = styled.div.attrs((props) => ({
     flex-direction: row;
     width: 55vw;
     height: 50px;
-    top: 255px;
+    top: 240px;
     right: 30px;
 
     padding: 10px 0;
