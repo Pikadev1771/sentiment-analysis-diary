@@ -75,7 +75,7 @@ const ListHeader = styled.div`
 
   @media screen and (max-width: 672px) {
     justify-content: center;
-    margin: 40px 0 15px 0;
+    margin-bottom: 15px;
   }
 `;
 const Title = styled.span`

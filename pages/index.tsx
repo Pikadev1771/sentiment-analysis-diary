@@ -12,6 +12,7 @@ import type { NextPageWithLayout } from './_app';
 import Cookies from 'js-cookie';
 import GoLogin from '../components/goLogin/GoLogin';
 import useLogin from '../hooks/useLogin';
+import MobileGoLogin from '../components/goLogin/MobileGoLogin';
 
 const Home: NextPageWithLayout = () => {
   const isLogin = useLogin();
@@ -25,6 +26,7 @@ const Home: NextPageWithLayout = () => {
       <div>
         <MainContainer>
           <Left>
+            {!isLogin && <MobileGoLogin />}
             <ReactCalendar />
           </Left>
           <Right>{isLogin ? <DiaryList /> : <GoLogin />}</Right>
@@ -42,7 +44,7 @@ const MainContainer = styled.div`
     width: 100%;
     flex-direction: column;
     align-items: center;
-    padding: 80px 0;
+    padding: 20px 0 45px 0;
   }
 `;
 
@@ -58,10 +60,16 @@ const Left = styled.div`
   @media screen and (max-width: 672px) {
     width: 100vw;
     height: 100%;
+    flex-direction: column;
+    padding: 10px 0;
   }
 `;
 
-const Right = styled(Left)``;
+const Right = styled(Left)`
+  @media screen and (max-width: 672px) {
+    margin-top: 20px;
+  }
+`;
 
 Home.getLayout = function getLayout(page: ReactElement) {
   return (

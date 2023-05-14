@@ -19,10 +19,10 @@ const GoLogin = () => {
       </Title>
       <ButtonContainer>
         <LogInBtn onClick={() => router.push('/login')}>Log In</LogInBtn>
-        <GoToLogin>
+        <GoToSignup>
           아직 회원이 아니신가요?
           <LinkBtn onClick={() => router.push('/signup')}>Sign Up</LinkBtn>
-        </GoToLogin>
+        </GoToSignup>
       </ButtonContainer>
     </Box>
   );
@@ -44,7 +44,10 @@ const Box = styled.div`
   padding: 30px;
 
   @media screen and (max-width: 672px) {
-    width: 100vw;
+    display: none;
+    width: 80vw;
+    margin: 0 auto;
+    height: 270px;
   }
 `;
 
@@ -55,12 +58,22 @@ const Title = styled.div`
   font-weight: 600;
   font-style: italic;
   line-height: 1.5;
+
+  @media screen and (max-width: 672px) {
+    font-size: 14px;
+  }
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin-top: 20px;
+
+  @media screen and (max-width: 672px) {
+    margin-top: 0;
+  }
 `;
 
 const LogInBtn = styled.button`
@@ -80,22 +93,35 @@ const LogInBtn = styled.button`
   }
 
   @media screen and (max-width: 672px) {
-    width: 90%;
+    width: 100%;
+    height: 50px;
+    border: 2px solid ${({ theme }) => theme.color.brown};
+    font-size: 16px;
   }
 `;
 
-const GoToLogin = styled.div`
+const GoToSignup = styled.div`
   font-weight: 400;
   color: ${({ theme }) => theme.color.brown};
   font-size: 16px;
   margin: 20px auto;
   text-align: center;
+
+  @media screen and (max-width: 672px) {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+  }
 `;
 
 const LinkBtn = styled.button`
   width: 90px;
   height: 30px;
-  margin-left: 8px;
+  /* margin-left: 8px; */
+  margin: 10px 0 0 8px;
   border: 2px solid ${({ theme }) => theme.color.brown};
   border-radius: 10px;
   color: ${({ theme }) => theme.color.brown};

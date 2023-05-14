@@ -35,5 +35,9 @@ const FooterText = styled.div`
     color: ${({ theme }) => theme.color.lightBrown};
     font-size: 18px;
     font-style: italic;
+
+    @media screen and (max-width: 672px) {
+      font-size: 12px;
+    }
   }
 `;
