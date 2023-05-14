@@ -68,6 +68,8 @@ const Card = styled.div`
   @media screen and (max-width: 672px) {
     width: 80vw;
     height: 140px;
+    flex-direction: column;
+    justify-content: center;
     padding: 4px;
   }
 `;
@@ -92,6 +94,8 @@ const DiaryTitle = styled.p`
   }
 
   @media screen and (max-width: 672px) {
+    width: 100px;
+    text-align: center;
     font-size: 14px;
   }
 `;
@@ -134,6 +138,7 @@ const Content = styled.div`
 
   @media screen and (max-width: 672px) {
     font-size: 12px;
+    -webkit-line-clamp: 2;
   }
 `;
 
@@ -142,8 +147,11 @@ const Date = styled.div`
   text-align: right;
   @media screen and (max-width: 1250px) {
     width: 40%;
-
     text-align: center;
+  }
+  @media screen and (max-width: 672px) {
+    width: 100%;
+    text-align: right;
   }
 
   p {
@@ -159,6 +167,8 @@ const Date = styled.div`
 
     @media screen and (max-width: 672px) {
       font-size: 11px;
+      text-align: right;
+      margin: 8px 28px;
     }
   }
 `;
