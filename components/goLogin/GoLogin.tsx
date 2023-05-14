@@ -43,11 +43,13 @@ const Box = styled.div`
   background-color: ${({ theme }) => theme.color.lime};
   padding: 30px;
 
-  @media screen and (max-width: 672px) {
-    display: none;
+  @media screen and (max-width: 1100px) {
     width: 80vw;
     margin: 0 auto;
-    height: 270px;
+  }
+
+  @media screen and (max-width: 672px) {
+    display: none;
   }
 `;
 
@@ -59,8 +61,8 @@ const Title = styled.div`
   font-style: italic;
   line-height: 1.5;
 
-  @media screen and (max-width: 672px) {
-    font-size: 14px;
+  @media screen and (max-width: 1100px) {
+    font-size: 16px;
   }
 `;
 
@@ -71,7 +73,7 @@ const ButtonContainer = styled.div`
   align-items: center;
   margin-top: 20px;
 
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 1100px) {
     margin-top: 0;
   }
 `;
@@ -92,11 +94,22 @@ const LogInBtn = styled.button`
     cursor: pointer;
   }
 
-  @media screen and (max-width: 672px) {
-    width: 100%;
-    height: 50px;
+  @media screen and (max-width: 1100px) {
+    width: 120px;
+    height: 40px;
+    padding: 0;
+    /* margin-left: 8px; */
+    margin: 10px 0 0 8px;
     border: 2px solid ${({ theme }) => theme.color.brown};
+    border-radius: 10px;
+    color: ${({ theme }) => theme.color.brown};
+    background-color: ${({ theme }) => theme.color.pink};
     font-size: 16px;
+    font-weight: 600;
+    /* text-decoration: underline; */
+    :hover {
+      cursor: pointer;
+    }
   }
 `;
 
@@ -107,13 +120,13 @@ const GoToSignup = styled.div`
   margin: 20px auto;
   text-align: center;
 
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 1100px) {
     font-size: 14px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 10px auto;
+    margin: 30px auto;
   }
 `;
 
