@@ -138,8 +138,12 @@ const AnalysisPage: NextPageWithLayout = () => {
             <Input type="submit" value={'검색'} />
           </Form>
           <LineChart data={lineChartData} />
-          <ChartTitle>키워드 분석</ChartTitle>
-          <BubbleChart data={bubbleChartData} />
+          {bubbleArr.length > 0 && (
+            <>
+              <ChartTitle>키워드 분석</ChartTitle>
+              <BubbleChart data={bubbleChartData} />
+            </>
+          )}
         </ChartBox>
       </ChartLayout>
     </>

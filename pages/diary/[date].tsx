@@ -120,8 +120,8 @@ const DiaryPage: NextPageWithLayout = ({ date }: any) => {
                   alt="mood"
                 />
               </ImageContainer>
-              <p>Mood: {mood || 'Soso'}</p>
-              <p>Score: {diaryData?.emotion}</p>
+              {diaryData && <p>Mood: {mood || 'Soso'}</p>}
+              {diaryData && <p>Score: {diaryData?.emotion}</p>}
             </Analysis>
           </ContentAndAnalysis>
         </DiaryBox>
