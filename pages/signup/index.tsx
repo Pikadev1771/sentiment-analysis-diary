@@ -278,6 +278,10 @@ const Form = styled.form`
   border: 3px solid ${({ theme }) => theme.color.brown};
   border-radius: 20px;
   background-color: ${({ theme }) => theme.color.lime};
+
+  @media screen and (max-width: 672px) {
+    width: 90%;
+  }
 `;
 
 const InputSet = styled.div`
@@ -308,6 +312,11 @@ const Input = styled.input`
 
   :focus {
     outline: none;
+  }
+
+  @media screen and (max-width: 672px) {
+    width: 100%;
+    font-size: 14px;
   }
 `;
 
@@ -401,6 +410,11 @@ const LogInBtn = styled.input`
   font-weight: 600;
   :hover {
     cursor: pointer;
+  }
+
+  @media screen and (max-width: 672px) {
+    width: 100%;
+    font-size: 16px;
   }
 `;
 
