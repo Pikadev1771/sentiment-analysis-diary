@@ -99,7 +99,7 @@ const Form = styled.form`
 
   background: ${({ theme }) => theme.color.lime};
   border: 3px solid ${({ theme }) => theme.color.lightBrown};
-  /* border-radius: 24px; */
+  border-radius: 24px;
   box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.lightBrown};
   font-weight: 500;
   font-size: 18px;
