@@ -37,6 +37,11 @@ export default function Header() {
             <Image src="/logo/SAND.svg" width="400" height="250" alt="HOME" />
           </Link>
         </Logo>
+        <LogoMobile>
+          <Link href={'/'}>
+            <Image src="/logo/SAND.svg" width="300" height="200" alt="HOME" />
+          </Link>
+        </LogoMobile>
         <Menu>
           {
             isLogin ? (
@@ -104,7 +109,6 @@ export default function Header() {
         {isModalOpen && <ModalBackdrop onClick={openModalHandler} />}
         {isModalOpen ? (
           <ModalBox onClick={(event) => event.stopPropagation()}>
-            <ModalMenu onClick={handleLogOut}>로그아웃</ModalMenu>
             <ModalMenu
               onClick={() => {
                 router.push('/analysis');
@@ -112,7 +116,8 @@ export default function Header() {
               }}
             >
               분석 페이지
-            </ModalMenu>
+            </ModalMenu>{' '}
+            <ModalMenu onClick={handleLogOut}>로그아웃</ModalMenu>
           </ModalBox>
         ) : null}
       </HeaderContainer>
@@ -131,24 +136,44 @@ const HeaderContainer = styled.div`
   padding: 0 60px;
   z-index: '10';
   position: relative;
+
+  @media screen and (max-width: 672px) {
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0;
+  }
 `;
 
 const Logo = styled.div`
   padding: 20px 0;
+
+  @media screen and (max-width: 672px) {
+    display: none;
+  }
 `;
-// const Logo = styled(SmallButton)`
-//   font-size: 24px;
-//   font-weight: 400;
-//   color: ${({ theme }) => theme.color.cream};
-//   border: none;
-//   background-color: inherit;
-// `;
+
+const LogoMobile = styled.div`
+  display: none;
+
+  @media screen and (max-width: 672px) {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    /* border: 4px solid red; */
+  }
+`;
 
 const Menu = styled.div`
-  width: 350px;
-  font-size: 18x;
+  width: 180px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -223,6 +248,16 @@ const ModalBox = styled.div.attrs((props) => ({
   top: 130px;
   right: 20px;
   padding: 10px 0;
+
+  @media screen and (max-width: 672px) {
+    flex-direction: row;
+    width: 55vw;
+    height: 50px;
+    top: 255px;
+    right: 30px;
+
+    padding: 10px 0;
+  }
 `;
 
 const ModalMenu = styled.button`

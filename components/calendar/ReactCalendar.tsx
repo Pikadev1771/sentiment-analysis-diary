@@ -155,7 +155,7 @@ const Container = styled.div`
   margin: 0 auto;
 
   @media screen and (max-width: 672px) {
-    max-width: 70vw;
+    width: 100%;
   }
 
   .react-calendar {
@@ -168,6 +168,12 @@ const Container = styled.div`
     font-weight: 500;
     font-size: 18px;
     color: ${({ theme }) => theme.color.brown};
+
+    @media screen and (max-width: 672px) {
+      width: 85vw;
+      height: 60vh;
+      font-size: 10px;
+    }
 
     .dot {
       height: 8px;

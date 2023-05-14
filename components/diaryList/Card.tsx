@@ -57,6 +57,12 @@ const Card = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 672px) {
+    width: 80vw;
+    height: 130px;
+    padding: 4px;
+  }
 `;
 
 const DiaryTitle = styled.p`
@@ -71,6 +77,10 @@ const DiaryTitle = styled.p`
   display: -webkit-box;
   -webkit-line-clamp: 1; // 원하는 라인수
   -webkit-box-orient: vertical;
+
+  @media screen and (max-width: 672px) {
+    font-size: 14px;
+  }
 `;
 
 const ContentContainer = styled.div`
@@ -80,6 +90,11 @@ const ContentContainer = styled.div`
   border: 2px solid ${({ theme }) => theme.color.brown};
   border-radius: 4px;
   padding: 10px;
+
+  @media screen and (max-width: 672px) {
+    width: 85%;
+    height: 54px;
+  }
 `;
 const Content = styled.div`
   display: -webkit-box;
@@ -92,6 +107,10 @@ const Content = styled.div`
   font-size: 15px;
   text-align: left;
   line-height: 1.4;
+
+  @media screen and (max-width: 672px) {
+    font-size: 12px;
+  }
 `;
 
 const Date = styled.div`
@@ -101,5 +120,9 @@ const Date = styled.div`
     margin: 8px 18px;
     font-size: 16px;
     font-weight: 600;
+
+    @media screen and (max-width: 672px) {
+      font-size: 11px;
+    }
   }
 `;
