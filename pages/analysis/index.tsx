@@ -170,7 +170,7 @@ const ChartBox = styled.div`
   padding: 20px 40px;
   background: ${({ theme }) => theme.color.cream};
   border: 3px solid ${({ theme }) => theme.color.brown};
-  /* border-radius: 24px; */
+  border-radius: 24px;
   box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.brown};
   font-weight: 500;
   font-size: 18px;

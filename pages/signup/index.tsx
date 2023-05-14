@@ -259,8 +259,12 @@ export default SignUpPage;
 
 const SignupLayout = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  margin: 140px auto;
 `;
 
 const Form = styled.form`
@@ -269,10 +273,10 @@ const Form = styled.form`
   justify-content: center;
   align-items: center;
   width: 650px;
-  height: 1050px;
-  margin: 120px auto;
+  height: 1200px;
+  margin: 0 auto;
   border: 3px solid ${({ theme }) => theme.color.brown};
-  /* border-radius: 20px; */
+  border-radius: 20px;
   background-color: ${({ theme }) => theme.color.lime};
 `;
 

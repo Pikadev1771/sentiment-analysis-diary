@@ -39,7 +39,7 @@ const Box = styled.div`
   height: 500px;
   margin: 120px auto;
   border: 3px solid ${({ theme }) => theme.color.brown};
-  /* border-radius: 20px; */
+  border-radius: 20px;
   background-color: ${({ theme }) => theme.color.lime};
   padding: 30px;
 

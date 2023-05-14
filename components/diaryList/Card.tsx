@@ -49,7 +49,7 @@ const Card = styled.div`
   background: ${({ theme }) => theme.color.lime};
   border: 2px solid ${({ theme }) => theme.color.brown};
   box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.brown};
-  /* border-radius: 10px; */
+  border-radius: 10px;
   font-weight: 400;
   color: ${({ theme }) => theme.color.brown};
 
@@ -78,7 +78,7 @@ const ContentContainer = styled.div`
   height: 65px;
   background: ${({ theme }) => theme.color.cream};
   border: 2px solid ${({ theme }) => theme.color.brown};
-  /* border-radius: 10px; */
+  border-radius: 4px;
   padding: 10px;
 `;
 const Content = styled.div`

@@ -164,7 +164,7 @@ const Container = styled.div`
     background: ${({ theme }) => theme.color.cream};
     border: 3px solid ${({ theme }) => theme.color.brown};
     box-shadow: 6px 6px 0px 0px ${({ theme }) => theme.color.brown};
-    /* border-radius: 24px; */
+    border-radius: 24px;
     font-weight: 500;
     font-size: 18px;
     color: ${({ theme }) => theme.color.brown};
@@ -189,7 +189,8 @@ const Container = styled.div`
     background: ${({ theme }) => theme.color.hotPink};
     border-bottom: 3px solid ${({ theme }) => theme.color.brown};
     height: 90px;
-    /* border-radius: 20px 20px 0 0; */
+    border-radius: 20px 20px 0 0;
+    padding: 0 10px;
 
     span {
       font-size: 24px;
@@ -200,13 +201,13 @@ const Container = styled.div`
 
   .react-calendar__navigation button:disabled {
     background-color: ${({ theme }) => theme.color.hotPink};
-    /* border-radius: 20px 20px 0 0; */
+    border-radius: 20px 20px 0 0;
   }
 
   .react-calendar__navigation button:enabled:hover,
   .react-calendar__navigation button:enabled:focus {
     background-color: ${({ theme }) => theme.color.hotPink};
-    /* border-radius: 20px 20px 0 0; */
+    border-radius: 20px 20px 0 0;
   }
 
   // 월 달력 (내비게이션 제외)
