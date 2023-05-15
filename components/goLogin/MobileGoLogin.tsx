@@ -34,15 +34,16 @@ const Box = styled.div`
 `;
 
 const LoginBtn = styled(SmallButton)`
-  width: 120px;
+  width: 100px;
   height: 50px;
   padding: 10px 0;
-  border: 3px solid ${({ theme }) => theme.color.hotPink};
+
+  /* border: 2px solid ${({ theme }) => theme.color.hotPink};
   background-color: inherit;
-  color: ${({ theme }) => theme.color.hotPink};
-  /* background-color: ${({ theme }) => theme.color.lime}; */
-  /* border: 3px solid ${({ theme }) => theme.color.brown}; */
-  /* color: ${({ theme }) => theme.color.brown}; */
+  color: ${({ theme }) => theme.color.hotPink}; */
+  background-color: ${({ theme }) => theme.color.lime};
+  border: 3px solid ${({ theme }) => theme.color.brown};
+  color: ${({ theme }) => theme.color.brown};
   border-radius: 10px;
 
   font-size: 18px;
@@ -50,5 +51,5 @@ const LoginBtn = styled(SmallButton)`
 `;
 
 const SignupBtn = styled(LoginBtn)`
-  /* background-color: ${({ theme }) => theme.color.pink}; */
+  background-color: ${({ theme }) => theme.color.pink};
 `;
