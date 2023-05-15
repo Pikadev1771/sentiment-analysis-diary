@@ -37,14 +37,18 @@ const LoginBtn = styled(SmallButton)`
   width: 120px;
   height: 50px;
   padding: 10px 0;
-  border: 3px solid ${({ theme }) => theme.color.brown};
+  border: 3px solid ${({ theme }) => theme.color.hotPink};
+  background-color: inherit;
+  color: ${({ theme }) => theme.color.hotPink};
+  /* background-color: ${({ theme }) => theme.color.lime}; */
+  /* border: 3px solid ${({ theme }) => theme.color.brown}; */
+  /* color: ${({ theme }) => theme.color.brown}; */
   border-radius: 10px;
-  color: ${({ theme }) => theme.color.brown};
-  background-color: ${({ theme }) => theme.color.lime};
+
   font-size: 18px;
   font-weight: 400;
 `;
 
 const SignupBtn = styled(LoginBtn)`
-  background-color: ${({ theme }) => theme.color.pink};
+  /* background-color: ${({ theme }) => theme.color.pink}; */
 `;
