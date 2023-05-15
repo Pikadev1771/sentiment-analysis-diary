@@ -82,7 +82,7 @@ const SignUpPage: NextPageWithLayout = () => {
   // 회원가입 요청
   const onSubmit: SubmitHandler<SignUpFormProps> = (form) => {
     requestSignup(form).then((res) => {
-      router.push('/');
+      router.push('/login');
     });
   };
 
