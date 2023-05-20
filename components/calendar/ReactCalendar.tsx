@@ -56,7 +56,7 @@ export default function ReactCalendar() {
   };
 
   const handleClick = (
-    value: Date,
+    value: any,
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     // 클릭한 날짜 변경
