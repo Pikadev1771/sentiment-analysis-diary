@@ -26,16 +26,7 @@ import Head from 'next/head';
 import Loading from '../../components/loading';
 import { Roboto_Mono } from 'next/font/google';
 
-interface DiaryDataProps {
-  diaryId: number;
-  title: string;
-  content: string;
-  createdAt: string;
-  emotion: string;
-  emotionString: string;
-}
-
-type DiaryFormProps = {
+export type EditFormProps = {
   diaryId: number;
   createdAt: string;
   title: string;
@@ -67,12 +58,12 @@ const EditPage: NextPageWithLayout = ({ date, diaryData }: any) => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<DiaryFormProps>();
+  } = useForm<EditFormProps>();
 
-  const onSubmit: SubmitHandler<DiaryFormProps> = (editFormData) => {
+  const onSubmit: SubmitHandler<EditFormProps> = (editFormData) => {
     setIsLoading(true);
 
-    const formData: any = {
+    const formData: EditFormProps = {
       ...editFormData,
       diaryId: diaryData.diaryId,
     };

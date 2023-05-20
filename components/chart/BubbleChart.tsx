@@ -13,7 +13,19 @@ const BubbleChartTheme = {
   },
 };
 
-const BubbleChart = ({ data }: any) => (
+type BubbleChartDataProps = {
+  data: {
+    children: {
+      키워드: string;
+      children: {
+        키워드: string;
+        횟수: undefined;
+      }[];
+    }[];
+  };
+};
+
+const BubbleChart = ({ data }: BubbleChartDataProps) => (
   <BubbleChartContainer>
     <ResponsiveCirclePacking
       theme={BubbleChartTheme}

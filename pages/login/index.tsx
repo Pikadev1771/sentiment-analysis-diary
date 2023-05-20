@@ -80,7 +80,7 @@ const LoginPage: NextPageWithLayout = () => {
         Cookies.set('nickName', res.data.nickName);
         router.push('/');
       })
-      .catch((error: any) => {
+      .catch((error) => {
         if (error?.response?.status === 401) {
           setLoginErrorMessage('정확하지 않은 이메일 또는 패스워드입니다');
         }

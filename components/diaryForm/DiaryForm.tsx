@@ -9,8 +9,8 @@ import { createDiary } from '../../api/diary';
 import Loading from '../loading';
 import { Roboto_Mono } from 'next/font/google';
 
-type DiaryFormProps = {
-  createdAt: string;
+export type CreateFormProps = {
+  createdAt: string | string[] | undefined;
   title: string;
   content: string;
 };
@@ -34,14 +34,14 @@ export default function DiaryForm() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<DiaryFormProps>();
+  } = useForm<CreateFormProps>();
 
-  const onSubmit: SubmitHandler<DiaryFormProps> = (data) => {
+  const onSubmit: SubmitHandler<CreateFormProps> = (data) => {
     if (isSubmitted) return;
     setIsLoading(true);
     setIsSubmitted(true);
 
-    const formData: any = {
+    const formData: CreateFormProps = {
       ...data,
       createdAt: date,
     };

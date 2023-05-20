@@ -92,8 +92,19 @@ const AnalysisPage: NextPageWithLayout = () => {
     ],
   };
 
+  interface DiaryProps {
+    diaryId: number;
+    memberId: number;
+    nickName: string;
+    title: string;
+    content: string;
+    createdAt: any;
+    emotion: any;
+    keywords: Array<number>;
+    modifiedAt: string;
+  }
   // 라인 차트
-  let lineArr = diaries?.map((el: any) => {
+  let lineArr = diaries?.map((el: DiaryProps) => {
     let newEl = { x: undefined, y: undefined };
     newEl.x = el['createdAt'];
     newEl.y = el['emotion'];

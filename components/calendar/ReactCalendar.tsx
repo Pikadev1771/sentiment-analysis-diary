@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { SetStateAction, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -10,6 +10,19 @@ import { RootState } from '@/redux/store';
 import { getDiaryByUser } from '../../api/diary';
 import Cookies from 'js-cookie';
 import useLogin from '../../hooks/useLogin';
+import { TileArgs, Value } from 'react-calendar/dist/cjs/shared/types';
+
+type DiaryProps = {
+  diaryId: number;
+  memberId: number;
+  nickName: string;
+  title: string;
+  content: string;
+  createdAt: string;
+  emotion: number;
+  keywords: Array<number>;
+  modifiedAt: string;
+};
 
 export default function ReactCalendar() {
   const router = useRouter();
@@ -20,7 +33,7 @@ export default function ReactCalendar() {
   // );
 
   // 일기 데이터 받아오기
-  const [diaryList, setDiaryList] = useState<any | undefined>();
+  const [diaryList, setDiaryList] = useState<DiaryProps[] | undefined>();
 
   useEffect(() => {
     if (isLogin) {
@@ -42,15 +55,19 @@ export default function ReactCalendar() {
     setActiveMonth(newActiveMonth);
   };
 
-  const handleClick = (value: any, event: any) => {
+  const handleClick = (
+    value: any,
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     // 클릭한 날짜 변경
+
     setValue(value);
 
     if (!isLogin) {
       event.preventDefault();
     } else {
       if (
-        diaryList.find(
+        diaryList?.find(
           (diary: { createdAt: string }) =>
             diary.createdAt === moment(value).format('YYYY-MM-DD')
         )
@@ -71,7 +88,7 @@ export default function ReactCalendar() {
   };
 
   // 각 날짜 타일에 컨텐츠 추가
-  const tileContent = ({ date }: any) => {
+  const tileContent = ({ date }: TileArgs) => {
     // 해당 날짜(하루)의 타일에 추가할 컨텐츠의 배열
     const contents = [];
 
