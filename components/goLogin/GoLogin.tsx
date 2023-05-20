@@ -6,7 +6,6 @@ import Cookies from 'js-cookie';
 import { requestLogin } from '../../api/users';
 import { useState } from 'react';
 import Image from 'next/image';
-// import useRegexText from '../../hooks/useRegexText';
 
 const GoLogin = () => {
   const router = useRouter();
@@ -109,7 +108,7 @@ const LogInBtn = styled.button`
     background-color: ${({ theme }) => theme.color.pink};
     font-size: 16px;
     font-weight: 600;
-    /* text-decoration: underline; */
+
     :hover {
       cursor: pointer;
     }
@@ -136,7 +135,6 @@ const GoToSignup = styled.div`
 const LinkBtn = styled.button`
   width: 90px;
   height: 30px;
-  /* margin-left: 8px; */
   margin: 10px 0 0 8px;
   border: 2px solid ${({ theme }) => theme.color.brown};
   border-radius: 10px;
@@ -144,7 +142,7 @@ const LinkBtn = styled.button`
   background-color: ${({ theme }) => theme.color.cream};
   font-size: 16px;
   font-weight: 600;
-  /* text-decoration: underline; */
+
   :hover {
     cursor: pointer;
   }

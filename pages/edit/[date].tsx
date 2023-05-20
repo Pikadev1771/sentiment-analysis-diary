@@ -164,7 +164,7 @@ const DiaryBox = styled.div`
   font-size: 18px;
   color: ${({ theme }) => theme.color.lightBrown};
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     width: 80vw;
     height: 100%;
   }

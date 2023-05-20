@@ -166,7 +166,7 @@ const DiaryBox = styled.div`
   font-size: 18px;
   color: ${({ theme }) => theme.color.lightBrown};
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     width: 80vw;
     height: 100%;
   }
@@ -183,7 +183,7 @@ const ContentAndAnalysis = styled.div`
   width: 100%;
   height: 100%;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -198,7 +198,7 @@ const Content = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     width: 95%;
   }
 `;
@@ -232,7 +232,7 @@ const Analysis = styled.div`
     }
   }
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     width: 95%;
     margin-left: 0;
     margin-top: 10px;
@@ -260,7 +260,7 @@ const ImageContainer = styled.div`
     }
   }
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     margin-right: 20px;
   }
   /* animation: bounce_frames 0.5s;

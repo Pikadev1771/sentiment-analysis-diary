@@ -34,7 +34,7 @@ const MainContainer = styled.div`
   display: flex;
   justify-content: center;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     width: 100%;
     flex-direction: column;
     align-items: center;
@@ -51,7 +51,7 @@ const Left = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     width: 80vw;
     height: 100%;
     flex-direction: column;
@@ -67,7 +67,7 @@ const Left = styled.div`
 `;
 
 const Right = styled(Left)`
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     margin-top: 50px;
   }
 `;

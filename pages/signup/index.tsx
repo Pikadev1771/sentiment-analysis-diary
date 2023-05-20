@@ -259,7 +259,6 @@ export default SignUpPage;
 
 const SignupLayout = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -273,7 +272,7 @@ const Form = styled.form`
   justify-content: center;
   align-items: center;
   width: 650px;
-  height: 1200px;
+  height: 1100px;
   margin: 0 auto;
   border: 3px solid ${({ theme }) => theme.color.brown};
   border-radius: 20px;
@@ -333,6 +332,12 @@ const DuplicationCheckContainer = styled.div`
   align-items: center;
   padding-right: 20px;
   margin-top: 8px;
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    justify-content: right;
+    align-items: center;
+  }
 `;
 
 const DuplicationCheckMessage = styled.span`

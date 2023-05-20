@@ -88,12 +88,6 @@ const Title = styled.span`
 
   span {
     margin-left: 4px;
-
-    /* color: ${({ theme }) => theme.color.lime};
-    background-color: ${({ theme }) => theme.color.brown};
-    padding: 6px 10px;
-    border-radius: 10px;
-    margin-right: 4px; */
     text-decoration: underline;
     text-underline-offset: 4px;
     text-decoration-style: wavy;
@@ -120,10 +114,7 @@ const List = styled.div`
 const ShowMoreBtn = styled.button`
   padding: 3px 10px;
   border: none;
-  /* border: 2px solid ${({ theme }) => theme.color.brown}; */
-  /* border-radius: 10px; */
   color: ${({ theme }) => theme.color.brown};
-  /* background-color: ${({ theme }) => theme.color.cream}; */
   background-color: inherit;
   font-size: 16px;
   font-weight: 600;
@@ -133,34 +124,3 @@ const ShowMoreBtn = styled.button`
     cursor: pointer;
   }
 `;
-
-// const diaryData = [
-//   {
-//     id: 1,
-//     date: '2023-04-01',
-//     title: '야호',
-//     content: '날씨 좋다~~!',
-//     score: 1,
-//   },
-//   {
-//     id: 2,
-//     date: '2023-04-02',
-//     title: '메리 크리스마스🎅🏽',
-//     content: '🎄🎄🎄',
-//     score: 0.5,
-//   },
-//   {
-//     id: 3,
-//     date: '2023-04-10',
-//     title: '해피 뉴이어',
-//     content: '행복한 2023년',
-//     score: 0.1,
-//   },
-//   {
-//     id: 4,
-//     date: '2023-04-13',
-//     title: '야호',
-//     content: '날씨 좋다~~!',
-//     score: 1,
-//   },
-// ];
