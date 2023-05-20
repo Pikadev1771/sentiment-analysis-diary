@@ -93,9 +93,10 @@ export default function DiaryForm() {
 }
 
 const Form = styled.form`
-  width: 85%;
+  width: 90%;
   height: 620px;
   padding: 45px;
+  margin: 0 30px;
 
   background: ${({ theme }) => theme.color.lime};
   border: 3px solid ${({ theme }) => theme.color.lightBrown};
@@ -111,6 +112,10 @@ const Form = styled.form`
   p {
     margin: 6px;
     text-align: right;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 80vw;
   }
 `;
 
@@ -130,7 +135,6 @@ const DiaryInput = styled.input`
   display: block;
   box-sizing: border-box;
   width: 100%;
-
   height: 65px;
   text-align: center;
   outline: none;
@@ -142,6 +146,10 @@ const DiaryInput = styled.input`
   font-weight: 500;
   font-size: 18px;
   color: ${({ theme }) => theme.color.lightBrown};
+
+  @media screen and (max-width: 767px) {
+    height: 65px;
+  }
 
   :focus {
     outline: none;

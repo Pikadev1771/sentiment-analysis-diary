@@ -149,7 +149,7 @@ const DiaryLayout = styled.div`
 `;
 
 const DiaryBox = styled.div`
-  width: 1000px;
+  width: 970px;
   height: 700px;
   padding: 90px;
   background: ${({ theme }) => theme.color.lime};
@@ -159,6 +159,15 @@ const DiaryBox = styled.div`
   font-weight: 500;
   font-size: 18px;
   color: ${({ theme }) => theme.color.lightBrown};
+
+  @media screen and (max-width: 1024px) {
+    width: 80vw;
+    height: 100%;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 40px;
+  }
 `;
 
 const Form = styled.form`

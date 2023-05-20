@@ -31,13 +31,16 @@ const GoLogin = () => {
 export default GoLogin;
 
 const Box = styled.div`
+  width: 90%;
+  min-width: 350px;
+  height: 520px;
+  margin: 0 auto;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90%;
-  height: 500px;
-  margin: 120px auto;
+
   border: 3px solid ${({ theme }) => theme.color.brown};
   border-radius: 20px;
   background-color: ${({ theme }) => theme.color.lime};
@@ -48,7 +51,7 @@ const Box = styled.div`
     margin: 0 auto;
   }
 
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 767px) {
     display: none;
   }
 `;

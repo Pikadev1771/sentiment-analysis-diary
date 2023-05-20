@@ -60,7 +60,7 @@ const Container = styled.div`
   align-content: center;
   flex-wrap: wrap;
 
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 767px) {
     height: 100%;
     flex-direction: column;
   }
@@ -73,7 +73,7 @@ const ListHeader = styled.div`
   align-items: center;
   padding: 0 8px 0 8px;
 
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 767px) {
     justify-content: center;
     margin-bottom: 15px;
   }
@@ -112,7 +112,7 @@ const List = styled.div`
     justify-content: center;
   }
 
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 767px) {
     justify-content: center;
   }
 `;

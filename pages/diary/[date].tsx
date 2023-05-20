@@ -120,8 +120,10 @@ const DiaryPage: NextPageWithLayout = ({ date }: any) => {
                   alt="mood"
                 />
               </ImageContainer>
-              {diaryData && <p>Mood: {mood || 'Soso'}</p>}
-              {diaryData && <p>Score: {diaryData?.emotion}</p>}
+              <div>
+                {diaryData && <p>Mood: {mood || 'Soso'}</p>}
+                {diaryData && <p>Score: {diaryData?.emotion}</p>}
+              </div>
             </Analysis>
           </ContentAndAnalysis>
         </DiaryBox>
@@ -149,7 +151,7 @@ const DiaryLayout = styled.div`
 `;
 
 const DiaryBox = styled.div`
-  width: 1000px;
+  width: 970px;
   height: 700px;
   padding: 90px;
   background: ${({ theme }) => theme.color.lime};
@@ -159,6 +161,15 @@ const DiaryBox = styled.div`
   font-weight: 500;
   font-size: 18px;
   color: ${({ theme }) => theme.color.lightBrown};
+
+  @media screen and (max-width: 1024px) {
+    width: 80vw;
+    height: 100%;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 40px;
+  }
 `;
 
 const ContentAndAnalysis = styled.div`
@@ -167,6 +178,13 @@ const ContentAndAnalysis = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
+
+  @media screen and (max-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const Content = styled.div`
@@ -175,6 +193,10 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media screen and (max-width: 1024px) {
+    width: 95%;
+  }
 `;
 
 const Analysis = styled.div`
@@ -192,14 +214,28 @@ const Analysis = styled.div`
   font-weight: 500;
   font-size: 18px;
   color: ${({ theme }) => theme.color.lightBrown};
-
   margin-left: 50px;
+
   p {
     font-size: 24px;
     font-style: italic;
 
     font-weight: 600;
     margin-top: 6px;
+
+    @media screen and (max-width: 767px) {
+      font-size: 18px;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 95%;
+    margin-left: 0;
+    margin-top: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
 `;
 
@@ -220,6 +256,9 @@ const ImageContainer = styled.div`
     }
   }
 
+  @media screen and (max-width: 1024px) {
+    margin-right: 20px;
+  }
   /* animation: bounce_frames 0.5s;
   animation-direction: alternate;
   animation-timing-function: cubic-bezier(0.5, 0.05, 1, 0.5);
