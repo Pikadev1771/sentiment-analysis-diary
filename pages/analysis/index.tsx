@@ -170,6 +170,10 @@ const ChartLayout = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 100px auto;
+
+  @media screen and (max-width: 1024px) {
+    margin: 40px auto;
+  }
 `;
 
 const ChartBox = styled.div`
@@ -188,6 +192,11 @@ const ChartBox = styled.div`
     width: 80vw;
     height: 100%;
   }
+
+  @media screen and (max-width: 767px) {
+    width: 90vw;
+    padding: 4px;
+  }
 `;
 
 const ChartTitle = styled.p`
@@ -196,6 +205,10 @@ const ChartTitle = styled.p`
   color: ${({ theme }) => theme.color.lightBrown};
   font-weight: 600;
   margin-top: 60px;
+
+  @media screen and (max-width: 767px) {
+    font-size: 22px;
+  }
 `;
 
 const Form = styled.form`

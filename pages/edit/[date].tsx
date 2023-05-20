@@ -146,6 +146,10 @@ const DiaryLayout = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 100px auto;
+
+  @media screen and (max-width: 767px) {
+    margin: 40px auto;
+  }
 `;
 
 const DiaryBox = styled.div`
@@ -211,6 +215,10 @@ const DateBox = styled.div`
     font-size: 24px;
     width: 80px;
     font-style: italic;
+
+    @media screen and (max-width: 767px) {
+      font-size: 20px;
+    }
   }
 `;
 
@@ -244,6 +252,10 @@ const TitleBox = styled.div`
     font-size: 24px;
     width: 80px;
     font-style: italic;
+
+    @media screen and (max-width: 767px) {
+      font-size: 20px;
+    }
   }
 `;
 
