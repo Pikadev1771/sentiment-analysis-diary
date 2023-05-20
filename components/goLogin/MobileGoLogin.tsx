@@ -7,7 +7,6 @@ import { requestLogin } from '../../api/users';
 import { useState } from 'react';
 import Image from 'next/image';
 import SmallButton from '../button/SmallButton';
-// import useRegexText from '../../hooks/useRegexText';
 
 const MobileGoLogin = () => {
   const router = useRouter();
@@ -38,9 +37,6 @@ const LoginBtn = styled(SmallButton)`
   height: 50px;
   padding: 10px 0;
 
-  /* border: 2px solid ${({ theme }) => theme.color.hotPink};
-  background-color: inherit;
-  color: ${({ theme }) => theme.color.hotPink}; */
   background-color: ${({ theme }) => theme.color.lime};
   border: 3px solid ${({ theme }) => theme.color.brown};
   color: ${({ theme }) => theme.color.brown};

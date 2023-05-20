@@ -171,7 +171,7 @@ const ChartLayout = styled.div`
   align-items: center;
   margin: 100px auto;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     margin: 40px auto;
   }
 `;
@@ -188,7 +188,7 @@ const ChartBox = styled.div`
   font-size: 18px;
   color: ${({ theme }) => theme.color.brown};
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     width: 80vw;
     height: 100%;
   }
@@ -223,7 +223,7 @@ const Form = styled.form`
   background-color: ${({ theme }) => theme.color.lime};
   border-radius: 10px;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -242,7 +242,7 @@ const Search = styled.div`
     width: 30px;
   }
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     width: 100%;
   }
 `;
@@ -265,7 +265,7 @@ const Input = styled.input`
   font-weight: 600;
   text-align: center;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     width: 80%;
     font-size: 14px;
     margin-top: 6px;
@@ -281,7 +281,7 @@ const Input = styled.input`
       text-transform: uppercase;
       font-weight: 600;
 
-      @media screen and (max-width: 1024px) {
+      @media screen and (max-width: 1023px) {
         width: 60px;
         font-size: 14px;
         margin-right: 10px;

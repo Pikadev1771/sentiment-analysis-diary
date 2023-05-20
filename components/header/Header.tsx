@@ -42,63 +42,41 @@ export default function Header() {
         </Link>
       </LogoMobile>
       <Menu>
-        {
-          isLogin ? (
-            <>
-              <MenuButton onClick={() => router.push('/analysis')}>
-                <Image
-                  src="/header/analysis.svg"
-                  width="32"
-                  height="32"
-                  alt="analysis"
-                />
-              </MenuButton>
-              <MenuButton
-                onClick={() =>
-                  router.push(
-                    {
-                      pathname: '/addnew',
-                      query: {
-                        date: moment(new Date()).format('YYYY-MM-DD'),
-                      },
+        {isLogin ? (
+          <>
+            <MenuButton onClick={() => router.push('/analysis')}>
+              <Image
+                src="/header/analysis.svg"
+                width="32"
+                height="32"
+                alt="analysis"
+              />
+            </MenuButton>
+            <MenuButton
+              onClick={() =>
+                router.push(
+                  {
+                    pathname: '/addnew',
+                    query: {
+                      date: moment(new Date()).format('YYYY-MM-DD'),
                     },
-                    '/addnew'
-                  )
-                }
-              >
-                <Image src="/header/new.svg" width="32" height="32" alt="new" />
-              </MenuButton>
-              <MenuButton onClick={openModalHandler}>
-                <Image
-                  src="/header/mypage.svg"
-                  width="32"
-                  height="32"
-                  alt="user"
-                />
-              </MenuButton>
-              {/* <NewDiaryBtn
-                  onClick={() =>
-                    router.push(
-                      {
-                        pathname: '/addnew',
-                        query: {
-                          date: moment(new Date()).format('YYYY-MM-DD'),
-                        },
-                      },
-                      '/addnew'
-                    )
-                  }
-                >
-                  새 일기 쓰기
-                </NewDiaryBtn> */}
-
-              {/* <ProfileBtn onClick={openModalHandler}>
-                  {nickName ? nickName[0].toUpperCase() : `🦄`}
-                </ProfileBtn> */}
-            </>
-          ) : null
-          // <LoginBtn onClick={() => router.push('/login')}>로그인</LoginBtn>
-        }
+                  },
+                  '/addnew'
+                )
+              }
+            >
+              <Image src="/header/new.svg" width="32" height="32" alt="new" />
+            </MenuButton>
+            <MenuButton onClick={openModalHandler}>
+              <Image
+                src="/header/mypage.svg"
+                width="32"
+                height="32"
+                alt="user"
+              />
+            </MenuButton>
+          </>
+        ) : null}
       </Menu>
       {isModalOpen && <ModalBackdrop onClick={openModalHandler} />}
       {isModalOpen ? (
@@ -125,7 +103,6 @@ const HeaderContainer = styled.div`
   width: 100vw;
   max-width: 2400px;
   height: 200px;
-  /* background-color: ${({ theme }) => theme.color.lightBrown}; */
   color: ${({ theme }) => theme.color.cream};
   padding: 0 60px;
   z-index: '10';
@@ -159,8 +136,6 @@ const LogoMobile = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-
-    /* border: 4px solid red; */
   }
 `;
 
@@ -192,7 +167,7 @@ const DarkModeBtn = styled.button`
 
 const MenuButton = styled(SmallButton)`
   background-color: inherit;
-  /* background-color: ${({ theme }) => theme.color.lime}; */
+
   border: none;
   border-radius: 50%;
   margin-left: 10px;
