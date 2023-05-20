@@ -8,8 +8,20 @@ import { getDiaryByDate, getDiaryByUser } from '../../api/diary';
 import Cookies from 'js-cookie';
 import Image from 'next/image';
 
+type DiaryProps = {
+  diaryId: number;
+  memberId: number;
+  nickName: string;
+  title: string;
+  content: string;
+  createdAt: string;
+  emotion: number;
+  keywords: Array<number>;
+  modifiedAt: string;
+};
+
 export default function DiaryList() {
-  const [diaryList, setDiaryList] = useState<any | undefined>();
+  const [diaryList, setDiaryList] = useState<DiaryProps[] | undefined>();
 
   const nickName = Cookies.get('nickName');
 
@@ -29,23 +41,16 @@ export default function DiaryList() {
         {/* <ShowMoreBtn>▶️ 더 보기</ShowMoreBtn> */}
       </ListHeader>
       <List>
-        {diaryList?.map(
-          (diary: {
-            diaryId: any;
-            createdAt: any;
-            title: any;
-            content: any;
-          }) => {
-            return (
-              <DiaryCard
-                key={diary.diaryId}
-                date={diary.createdAt}
-                title={diary.title}
-                content={diary.content}
-              />
-            );
-          }
-        )}
+        {diaryList?.map((diary: DiaryProps) => {
+          return (
+            <DiaryCard
+              key={diary.diaryId}
+              date={diary.createdAt}
+              title={diary.title}
+              content={diary.content}
+            />
+          );
+        })}
       </List>
     </Container>
   );

@@ -18,6 +18,7 @@ import Image from 'next/image';
 import SmallButton from '../../components/button/SmallButton';
 import Head from 'next/head';
 import { Roboto_Mono } from 'next/font/google';
+import { GetServerSidePropsContext } from 'next';
 
 const roboto_mono = Roboto_Mono({
   subsets: ['latin'],
@@ -26,8 +27,8 @@ const roboto_mono = Roboto_Mono({
   fallback: ['Open_Sans'],
 });
 
-export async function getServerSideProps(context: any) {
-  const { date } = context.params;
+export function getServerSideProps(context: GetServerSidePropsContext) {
+  const date = context.params?.date;
 
   return { props: { date } };
 }

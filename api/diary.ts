@@ -2,6 +2,9 @@ import axios, { AxiosRequestConfig } from 'axios';
 import Cookies from 'js-cookie';
 import router from 'next/router';
 
+import { CreateFormProps } from '../components/diaryForm/DiaryForm';
+import { EditFormProps } from '../pages/edit/[date]';
+
 // const REQUEST_URL =
 //   'http://ec2-43-200-210-186.ap-northeast-2.compute.amazonaws.com:8080';
 
@@ -82,14 +85,8 @@ axiosInstance.interceptors.response.use(
   }
 );
 
-type DiaryProps = {
-  title: string;
-  content: string;
-  createdAt: string;
-};
-
 // 일기 생성
-export const createDiary = async (form: DiaryProps) =>
+export const createDiary = async (form: CreateFormProps) =>
   axiosInstance.post('/api/diary', form);
 
 // 날짜별 일기 데이터 가져오기 (Client Side)
@@ -101,7 +98,7 @@ export const getDiaryByUser = async () =>
   axiosInstance.get(`/api/diary?page=1&size=10`);
 
 // 수정하기
-export const editDiary = (id: number, form: any) =>
+export const editDiary = (id: number, form: EditFormProps) =>
   axiosInstance.patch(`/api/diary/${id}`, form);
 
 // 삭제하기

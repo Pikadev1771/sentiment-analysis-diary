@@ -12,7 +12,12 @@ const roboto_mono = Roboto_Mono({
   fallback: ['Open_Sans'],
 });
 
-export default function DiaryCard({ date, title, content }: any) {
+interface DiaryCardProps {
+  date: string;
+  title: string;
+  content: string;
+}
+export default function DiaryCard({ date, title, content }: DiaryCardProps) {
   const router = useRouter();
   const handleClick = () => {
     router.push(`/diary/${date}`);

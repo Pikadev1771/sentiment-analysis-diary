@@ -1,7 +1,19 @@
 import React from 'react';
 import Happy from '../../public/emotion/happy.svg';
 
-const PointSymbol = ({ size, color, borderWidth, borderColor, point }: any) => {
+type PointSymbolProps = {
+  size: number;
+  color: string;
+  borderWidth: number;
+  borderColor: string;
+};
+const PointSymbol = ({
+  size,
+  color,
+  borderWidth,
+  borderColor,
+}: // point,
+PointSymbolProps) => {
   return (
     <g>
       {/* <Happy width="30" height="30" x="-15" y="-15" /> */}

@@ -1,4 +1,4 @@
-import { ResponsiveLine } from '@nivo/line';
+import { DatumValue, Point, PointTooltip, ResponsiveLine } from '@nivo/line';
 
 import styled from 'styled-components';
 import PointSymbol from './PointSymbol';
@@ -23,7 +23,17 @@ const lineChartTheme = {
   },
 };
 
-const LineChart = ({ data }: any) => {
+type LineChartDataProps = {
+  data: {
+    id: string;
+    data: {
+      x: undefined;
+      y: undefined;
+    }[];
+  }[];
+};
+
+const LineChart = ({ data }: LineChartDataProps) => {
   const router = useRouter();
 
   const customTooltip = ({ point }: any) => {
