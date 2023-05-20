@@ -213,7 +213,7 @@ const Form = styled.form`
   border-radius: 20px;
   background-color: ${({ theme }) => theme.color.lime};
 
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 767px) {
     width: 90%;
   }
 `;
@@ -248,7 +248,7 @@ const Input = styled.input`
     outline: none;
   }
 
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 767px) {
     width: 100%;
     font-size: 14px;
   }
@@ -311,7 +311,7 @@ const LogInBtn = styled.input`
     cursor: pointer;
   }
 
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 767px) {
     width: 100%;
     font-size: 16px;
   }

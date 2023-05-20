@@ -30,59 +30,53 @@ export default function Header() {
   };
 
   return (
-    <div>
-      <HeaderContainer>
-        <Logo>
-          <Link href={'/'}>
-            <Image src="/logo/SAND.svg" width="400" height="250" alt="HOME" />
-          </Link>
-        </Logo>
-        <LogoMobile>
-          <Link href={'/'}>
-            <Image src="/logo/SAND.svg" width="300" height="180" alt="HOME" />
-          </Link>
-        </LogoMobile>
-        <Menu>
-          {
-            isLogin ? (
-              <>
-                <MenuButton onClick={() => router.push('/analysis')}>
-                  <Image
-                    src="/header/analysis.svg"
-                    width="32"
-                    height="32"
-                    alt="analysis"
-                  />
-                </MenuButton>
-                <MenuButton
-                  onClick={() =>
-                    router.push(
-                      {
-                        pathname: '/addnew',
-                        query: {
-                          date: moment(new Date()).format('YYYY-MM-DD'),
-                        },
+    <HeaderContainer>
+      <Logo>
+        <Link href={'/'}>
+          <Image src="/logo/SAND.svg" width="400" height="250" alt="HOME" />
+        </Link>
+      </Logo>
+      <LogoMobile>
+        <Link href={'/'}>
+          <Image src="/logo/SAND.svg" width="300" height="180" alt="HOME" />
+        </Link>
+      </LogoMobile>
+      <Menu>
+        {
+          isLogin ? (
+            <>
+              <MenuButton onClick={() => router.push('/analysis')}>
+                <Image
+                  src="/header/analysis.svg"
+                  width="32"
+                  height="32"
+                  alt="analysis"
+                />
+              </MenuButton>
+              <MenuButton
+                onClick={() =>
+                  router.push(
+                    {
+                      pathname: '/addnew',
+                      query: {
+                        date: moment(new Date()).format('YYYY-MM-DD'),
                       },
-                      '/addnew'
-                    )
-                  }
-                >
-                  <Image
-                    src="/header/new.svg"
-                    width="32"
-                    height="32"
-                    alt="new"
-                  />
-                </MenuButton>
-                <MenuButton onClick={openModalHandler}>
-                  <Image
-                    src="/header/mypage.svg"
-                    width="32"
-                    height="32"
-                    alt="user"
-                  />
-                </MenuButton>
-                {/* <NewDiaryBtn
+                    },
+                    '/addnew'
+                  )
+                }
+              >
+                <Image src="/header/new.svg" width="32" height="32" alt="new" />
+              </MenuButton>
+              <MenuButton onClick={openModalHandler}>
+                <Image
+                  src="/header/mypage.svg"
+                  width="32"
+                  height="32"
+                  alt="user"
+                />
+              </MenuButton>
+              {/* <NewDiaryBtn
                   onClick={() =>
                     router.push(
                       {
@@ -98,30 +92,29 @@ export default function Header() {
                   새 일기 쓰기
                 </NewDiaryBtn> */}
 
-                {/* <ProfileBtn onClick={openModalHandler}>
+              {/* <ProfileBtn onClick={openModalHandler}>
                   {nickName ? nickName[0].toUpperCase() : `🦄`}
                 </ProfileBtn> */}
-              </>
-            ) : null
-            // <LoginBtn onClick={() => router.push('/login')}>로그인</LoginBtn>
-          }
-        </Menu>
-        {isModalOpen && <ModalBackdrop onClick={openModalHandler} />}
-        {isModalOpen ? (
-          <ModalBox onClick={(event) => event.stopPropagation()}>
-            <ModalMenu
-              onClick={() => {
-                router.push('/analysis');
-                setIsModalOpen(!isModalOpen);
-              }}
-            >
-              분석 페이지
-            </ModalMenu>{' '}
-            <ModalMenu onClick={handleLogOut}>로그아웃</ModalMenu>
-          </ModalBox>
-        ) : null}
-      </HeaderContainer>
-    </div>
+            </>
+          ) : null
+          // <LoginBtn onClick={() => router.push('/login')}>로그인</LoginBtn>
+        }
+      </Menu>
+      {isModalOpen && <ModalBackdrop onClick={openModalHandler} />}
+      {isModalOpen ? (
+        <ModalBox onClick={(event) => event.stopPropagation()}>
+          <ModalMenu
+            onClick={() => {
+              router.push('/analysis');
+              setIsModalOpen(!isModalOpen);
+            }}
+          >
+            분석 페이지
+          </ModalMenu>{' '}
+          <ModalMenu onClick={handleLogOut}>로그아웃</ModalMenu>
+        </ModalBox>
+      ) : null}
+    </HeaderContainer>
   );
 }
 
@@ -129,7 +122,8 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 100vw;
+  max-width: 2400px;
   height: 200px;
   /* background-color: ${({ theme }) => theme.color.lightBrown}; */
   color: ${({ theme }) => theme.color.cream};
@@ -137,7 +131,7 @@ const HeaderContainer = styled.div`
   z-index: '10';
   position: relative;
 
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 767px) {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -151,7 +145,7 @@ const HeaderContainer = styled.div`
 const Logo = styled.div`
   padding: 20px 0;
 
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 767px) {
     display: none;
   }
 `;
@@ -159,7 +153,7 @@ const Logo = styled.div`
 const LogoMobile = styled.div`
   display: none;
 
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 767px) {
     width: 100%;
     height: 100%;
     display: flex;
@@ -176,7 +170,7 @@ const Menu = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 767px) {
     height: 100%;
   }
 `;
@@ -253,7 +247,7 @@ const ModalBox = styled.div.attrs((props) => ({
   right: 20px;
   padding: 10px 0;
 
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 767px) {
     flex-direction: row;
     width: 55vw;
     height: 50px;

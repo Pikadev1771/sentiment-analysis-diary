@@ -117,24 +117,28 @@ const AnalysisPage: NextPageWithLayout = () => {
         <ChartBox>
           <ChartTitle>기간별 감정 분석</ChartTitle>
           <Form onSubmit={handleSubmit(onSubmit)}>
-            <Input
-              {...register('startDate', { required: true })}
-              className={roboto_mono.className}
-              id={'startDate'}
-              type="date"
-              defaultValue={`${moment(new Date(year, month - 1, day)).format(
-                'YYYY-MM-DD'
-              )}`}
-            />{' '}
-            부터
-            <Input
-              {...register('endDate', { required: true })}
-              className={roboto_mono.className}
-              id={'endDate'}
-              type="date"
-              defaultValue={`${moment(new Date()).format('YYYY-MM-DD')}`}
-            />{' '}
-            까지
+            <Search>
+              <Input
+                {...register('startDate', { required: true })}
+                className={roboto_mono.className}
+                id={'startDate'}
+                type="date"
+                defaultValue={`${moment(new Date(year, month - 1, day)).format(
+                  'YYYY-MM-DD'
+                )}`}
+              />{' '}
+              <span>부터</span>
+            </Search>
+            <Search>
+              <Input
+                {...register('endDate', { required: true })}
+                className={roboto_mono.className}
+                id={'endDate'}
+                type="date"
+                defaultValue={`${moment(new Date()).format('YYYY-MM-DD')}`}
+              />{' '}
+              <span> 까지</span>
+            </Search>
             <Input type="submit" value={'검색'} />
           </Form>
           <LineChart data={lineChartData} />
@@ -179,6 +183,11 @@ const ChartBox = styled.div`
   font-weight: 500;
   font-size: 18px;
   color: ${({ theme }) => theme.color.brown};
+
+  @media screen and (max-width: 1024px) {
+    width: 80vw;
+    height: 100%;
+  }
 `;
 
 const ChartTitle = styled.p`
@@ -190,13 +199,39 @@ const ChartTitle = styled.p`
 `;
 
 const Form = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   border: 3px solid ${({ theme }) => theme.color.brown};
-  padding: 15px 0;
+  padding: 15px;
   margin: 40px 40px 0 40px;
   font-size: 18px;
   background-color: ${({ theme }) => theme.color.lime};
   border-radius: 10px;
+
+  @media screen and (max-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+  }
+`;
+
+const Search = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+
+  span {
+    width: 30px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 
 const Input = styled.input`
@@ -211,10 +246,17 @@ const Input = styled.input`
   outline: none;
 
   margin-left: 30px;
+  margin-right: 6px;
   background: ${({ theme }) => theme.color.cream};
 
   font-weight: 600;
   text-align: center;
+
+  @media screen and (max-width: 1024px) {
+    width: 80%;
+    font-size: 14px;
+    margin-top: 6px;
+  }
 
   ${(props) =>
     props.type === 'submit' &&
@@ -224,8 +266,14 @@ const Input = styled.input`
       color: ${({ theme }) => theme.color.brown};
       border: 3px solid ${({ theme }) => theme.color.brown};
       text-transform: uppercase;
-
       font-weight: 600;
+
+      @media screen and (max-width: 1024px) {
+        width: 60px;
+        font-size: 14px;
+        margin-right: 10px;
+        width: 120px;
+      }
     `}
 
   :hover {

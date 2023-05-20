@@ -17,17 +17,16 @@ const FooterContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 100vw;
+  max-width: 2400px;
   height: 150px;
-
   z-index: '10';
+  margin-top: 10px;
 `;
 const FooterText = styled.div`
   border-top: 3px solid ${({ theme }) => theme.color.lightBrown};
   width: 90%;
-
   text-align: center;
-
   padding: 40px;
 
   p {
@@ -36,7 +35,7 @@ const FooterText = styled.div`
     font-size: 18px;
     font-style: italic;
 
-    @media screen and (max-width: 672px) {
+    @media screen and (max-width: 767px) {
       font-size: 12px;
     }
   }

@@ -5,7 +5,6 @@ import { NextPage } from 'next';
 import { ReactElement, ReactNode } from 'react';
 import styled from 'styled-components';
 
-
 // export interface layoutPropsType {
 //   children: ReactElement;
 // }
@@ -24,6 +23,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   height: 100vh;
 `;
 

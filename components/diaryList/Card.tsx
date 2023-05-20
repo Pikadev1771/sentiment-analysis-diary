@@ -65,7 +65,7 @@ const Card = styled.div`
     justify-content: space-between;
   }
 
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 767px) {
     width: 80vw;
     height: 140px;
     flex-direction: column;
@@ -93,7 +93,7 @@ const DiaryTitle = styled.p`
     text-align: left;
   }
 
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 767px) {
     width: 100px;
     text-align: center;
     font-size: 14px;
@@ -114,7 +114,7 @@ const ContentContainer = styled.div`
     text-align: left;
   }
 
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 767px) {
     width: 85%;
     height: 54px;
   }
@@ -136,7 +136,7 @@ const Content = styled.div`
     -webkit-line-clamp: 1;
   }
 
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 767px) {
     font-size: 12px;
     -webkit-line-clamp: 2;
   }
@@ -149,7 +149,7 @@ const Date = styled.div`
     width: 40%;
     text-align: center;
   }
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 767px) {
     width: 100%;
     text-align: right;
   }
@@ -165,7 +165,7 @@ const Date = styled.div`
       margin: 0;
     }
 
-    @media screen and (max-width: 672px) {
+    @media screen and (max-width: 767px) {
       font-size: 11px;
       text-align: right;
       margin: 8px 28px;

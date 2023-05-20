@@ -154,7 +154,7 @@ const Container = styled.div`
   width: 90%;
   margin: 0 auto;
 
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 767px) {
     width: 100%;
   }
 
@@ -169,7 +169,7 @@ const Container = styled.div`
     font-size: 18px;
     color: ${({ theme }) => theme.color.brown};
 
-    @media screen and (max-width: 672px) {
+    @media screen and (max-width: 767px) {
       width: 80vw;
       height: 100%;
       font-size: 10px;
@@ -225,7 +225,7 @@ const Container = styled.div`
       font-size: 16px;
       font-weight: 500;
 
-      @media screen and (max-width: 672px) {
+      @media screen and (max-width: 767px) {
         font-size: 13px;
       }
     }
@@ -238,7 +238,7 @@ const Container = styled.div`
       font-size: 18px;
       font-weight: 900;
 
-      @media screen and (max-width: 672px) {
+      @media screen and (max-width: 767px) {
         font-size: 13px;
       }
     }

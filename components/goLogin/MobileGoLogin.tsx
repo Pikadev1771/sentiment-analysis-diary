@@ -25,7 +25,7 @@ export default MobileGoLogin;
 const Box = styled.div`
   display: none;
 
-  @media screen and (max-width: 672px) {
+  @media screen and (max-width: 767px) {
     display: flex;
     justify-content: space-between;
     align-items: center;

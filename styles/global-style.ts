@@ -27,7 +27,7 @@ html,
     margin: 0;
   }
 
-      /* @media only screen and (max-width: 768px) {
+      /* @media only screen and (max-width: 767px) {
         body {
           font-size: 12px;
         }
